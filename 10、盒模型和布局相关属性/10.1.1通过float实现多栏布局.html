@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10.1.1通过float属性实现多栏布局</title>
+    <style>
+        body{
+            margin: 0;
+            padding:0;
+           
+        }
+        .dv0{
+          width: 960px;
+          margin: auto;   
+          border: 1px solid  hotpink;
+          overflow: hidden;
+        }
+        .dv0 div{
+            border:1px solid #aaf;
+            box-sizing: border-box;
+            border-radius: 12px 12px 0px 0px;   
+            background-color: #ffc;
+            padding:5px;
+        }
+    </style>
+</head>
+<body>
+    <p>通过使用float属性，可以非常方便的基于div元素来设计导航菜单、多栏布局等效果。</p>
+    <p>以下是例子：</p>
+    <p>大div盛放了3个浮动属性的div，3个子div的宽度和等于父div的宽度。</p>
+    <div class="dv0">
+        <div class="dv1" style="float:left;width:320px;">
+        <ul>
+            <li>112</li>
+            <li>23</li>
+            <li>43</li>
+        </ul>
+        </div>
+        <div class="dv2" style="float:left;width:320px;">
+        <ul>
+            <li>22</li>
+            <li>3242</li>
+            <li>3123</li>
+            <li>767</li>
+        </ul></div>
+        <div class="dv3" style="float:left;width:320px;">
+        <ul>
+            <li>2123</li>
+            <li>321</li>
+            <li>312</li>
+        </ul>
+        </div>
+    </div>
+</body>
+</html>

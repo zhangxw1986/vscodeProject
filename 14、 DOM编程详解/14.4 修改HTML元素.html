@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>14.4 修改HTML元素</title>
+</head>
+<body>
+    <p>访问到指定HTML元素之后，还可以对该元素进行修改，通过修改HTML元素就可以实现动态更新HTML页面的目的了。</p>
+    <p>修改节点通常是修改节点的内容、节点的属性、节点的CSS样式。总结起来一句话：HTML元素的所有读写属性都可被修改。修改
+        HTML元素通常是通过修改如下几个常用属性来实现：
+    </p>
+    <ul>
+        <li>innerHTML:大部分HTML页面元素如div td 的呈现内容由该元素控制。</li>
+        <li>value: 表单控件如input textarea的呈现内容由该元素控制。</li>
+        <li>className: 修改HTML元素的CSS样式，该属性的合法值是一个CSS class选择器</li>
+        <li>style:修改HTML的内联CSS样式。</li>
+        <li>options[index]: 直接对select元素的指定列表项赋值，可改变列表框、下拉菜单的指定列表项。</li>
+    </ul>
+
+    改变第<input id="row" type="text" size="2" />行，第<input id="cel" type="text" size="2" />列的值为：
+    <input id="celVal" type="text" size="16" /><br>
+    <input type="button" value="改变" id="chg" onclick="change();">
+    <table id="d" border="1">
+        <tr>
+            <td>曼联比赛结果</td>
+            <td>揭 晓 </td>
+        </tr>
+        <tr>
+            <td>曼城比赛结果</td>
+            <td>揭 晓 </td>
+        </tr>
+        <tr>
+            <td>阿森纳比赛结果</td>
+            <td>揭 晓 </td>
+        </tr>
+    </table>
+    <script>
+        var change = function(){
+            var tb = document.getElementById("d");
+            var row = document.getElementById("row").value;
+            row = parseInt(row);
+            if(isNaN(row)){
+                alert("要修改的行必须是整数");
+                return false;
+            }
+            var cel = document.getElementById("cel").value;
+            cel = parseInt(cel);
+            if(isNaN(cel)){
+                alert("要修改的列必须是整数");
+                return false;
+            }
+            if(row > tb.rows.length || cel > tb.rows.item(0).cells.length){
+                alert("要修改的内容不在该表格内");
+                return false;
+            }
+            tb.rows.item(row - 1).cells.item(cel - 1).innerHTML = document.getElementById("celVal").value;
+
+        }
+    </script>
+</body>
+</html>

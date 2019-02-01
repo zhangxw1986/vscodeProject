@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>12.1 CSS3提供的变形支持</title>
+</head>
+
+<body>
+    <p>CSS3的变形功能可以对HTML组件执行<b style="color:peru">位移、旋转、缩放、倾斜</b>4种集合变换，这样的变换可以控制HTML组件
+        呈现出更丰富的外观。</p>
+    <p>借助于位移、旋转、缩放、倾斜这四种几何变换，CSS3提供了Transition动画。Transition动画比较简单，只要指定HTML组件的哪些CSS属性
+        需要使用动画效果来执行变化，并指定动画的持续时间，就可保证HTML组件按指定规则播放动画。
+    </p>
+    <p>
+        比Transiton动画功能更强大的是Animation动画，Animation动画同样可以与位移、旋转、缩放、倾斜四种几何变换结合，但它可以
+        指定多个关键帧，从而允许定义功能更丰富的自定义动画。
+    </p>
+    <p>本章将会详细介绍CSS3提供的变形支持和动画功能。</p>
+    <br>
+    <h4>12.1 CSS3提供的变形支持。</h4>
+    <p>
+        CSS3提供的变性支持可以对HTML组件进行常见的几何变换，包括旋转、位移、缩放、倾斜4种变换，也可以使用变换矩阵进行变形。
+    </p>
+    <p>CSS3为变形支持提供了如下两个属性值：</p>
+    <ul>
+        <li>transform:该属性用于设置变形。该属性支持一个或多个变形函数。CSS3提供了如下变形函数。
+            <ul>
+                <li>translate(tx [,ty]):该函数设置HTML组件横向上移动tx距离，纵向上移动ty距离。其中ty参数可以省略。</li>
+                <li>translateX(tx):该函数设置HTML组件横向上移动tx距离。</li>
+                <li>translateY(ty):该函数设置HTML组件纵向上移动ty距离。</li>
+                <li>scale(sx,sy):该函数设置HTML组件横向上缩放比为sx，纵向上缩放比为sy。</li>
+                <li>scaleX(sx):该函数相当于执行scale(sx,1)</li>
+                <li>scaleY(sy):该函数相当于执行scalte(1,sy)</li>
+                <li>rotate(angle):该函数设置HTML组件顺时针转过angle角度。</li>
+                <li>skew(sx [,sy]):该函数设置HTML组件沿着X轴倾斜sx角度，沿着Y轴倾斜sy角度。其中sy可以省略，默认为0。</li>
+                <li>skewX(sx):该函数设置HTML组件沿着X轴倾斜sx角度。</li>
+                <li>skewY(sy):该函数设置在HTML组件沿着Y轴倾斜sy角度。</li>
+                <li>matrix(m11,m12,m21,m22,dx,dy):这是一个基于矩阵变换的函数。其中前4个参数将组成变形矩阵；dx、dy将负责对坐标系统进行平移。</li>
+            </ul>
+
+        </li>
+        <li>transform-origin:该属性设置变形的中心点。该属性值应该指定为xCenter、yCenter，其中xCenter、yCenter支持如下几种属性值。</li>
+        <ul>
+            <li>left:指定旋转中心点位于HTML组件的左边界。该属性值只能指定给xCenter。</li>
+            <li>top:指定旋转中心点位于HTML组件的上边界。该属性值只能指定给yCenter。</li>
+            <li>right:指定旋转中心点位于HTML组件的右边界。该属性值只能指定给xCenter。</li>
+            <li>bottom:指定旋转中心点位于HTML组件的下边界。该属性值只能指定给yCenter。</li>
+            <li>center:指定旋转中心点位于HTML组件的中间。如果将xCenter、yCenter都指定为center，则旋转中心点位于HTML元素的中心。</li>
+            <li>长度值：指定旋转中心点距离左边界、又便捷的长度。</li>
+            <li>百分比：指定旋转中心点位于横向。纵向上的百分比位置。</li>
+        </ul>
+    </ul> 
+</body>
+
+</html>

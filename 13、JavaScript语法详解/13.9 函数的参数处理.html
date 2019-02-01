@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>13.9 函数的参数处理</title>
+</head>
+<body>
+    <h3>13.9 函数的参数处理</h3>
+    <b style="color:peru;">和Java一样，JavaScript的参数传递全部采用值传递方式。</b>
+    <h4>13.9.1 基本类型和复合类型的参数传递</h4>
+    <p>对于基本类型参数，JavaScript采用值传递方法，当通过实参调用函数时，传入函数里的并不是实参本身，而是实参的副本，因此<b style="color:saddlebrown;">
+        在函数中修改参数的值并不会对实参有任何更改。
+    </b></p>
+    <p>例子如下：</p>
+
+    <code>
+            function changeArgs(args){  <br>
+               &nbsp; args = 10; <br>
+               &nbsp; document.write("函数执行中args的值为： " + args + "<br>");<br>
+            }<br>
+            var x = 5;<br>
+                document.write('函数执行前args的值为： ' + x );<br>
+                changeArgs(x);<br>
+                document.write('函数执行后args的值为： ' + x ); <br>
+    </code>
+
+    <input type="button" value="改变参数值的例子" 
+        onclick="var x = 5;
+                document.write('函数执行前args的值为： ' + x + '<br>');
+                changeArgs(x);
+                document.write('函数执行后args的值为： ' + x + '<br>');">
+    <script>
+        function changeArgs(args){
+            args = 10;
+            document.write("函数执行中args的值为： " + args + "<br>");
+        }
+    </script>
+    <br>
+    <b style="color:saddlebrown;">当使用x变量作为参数调用changeArgs()函数时，x并未真正传入change()函数中，传入的仅仅是x的副本，因此在changeArgs()
+        对参数赋值并不会影响x的值。
+    </b>
+    <p>对于复合类型的参数，实际上采用的依然是值传递方式，只是很容易混淆。看如下例子：</p>
+    <code>
+            function changeAge(person){  <br>
+              &nbsp;  person.age = 10; <br>
+              &nbsp;   document.write("函数执行中person的age值为： " + person.age); <br>
+              &nbsp;  person = null; <br>
+            }<br>
+            var person = {age:5};<br>
+            document.write('函数执行前person的age值为： ' + person.age );<br>
+            changeAge(person);<br>
+            document.write('函数执行后person的age值为： ' + person.age );<br>
+            document.write('person对象为：'+ person);<br>
+    </code><br>
+    <input type="button" value="修改复合类型参数的值" 
+            onclick="var person = {age:5};
+            document.write('函数执行前person的age值为： ' + person.age + '<br>');
+            changeAge(person);
+            document.write('函数执行后person的age值为： ' + person.age + '<br>');
+            document.write('person对象为：'+ person);
+            ">
+    <script>
+        function changeAge(person){
+            person.age = 10;
+            document.write("函数执行中person的age值为： " + person.age + "<br>");
+            person = null;
+            document.write('函数执行中person对象为：'+ person + '<br>');
+        }
+    </script>
+    <br>
+    <p>上述例子函数中改变了person.age值，而函数外显示该值也确实变了，但是是值传递！！！原因如下：</p>
+    <p>复合类型的变量参数本身并未持有对象本身，他是person对象的副本，该参数内部的引用值和原有对象的引用值指向了同一个对象！！！
+        因此不管是修改该副本还所引用的JavaScript对象还是修改person变量所引用的JavaScript对象，实际上修改的是同一个对象，JavaScript
+        的复合类型包括对象、数组等。
+    </p>
+    <br><hr>
+    <h4>13.9.2 空参数</h4>
+    <p>使用空参数完全没有任何程序问题，程序都可以正常执行，只是没有传入实参的参数值将作为undefined处理。</p>
+    <p>由于JavaScript调用函数时对传入的实参并没有要求，即使定义函数时声明了多个形参，调用函数时也并不强调要传入相匹配的实参，
+        因此JavaScript没有所谓的函数“重载”，对于JavaScript来说，函数名就是函数的唯一标识。
+    </p>
+    <p>如果先后定义两个同名的函数，他们的形参列表并不相同，这也不是函数重载，这种方式会导致后面定义的函数覆盖前面定义的函数。</p>
+    <br><hr>
+    <h4>13.9.3 参数类型</h4>
+    <p>JavaScript函数声明的参数列表无序类型声明，这是它作为弱类型语言的一个特征。但JavaScript语言又是基于对象的编程语言，
+        这一点非常矛盾，例如，对于如下的java方法定义：
+    </p>
+    <code>
+        public void changeAge(Person p){ <br>
+           &nbsp; p.setAge(34); <br>
+        } <br>
+
+    </code> <br>
+    <p>这个程序没有任何问题，因为Java要求参数列表具有类型声明，并且参数p属于Person实例。而Person实例具有setAge()方法，如果
+        Person类没有setAge()方法，编译时将出错。调用该方法时，如果没有传入参数，或者传入参数的类型不是Person对象，都将在
+        编译时出现错误。
+    </p>
+    <p>将上面程序简单转换成JavaScript写法，即变成如下形式：</p>
+    <code>
+        function changeAge(p){ <br>
+            &nbsp;   p.setAge(34); <br>
+        } <br>
+    </code>
+    <p>值得注意是，JavaScript无需类型声明，因此调用函数时，出入的p完全可以是整形变量、布尔变量等，这些类型都没有setAge()方法，但是
+        程序强制调用该方法，肯定会导致程序出现错误，程序非正常终止。
+    </p>
+    <p>JavaScript函数定义的参数列表无序类型声明，这一点为函数调用埋下了隐患，这也是JavaScript语言不如Java/C语言健壮性的一个表现。</p>
+    <b style="color:saddlebrown">鸭子类型概念：当你需要一个鸭子类型参数时，由于编程语言是弱类型的，所以无法保证传入的参数一定是鸭子类型，这时可以先判断
+        这个对象是否能发出“嘎嘎”声，并具有走路左右摇摆的特征，也就是具有鸭子类型的特征------一旦该参数具有鸭子类型参数特征，我们就
+        可以认为它是鸭子，即使它并不是鸭子。
+    </b>
+    <p>简单说鸭子类型理论认为：如果弱类型语言的函数需要接受参数，则应先判断参数是否包含了需要访问的属性、方法。只有当这些条件都满足时，
+        程序才真正处理调用参数的属性、方法。例子如下：
+    </p>
+    <code>
+            function changeName(person){ <br>
+               &nbsp; if(typeof person == 'object' && typeof person.name == 'string' ){ <br>
+                &nbsp; &nbsp; document.write('函数执行前person的name值为： ' + person.name); <br>
+                &nbsp; &nbsp; person.name = "zwy";<br>
+                &nbsp; &nbsp; document.write('函数执行中person的name值为： ' + person.name);<br>
+                &nbsp;  }else{<br>
+                    &nbsp; &nbsp;     document.write("参数类型不符合：" + typeof person );<br>
+                    &nbsp; }<br>
+            }<br>
+    </code>
+    <input type="button" value="鸭子类型测试" 
+        onclick="
+                changeName();
+                changeName('dfa');
+                changeName(true);
+                var person = { name: 'zxw'}; changeName(person);
+                var p = {111:111};changeName(p);
+                document.write('函数执行后person的name值为： ' + person.name + '<br>');">
+    <script>
+        function changeName(person){
+            if(typeof person == 'object' && typeof person.name == 'string' ){
+            document.write('函数执行前person的name值为： ' + person.name + '<br>');
+            person.name = "zwy";
+            document.write('函数执行中person的name值为： ' + person.name + '<br>');
+            }else{
+                document.write("参数类型不符合：" + typeof person + "<br>");
+            }
+        }
+    </script>
+</body>
+</html>

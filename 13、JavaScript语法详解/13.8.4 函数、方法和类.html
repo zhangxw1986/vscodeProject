@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>13.8.4 函数、方法、对象和类</title>
+</head>
+<body>
+  <p>函数时JavaScript语言中的"一等公民",函数是JavaScript编程里非常重要的一个概念。当使用JavaScript定义一个函数后，实际上可以得到如下4项：</p>
+  <ul>
+    <li>函数：就像Java的方法一样，这个函数可以被调用。</li>
+    <li>对象：定义一个函数时，系统也会创建一个对象，该对象是Function类的实例。</li>
+    <li>方法：定义一个函数时，该函数通常都会附加给某个对象，作为该对象的方法。</li>
+    <li>类：在定义函数的同时，也得到了一个与函数同名的类。</li>
+  </ul>
+  <p>关于：函数不仅可以作为函数使用，函数本身也是一个对象，是Function类的实例。如下代码：</p>
+  <code>
+      var hello = function(name){ <br>
+       &nbsp; return name + ",你好！" ; <br>
+    }; <br>
+  </code>
+  <input type="button" value="点击显示函数类型" onclick="alert('hFello是否为Function对象：' + (hello instanceof Function) + '\n' + 'hello是否为Object对象：' + (hello instanceof Object));alert(hello('zxw'));">
+  <script>
+    var hello = function(name){
+        return name + ",你好！" ;
+    };
+
+  </script>
+</body>
+</html>

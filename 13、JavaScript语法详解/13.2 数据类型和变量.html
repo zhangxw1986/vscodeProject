@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>13.2 数据类型和变量</title>
+</head>
+<link rel="stylesheet" href="css/test.css">
+<body>
+    <h3>13.2 数据类型和变量</h3>
+    <h4>13.2.1 定义变量的方式</h4>
+    <p>JavaScript是弱类型脚本语言，使用变量之前，可以无需定义，想使用某个变量时直接使用即可。JavaScript支持两种方式来引入变量。</p>
+    <ul style="list-style-type:lower-greek;">
+        <li>隐式定义：直接给变量赋值。</li>
+        <li>显示定义：使用var关键字定义变量。</li>
+    </ul>
+    <p>隐式定义特点：简单、快捷，需要使用变量时，直接给变量赋值即可。</p>
+    <p>显示定义特点：使用var声明，声明时可以没有初始值，此时数据类型不定。在赋值时才确定数据类型；<b>并且使用过程中可以改变数据类型。</b></p>
+    <br><hr>
+    <h4>13.2.2</h4>
+    <p>JavaScript支持自动类型转换，这种类型转换的功能非常强大，如下例子所示：</p>
+
+    <code>
+           &nbsp  &nbsp var a = "3.14"; <br>
+           &nbsp &nbsp var b = a - 2;  <br>
+           &nbsp &nbsp var c = a + 1;  <br>
+           &nbsp &nbsp var d = typeof d; <br>
+    </code>
+    <input type="button" value="自动转换例子" onclick="f00()">
+    <script>
+        var a = "3.14";
+        var b = a - 2;
+        var c = a + 1;
+        var d = typeof c;
+        function f00(){
+            alert("b的值是" + b  + "\n" + "c的值是" + c + "\n" + "d的类型是" + d);
+        }
+       
+    </script>
+    <p>上面自动类型转换的规律是：</p>
+    <ul>
+        <li>对于减号运算符，因为字符串不支持减法运算，所以系统自动将字符串转换为数值。</li>
+        <li>对于加号运算符，因为字符串可以用加号作为连接运算符，所以系统自动将数值转换为字符串，并将两个字符串进行连接运算。</li>
+    </ul>
+    <img src="images/typeChange.JPG" alt="">
+    <p>自动类型转换虽然方便，但程序可读性差，因此需要强制类型转换，JavaScript提供了如下几个函数来执行强制类型转换。</p>
+    <ul>
+        <li>toString():将布尔值、数值转换成字符串。</li>
+        <li>parseInt():将字符串、布尔值等转换成整数。</li>
+        <li>parseFloat():将字符串、布尔值转换成浮点数。</li>
+    </ul>
+   
+
+    <code> 
+            &nbsp &nbsp var a1 = "3.12"; <br>
+            &nbsp &nbsp var b1 = a1 + 2;  <br>
+            &nbsp &nbsp var c1 = parseFloat(a1) + 2; <br>
+    </code>
+    <input type="button" value="变量强制转换后可相加" onclick="f11()">
+    <script>
+        
+        var a1 = "3.12";
+        var b1 = a1 + 2;
+        var c1 = parseFloat(a1) + 2;
+        function f11(){
+            alert("c1先将a1强制转换成数值型然后相加：" + c1  );
+        }
+        
+    </script>
+    <p>强制转换的相关类型说明：这种可以正常转换成数值的字符串，可以转换为数值；但对于包含其他字符串，将转换为NaN。</p>
+    <p>当使用parseInt()或parseFloat()将各种类型的变量转换成数值类型时结果如下：</p>
+    <ul>
+        <li>字符串值：如果字符串是一个数字字符串时则可以转换成一个数值；否则将转换成NaN；</li>
+        <li>undefined、null、布尔值及其他对象：一律转换成NaN。</li>
+    </ul>
+    <p>当使用toString()函数将各种类型的值向字符串转换时，结果全部是object。</p>
+    <br><hr>
+    <h4>13.2.3 变量</h4>
+    <p>JavaScript变量里特别的，除了变量是弱类型、变量声明（var显示声明和隐式声明），还有一个重要概念是作用范围（全局变量、局部变量）。</p>
+    <ul>
+        <li>全局变量：函数外直接定义的变量或无var定义的变量都是全局变量。</li>
+        <li>局部变量：只在定义的函数内有效。</li>
+    </ul>
+    <code>
+        &nbsp    var a0 = "全局变量";   <br>
+        &nbsp var a1 = "全局变量";  <br>
+        &nbsp function f0(){  <br>
+            &nbsp &nbsp     var a0 = "局部变量"; <br>
+            &nbsp  &nbsp   alert("a的变量类型是：" + a0); <br>
+            &nbsp  &nbsp   alert("a1的变量类型是" + a1); <br>
+            &nbsp  &nbsp   var a1 = "全局变量"; <br>
+        &nbsp } <br>
+    </code>
+    <input type="button" value="变量作用范围" onclick="f0()">
+    <script>
+        var a0 = "全局变量";
+        var a1 = "全局变量";
+        function f0(){
+            var a0 = "局部变量";
+            alert("a0的变量类型是：" + a0);
+            alert("a1的变量类型是" + a1);
+            var a1 = "全局变量";
+        }
+    </script>
+    <p>上述尤其注意的是：a1在函数内定义时作用域为整个函数内有效，但alert时a1变量还没有赋值，所有输出为undefined。</p>
+    <sup><b>JavaScript的变量没有块范围，例如for、while块内定义的变量没有块范围。</b></sup>
+    <br>
+    <p style="color:chocolate;">关于var和无var定义变量的区别：</p>
+    <ul style="list-style-type:lower-alpha;">
+        <li>使用var：强制定义出一个新的变量。</li>
+        <li>不使用var：系统优先在当前上下文作用域链中搜索是否存在该变量。只有在该变量不存在的前提下，系统会<b style="color:chocolate;">创建一个全局对象的属性。使用window.属性来调用</b>。</li>
+    </ul>
+    <p>以下是例子：</p>
+    <code>
+          &nbsp  function f12(){  <br>
+            &nbsp&nbsp      a3 = "a3变量不使用var定义，作用域链未找到后在作用域链最顶层对象(即window)中创建变量属性值。"; <br>
+            &nbsp  }   <br>
+            alert(window.a3); <br>
+    </code>
+    <input type="button" value="不使用var定义" onclick="f12();alert(window.a3);">
+    <script>
+        function f12(){
+            a3 = "a3变量不使用var定义，作用域链未找到后在作用域链最顶层对象(即window)中创建变量属性值。";
+        } 
+    </script>
+</body>
+</html>

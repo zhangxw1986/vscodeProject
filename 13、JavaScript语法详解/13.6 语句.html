@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>13.6 语句</title>
+</head>
+<body>
+  <h3>13.6 语句</h3>
+  <h4>13.6.1 语句块</h4>
+  <p>虽然JavaScript支持使用语句块，但JavaScript的语句块不能作为变量的作用域。</p>
+  <h4>13.6.2 空语句</h4>
+  <h4>13.6.3异常抛出语句</h4>
+  <p>JavaScript支持异常处理，支持手动抛出异常。与Java不同的是，JavaScript的异常没有Java那么丰富，JavaScript的所有异常都是Error对象。当JavaScript需要抛出异常时，总通过throw语句抛出Error对象。抛出Error对象的语法如下：</p>
+  <code>
+    throw new Error(errorString); <br>
+  </code>
+  <p>JavasCript既允许在代码执行过程中抛出异常，也允许在函数定义中抛出异常。在代码执行过程中，一旦遇到异常，立即寻找对应的异常捕捉块（catch块），如果没有对应的异常捕捉块，异常将传给浏览器，程序非正常终止。</p>
+  <p>以下是例子：看console控制台：</p>
+  <code>
+    for (var i = 0; i < 10; i++){ <br>
+    &nbsp;  document.writeln(i );<br>
+    &nbsp;  if( i > 4 ){<br>
+      &nbsp;  &nbsp;     throw new Error("用户自定义错误");<br>
+
+      &nbsp;    }<br>
+    }<br>
+  </code>
+  <script>
+    for (var i = 0; i < 10; i++){
+      document.writeln(i + '<br />');
+      if( i > 4 ){
+        throw new Error("用户自定义错误");
+
+      }
+    }
+  </script>
+  <p>上述代码当i=5时，手动抛出异常，但是没有得到处理，因而传播到浏览器，引起程序非正常终止，浏览器console可以看到相关异常提示。</p>
+  <b style="color: chocolate;">Chrome浏览器提供了强大的JavaScript调试工具，JavaScript开发人员可以通过选择主菜单“工具-开发人员工具”，或者直接按“Ctrl+Shift+I”快捷键打开调试控制台。</b>
+  <br>
+  <h4>13.6.4 异常捕捉语句</h4>
+  <p>当程序出现异常时，这种异常不管是用户手动抛出的异常，还是系统本身的异常，都可以使用catch捕捉异常。JavaScript代码运行中一旦出现异常，程序就跳转到对应的catch块。</p>
+  <p>异常捕捉语句的语法格式如下：</p>
+  <code>
+    try{   <br />
+      &nbsp; statements;  <br />
+    }catch(e){  <br />
+      &nbsp; statements; <br />
+    }finally{ <br />
+      &nbsp; statements; <br />
+    } <br />
+  </code>
+  <p>
+    这种异常捕捉语句大致上类似于Java的异常捕捉语句，但有一些差别：因为JavaScript的异常体系远不如Java丰富，因此无需使用多个catch块。与Java异常机制类似的是，finally块是可以省略的，但一旦指定了finally块，finally代码块就总会获得执行的机会。
+  </p>
+  <p>以下是示例代码：</p>
+  <code>
+    try{ <br>
+    &nbsp;  for (var i = 0; i &lt 10; i++){<br>
+      &nbsp; &nbsp;    document.writeln(i );<br>
+      &nbsp; &nbsp;     if( i &gt 4 ){<br>
+        &nbsp; &nbsp; &nbsp;      throw new Error("用户自定义错误");<br>
+        &nbsp; &nbsp;    }<br>
+        &nbsp;   }<br>
+    }catch(e){<br>
+      &nbsp;     console.info(e);<br>
+      &nbsp;    document.writeln('系统出现异常，异常信息是:===&gt ' + e.message );<br>
+    }finally{<br>
+      &nbsp;     document.writeln('系统的finally块');<br>
+    }<br>
+  </code>
+  <script>
+  try{
+    for (var i = 0; i < 10; i++){
+      document.writeln(i + '<br />');
+      if( i > 4 ){
+        throw new Error("用户自定义错误");
+      }
+    }
+  }catch(e){
+    console.info(e);
+    document.writeln('系统出现异常，异常信息是:===>' + e.message + '<br>');
+  }finally{
+    document.writeln('系统的finally块');
+  }
+  </script>
+  <p>归纳起来，JavaScript异常机制与Java异常机制存在如下区别：</p>
+  <ul style="color: chocolate;list-style-type:lower-roman;">
+    <li>JavaScript只有一个异常类：Error，无需在定义函数时声明抛出该异常，所有没有throws关键字。</li>
+    <li>JavaScript是弱类型语言，所以catch语句后括号里的异常实例无需声明类型。</li>
+    <li>JavaScript只有一个异常类，所以try块后最多只能有一个catch块。</li>
+    <li>获取异常的描述信息是通过一场对象的message属性，而不是通过getMessage()方法实现的。</li>
+  </ul>
+  <br>
+  <h4>13.6.5 with语句</h4>
+  <p>with语句是一种更简洁的写法，使用with语句可以避免重复书写对象。with语句的语法格式如下：</p>
+  <code>
+    with(object){ <br>
+      &nbsp; statements; <br>
+    } <br>
+  </code>
+  <p>如果with语句后的代码块只有一行语句，则可以省略花括号。但在只有一行语句的情况下，使用with语句意义不大。关于with语句的作用，看如下代码：</p>
+  <code>
+    document.writeln("Hello  "); <br>
+    document.writeln("World  "); <br>
+    document.writeln("JavaScript   "); <br>
+  </code>
+  <p>在上面的代码中，多次重复使用document的writeln方法重复输出静态字符串。使用with语句可以避免重复。</p>
+  <code>
+    with(document){ <br>
+        writeln("Hello   ");  <br>
+        writeln("World   "); <br>
+        writeln("JavaScript   "); <br>
+    } <br>
+  </code>
+  <script>
+      with(document){ 
+        writeln("Hello   ");  
+        writeln("World   "); 
+        writeln("JavaScript   "); 
+    } 
+  </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>13.1 JavaScript简介</title>
+</head>
+<!-- 关联外部script文件 -->
+<script src="js/test.js"></script>
+<!-- 关联外部css文件 -->
+<link rel="stylesheet" href="css/test.css">
+<style>
+
+</style>
+<body>
+    <b style="color:coral">JavaScript是一种基于客户端浏览器的、基于对象的、事件驱动的、脚本（脚本意味着动态解释执行，无需编译）语言。</b>
+    <p>JavaScript主要功能：动态修改HTML页面内容，包括创建、删除HTML页面元素、修改HTML页面元素的内容、外观、位置、大小等。</p>
+    <p>H5的出现，更突出了JavaScript的重要性，h5绘图、h5上的本地存储、离线应用、客户端通信等等都大量使用了JavaScript编程。</p>
+    <h3>13.1 JavaScript简介</h3>
+    <div style="width:200px;height:80;border:1px solid orchid;" onclick="clickme()">
+        点我
+    </div>
+    <p>Java和JavaScript的区别：</p>
+    <ul style="list-style-type: upper-roman">
+        <li><b>不同的产品：</b>
+            Java是Sun公司推出的面向对象程序设计语言；JavaScript是Netscape公司的产品，目的是扩展浏览器功能；
+            JavaScript是一种可以嵌入Web页面中的解释性语言。
+        </li>
+        <li><b>面向对象与基于对象：</b>
+            Java是面向对象的，即使是开发简单程序，也必须从类定义开始；Java语言的最小程序单位是类。
+            JavaScript是基于对象的，本身提供了非常丰富的内部对象供设计人员使用。JavaScript中充斥着大量的函数。
+        </li>
+        <li><b>执行方式不同：</b>
+            Java语言必修先经过编译，生成字节码，然后由Java虚拟机运行这些字节码；
+            JavaScript是一种脚本语言，其源代码无需经过编译，由浏览器解释执行。
+        </li>
+        <li><b>变量声明方式不同：</b>
+            Java是强类型语言，所有的变量必须先经过声明才可以使用，所有的变量都有固定的数据类型；
+            JavaScript是弱类型变量语言，其变量在使用前可以不声明，由解释器在运行时检查其数据类型。
+        </li>
+        <li><b>代码格式不一样</b>
+            Java采用一种与HTML无关的格式，必须像HTML中引用媒体那样进行装载，其代码以字节码的形式保存在独立的文档中；
+            JavaScript的代码采用一种文本字符格式，可以直接嵌入HTML文档中，并且可动态装载，编写HTML文档就像编辑文本文件一样方便。
+        </li>
+    </ul>
+    <p>关于ECMA：NetScape的JavaScript和Microsoft的JScript都是浏览器脚本语言，早期需为不同的浏览器使用不同的脚本语言，
+        因此诞生了ECMAScript----国际标准化的JavaScript版本。
+    </p>
+    <br><hr>
+    <h4>13.1.1 运行JavaScript</h4>
+    <p>在页面中嵌入执行JavaScript有两种方式：</p>
+    <ul style="list-style-type:lower-alpha">
+        <li><b>使用JavaScript:前缀：</b>
+            构建执行JavaScript代码的URL。</li>
+        <li><b>使用script 元素： </b> 来包含JavaScript代码。</li>
+    </ul>
+    <p>对第一种方式而言，所有可以设置URL的地方都可使用这种以javascript:作为前缀的URL,当用户触发该URL时，javascript:之后的
+        JavaScript代码就会执行。
+    </p>
+    <p>如果页面需要包含大量的JavaScript代码，则建议将这些JavaScript脚本放在&ltscript&gt和 &lt/script&gt标签中，该标签
+        既可做为head子元素，也可做为body子元素。 </p>
+    <p>以下是例子：</p>
+    <a href="javascript:alert('点击URL触发javascript代码执行')">运行javascript代码</a>
+    <script>
+        alert('直接执行js代码');
+    </script>
+    <br><br><hr>
+    <h4>13.1.2 导入JavaScript文件</h4>
+    <p>为了让HTML页面和JS脚本更好的分离，可将JavaScript脚本单独保存在一个*.js文件中，HTML页面中导入该js文件即可。
+        格式如下：</p>
+    <code>
+        &ltscript src='test.js' type='test/javascript'&gt &lt/script&gt;
+    </code>
+    <p>导入外部js文件的例子见上</p>
+
+</body>
+</html>

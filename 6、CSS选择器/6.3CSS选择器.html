@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css选择器</title>
+    <link rel="stylesheet" href="css/6.3.css">
+</head>
+<body>
+    <h3>CSS选择器</h3>
+    <ul>
+        <li><a href="#6.3.1">1、元素选择器</a></li>
+        <li><a href="#6.3.2">2、属性选择器</a></li>
+        <li><a href="#6.3.3">3、ID选择器</a></li>
+        <li><a href="#6.3.4">4、class选择器</a></li>
+        <li><a href="#6.3.5">5、包含选择器</a></li>
+        <li><a href="#6.3.6">6、子选择器</a></li>
+        <li><a href="#6.3.7">7、兄弟选择器</a></li>
+        <li><a href="#6.3.8">8、组合选择器</a></li>
+    </ul>
+    <hr>
+    <p>定义css样式的语法格式如下：</p>
+    <code>
+        Selector {
+            property1:value1;
+            property2:value2;
+        }
+    </code>
+    <p>上面语法格式可分为两部分：</p>
+    <ul>
+        <li>Selector（选择器）:选择器决定该样式定义对哪些元素起作用。</li>
+        <li>{property:value}(属性定义）：属性定义决定这些样式起怎样的作用。</li>
+    </ul>
+    <sup><b>
+        从上面介绍可以看出，学习CSS大致需要掌握两个方面的内容：掌握选择器的定义方法；掌握各种CSS属性定义。
+    </b></sup>
+    <br><hr>
+    <h4 id="6.3.1">6.3.1 元素选择器</h4>
+    <p>元素选择器是最简单选择器，其语法格式如下:</p>
+    <code>E { ... } /*其中E代表有效的HTML元素名*/</code>
+    <br>
+
+    <h4 id="6.3.2">6.3.2 属性选择器</h4>
+    <p>从广义角度看，元素选择器其实是属性选择器的特例。属性选择器一共有如下几种语法格式：</p>
+    <ul>
+        <li>E {...}:指定该CSS样式对所有E元素起作用。</li>
+        <li>E[attr] {...}:指定该CSS样式对具有attr属性的E元素起作用。</li>
+        <li>E[attr=value] {...}:指定该CSS样式对所有包含attr属性，且attr属性的值为value的E元素起作用。</li>
+        <li>E[attr~=value] {...}:指定该CSS样式对所有包含attr属性，且attr属性的值为以空格隔开的系列值，其中某个值为value的E元素起作用。</li>
+        <li>E[attr|=value] {...}:指定该CSS样式对所有包含attr属性，且attr属性的值为以连字符隔开的系列值，其中第一个值为value的E元素起作用。</li>
+        <li>E[attr^="value"] {...}:指定该CSS样式对所有包含attr属性，且attr属性的值为以value开头的字符串的E元素起作用。</li>
+        <li>E[attr$="value"] {...}:指定该CSS样式对所有包含attr属性，且attr属性的值为以value结尾的字符串的E元素起作用。</li>
+        <li>E[attr*="value"] {...}:指定该CSS样式对所有包含attr属性，且attr属性的值为包含"value"字符串的E元素起作用。</li>
+    </ul><br>
+    <p>实验：属性选择器的实验</p>
+    <div>没有任何属性的div元素</div>
+    <div id="a">带id属性的div元素</div>
+    <div id="zzxx">id属性值包含xx子字符串的div元素</div>
+    <div id="xxyy">id属性值为xx开头的div元素</div>
+    <div id="xx">id属性值为xx的div元素</div>
+    <sup><b>多个css样式定义都可以对某个HTML元素起作用，该HTML元素的显示效果是多个CSS样式叠加的效果。当CSS样式间冲突时，则冲突属性以优先级更高的CSS样式定义取胜。</b></sup>
+    <br>
+
+    <h4 id="6.3.3">6.3.3 ID选择器</h4>
+    <p>ID选择器指定CSS样式将会对具有指定id属性值的HTML元素起作用。ID选择器的语法格式如下：
+    </p>
+    <code>#idValue {....}</code>
+    <p>上面语法指定该CSS样式对id为idValue的HTML元素起作用。</p>
+    <div id="idd">id属性值为idd的div</div>
+    <div>没有id值的div</div>
+    <br>
+
+    <h4 id="6.3.4">6.3.4 class选择器</h4>
+    <p>class选择器指定CSS样式对具有指定的class属性的元素起作用，class选择器的语法格式如下：</p>
+    <code>
+        [E].classValue {...} /*其中E是有效的HTML元素*/
+    </code>
+    <p>指定该CSS定义对class属性值为classValue的E元素起作用。此处的E可以省略，如果省略E，则指定该CSS对所有的class属性为classValue的元素都起作用。</p>
+    <div class="mycls">class属性为mycls的div元素</div>
+    <p class="mycls">class属性为mycls的p元素</p>
+    <br><br>
+
+    <h4 id="6.3.5">6.3.5 包含选择器</h4>
+    <p>包含选择器用于指定目标选择器必须处于某个选择器对应的元素内部。其语法格式为：</p>
+    <code>Selector1 Selector2 {...} /*其中Selector1和Selector2*/</code>
+    <div><section><div class="a">处于div之内且class属性为a的元素</div></section></div>
+    <p class="a">没有处于div之内，class属性为a的元素</p>
+    <br>
+
+    <h4 id="6.3.6">6.3.6 子选择器</h4>
+    <p>子选择器用于指定目标选择器必须是某个选择器对应的元素的子元素。子选择器的语法格式如下：</p>
+    <code>Selector1>Selector2 {...} /*其中Selector1和Selector2必须是有效的选择器*/</code><br><br>
+    <sup><b>包含选择器和子选择器有点相似，它们之间的区别如下：对于包含选择器，只要目标选择器位于外部选择器对应的元素内部，即使是<i>孙子元素</i>也可以；
+    对于子选择器，要求目标选择器必须作为外部选择器对应的元素直接子元素才行。       
+    </b></sup><br><br>
+
+    <h4 id="6.3.7">6.3.7 CSS3新增的兄弟选择器</h4>
+    <p>兄弟选择器是CSS3.0新增的一个选择器。兄弟选择器的语法如下：</p>
+    <code>Selector1 ~ Selector {...}  /*其中Selector1、Selector2都是有效的选择器*/</code> 
+    <p>兄弟选择器匹配与Selector1对应的元素后面、能匹配Selector2的兄弟节点。</p>
+    <div>建设银行</div>
+    <div class="long">工商银行</div>
+    <div id="other">其他银行</div>
+    <p class="long">农业银行</p>
+    <div class="long">交通银行</div>
+    <br>
+
+    <h4 id="6.3.8">6.3.8 选择器组合</h4>
+    <p>如果想要让一份CSS样式对多个选择器起作用，那就可以利用选择器组合来实现。选择组合器的语法格式如下：</p>
+    <code>Selector1,Selector2,Selector3 {...} /*其中Selector1,Selector2，Selector3必须是有效选择器*/</code> 
+    <p>对于组合选择器，{}中定义的CSS样式将会对前面列出的所有选择器匹配的元素起作用。</p>
+    <div>这是一个div</div>
+    <p class="pp">这是一个p</p>
+    <section id="sec">这是一个section</section>
+
+</body>
+</html>

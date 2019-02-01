@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>13.3 基本数据类型</title>
+</head>
+
+<body>
+  <h3>13.3基本数据类型</h3>
+  <p>JavaScript是弱类型脚本语言，声明变量时无需指定变量的数据类型。</p>
+  <p>JavaScript变量的数据类型是解释时动态决定的。但JavaScript的值保存在内存中时，也是有数据类型的。</p>
+  <p>JavaScript的基本数据类型有如下5个：</p>
+  <ul>
+    <li>数值类型：包含整数或浮点数。</li>
+    <li>布尔类型：只有true或false两个值。</li>
+    <li>字符串类型：字符串变量必须用引号括起来，可以是""或''.</li>
+    <li>undefined类型：专门用来确定一个已经创建但没有初值的变量。</li>
+    <li>null类型：用于表明某个变量的值为空。</li>
+  </ul>
+  <br>
+  <hr>
+  <h4>13.3.1 数值类型</h4>
+  <p>JavaScript的数值类型不仅包括所有的整形变量，也包括所有的浮点型变量。</p>
+  <p>JavaScript语言中的数值都已IEEE 754-1985双精度浮点数格式保存。</p>
+  <p>支持科学计数法。其语法格式如下：</p>
+  <code>
+    &nbsp; &lt;num1&gt;E&lt;num2&gt;
+  </code>
+  <p>这种形式的值为：num1*10的num2次方。E为间隔符号，E不区分大小写。以下为例子
+  </p>
+  <code>
+       var a,b; <br>
+      a = 5E2; <br>
+      b = 1.23e-3; <br>
+  </code>
+  <input type="button" value="科学计数法的展示" onclick="alert('a的值是'+ a);alert('b的值是'+ b);">
+  <script type="text/javascript">
+      var a,b; 
+      a = 5E2; 
+      b = 1.23e-3; 
+  </script>
+  <br>
+  <b style="color: chocolate;">数值直接量不要以0开头，因为JavaScript支持多种进制；八进制以0开头，十六进制以0x或0X开头。</b><br>
+  <b>十六进制非常有用，八进制不是所有浏览器都支持。</b><br>
+  <b style="color: chocolate;">数值变量两个边界值：Infinity（正无穷大，数值类型的最大值）和-Infinity(负无穷大，数值类型的最小值)。</b><br>
+ 
+  <code>
+      var x = 1.7976931348623157e308;<br>
+      x = x + 1e292;<br>
+      var y = -1.7976931348623157e308;<br>
+      y = y - 1e292;<br>
+      z = y + 3E3000;<br>
+  </code>
+  <input type="button" value="Infinity的例子" onclick="alert(x);">
+  <input type="button" value="-Infinity的例子" onclick="alert(y);">
+  <input type="button" value="NaN的例子" onclick="alert('z的类型是' + z);"><br>
+  <script>
+    var x = 1.7976931348623157e308;
+    x = x + 1e292;
+    var y = -1.7976931348623157e308;
+    y = y - 1e292;
+    var z = x + y;
+    
+  </script>
+   <b>Infinity、-Infinity与其他数值进行算数运算时，整个算术表达式将变成另一个特殊值：NaN.但Infinity和-Infinity都可以执行比较运算：两个Infinity总是相等，而两个-Infinity也总是相等的。</b><br>
+   <p>JavaScript中的算术运算符允许除数为0（除数和被除数也可同时为0，得到的结果是NaN。）正数除以0的结果是Infinity，负数除以0的结果就是-Infinity。</p>
+   <code>
+      a1 = 1.7976931348623157e308;<br>
+      b1 = 0; <br>
+   </code>
+   <input type="button" value="除以0的示例" onclick="alert('a1/b1的结果是：' + a1/b1);"><br>
+   <script>
+     a1 = 1.7976931348623157e308;
+     b1 = 0; 
+   </script>
+   <p>NaN是另一个特殊的数值，它是Not a  Number三个单词的首字母，表示非数。0除以0，或者以Infinity执行算术运算都将产生NaN的结果。</p>
+   <p>如果算数表达式中有个NaN的数值变量，则整个算数表达式的值都是NaN。</p>
+   <b style="color: chocolate;">NaN与Infinity和-Infinity不同的是，NaN不会与任何数值变量相等，也就是NaN==NaN也返回false。那如何判断某个变量是否NaN呢？JavaScript专门提供了isNaN()函数来判断某个变量是否为NaN。</b>
+   <code>
+      var x = 0/0; <br>
+      function isNaNN(x){ <br>
+       if( isNaN(x)){  <br>
+         alert("x是NaN类型的")； <br>
+       } <br>
+      } <br>
+   </code>
+   <input type="button" value="使用isNaN()判断数值类型" onclick="isNaNN(x);"><br>
+   <script>
+     var x = 0/0;
+     function isNaNN(x){
+      if( isNaN(x) ){
+        alert("x是NaN类型的");
+      }
+     }
+   </script>
+   <p>JavaScript提供了一些方法，可访问数值的特殊值，特殊值通过JavaScript的内嵌类Number访问，如下表所示：</p>
+   <img src="images/Number类.JPG" alt="">
+   <p>关于浮点型数，必须注意其精度丢失的问题，以下是例子：</p>
+   <code>
+      var a4 = .3333; <br>
+      var b4 = a*5;  <br>
+   </code>
+   <input type="button" value="浮点型数据精度丢失" onclick="alert(b4);"><br>
+   <p>浮点数计算产生的问题，在很多语言中都会出现。</p>
+   <b style="color:chocolate;">对于浮点数的比较，尽量不要直接比较，推荐使用差值法----通过判断两个数的差值是否小于一个足够小的数即可认为是相等的。</b>
+
+   <script>
+     var a4 = .3333;
+     var b4 = a4 * 5;
+   </script>
+</body>
+
+</html>

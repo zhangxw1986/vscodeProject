@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>12.3 CSS3提供的Animation动画</title>
+</head>
+<style>
+    @-webkit-keyframes movedv {
+        from{
+            left:20px;
+            background-color: #eee;
+        }
+        40%{
+            left:100px;
+            background-color: #ddd;
+        }
+        60%{
+            left:200px;
+            background-color: #ccc;
+            
+        }
+        100%{
+            left:30px;
+            background-color: #bbb;
+        }
+    }
+    .dv1{
+        width: 160px;
+        height: 80px;
+        border: 1px solid olive;
+        background-color:wheat;
+        position: absolute;
+    }
+
+    .dv1:hover{
+        -webkit-animation-name: 'movedv';
+        -webkit-animation-duration: 5s;
+        -webkit-animation-iteration-count: 1;
+    }
+    /* 以下是鱼眼效果 */
+    .dv0{
+        width:600px;
+        height:90px;
+        border: 1px solid olivedrab;
+    }
+    .dv0 a:link{
+        text-decoration: none;
+    }
+    .dv0 a{
+        display: inline-block;
+        text-align: center;
+        width:100px;
+        height: 50px;
+        margin: 5px;
+        background-color:#eee; 
+        border-radius: 10px;
+    }
+    @-webkit-keyframes fisheye{
+        from{
+            -webkit-transform: scale(1);
+            background-color: #eee;
+            border-radius: 10px;
+        }
+        40%{
+            -webkit-transform: scale(1.3);
+            background-color:lawngreen;
+            border-radius: 10px;
+        }
+        to{
+            -webkit-transform: scale(1);
+            background-color: #eee;
+            border-radius: 10px;
+        }
+    }
+    .dv0 a:hover{
+        -webkit-animation-name: 'fisheye';
+        -webkit-animation-duration: 2s;
+        -webkit-animation-iteration-count:infinite;
+
+    }
+    
+</style>
+<body>
+    <h3>12.3 CSS3提供的Animation动画</h3>
+    <p>CSS3提供了强大的Tween动画支持：Animation动画，这种动画允许开发者定义多个关键帧，浏览器将会负责计算、插入关键帧之间
+        虚拟动画帧。</p>
+    <p>CSS3为Animation的动画提供了如下几个属性：</p>
+    <ul>
+        <li>animation-name:指定动画名称。该属性指定一个已有的关键帧定义。</li>
+        <li>animation-duration:指定动画的持续时间。</li>
+        <li>animation-timing-function:指定动画的变化速度。</li>
+        <li>animation-delay:指定动画延迟多长时间才开始执行。</li>
+        <li>animation-iteration-count:指定动画的循环执行次数。</li>
+        <li>animation:这是一个复合属性，该属性的格式为：
+            <b style="color:darkorange;">animation-name animation-duration animation-timing-function、animation-delay animation-iteration-count         
+            </b>,使用该属性可同时指定以上几个属性。
+        </li>
+    </ul>
+    <p>上面属性中，<b style="color:darkorange;">animation-name的属性值应该是一个关键帧定义</b>，这个关键帧定义满足以下格式:</p>
+    <code>
+        keyframes  关键帧名称{
+       <br>   &nbsp;&nbsp;  from | to | 百分比 {
+        <br>   &nbsp;&nbsp;    &nbsp;&nbsp; 属性1:属性值1;
+         <br>    &nbsp;&nbsp; &nbsp;&nbsp;  属性2:属性值2;
+          <br>   &nbsp;&nbsp;  &nbsp;&nbsp; 属性3:属性值3;
+           <br>  &nbsp;&nbsp;  &nbsp;&nbsp; ...
+          <br> &nbsp;&nbsp;  }
+           <br>&nbsp;&nbsp; ...
+       <br> }
+    </code>
+    <p>上面语法格式中，from|to|百分比用于定义关键帧的位置，其中from代表开始处；to代表动画结束帧；百分比则指定关键帧的出现位置；
+        例如：10%代表关键帧出现在动画进行了1/10时间处。一个关键帧定义可以包含多个关键帧。
+    </p>
+    <p>下面是例子：</p>
+    <div class="dv1">鼠标放在这个块上会开始动画。</div>
+    <br><br><hr>
+    <h4>12.3.1同时改变多个属性的动画</h4>
+    <p>定义关键帧时，不仅可以指定一个left属性，还可以指定多个CSS属性，包括前面介绍的transform属性这样就可以实现更复杂的
+        动画。
+    </p>
+    <br><br><hr>
+    <h4>12.3.2鱼眼效果</h4>
+    <p>如果充分利用Animation动画的功能，前端开发者可以非常方便的实现各种网页特效，比如网页上常见的“鱼眼”效果---当鼠标
+        移动到指定菜单项时，该菜单项会“凸出来”，显得特别突出。下面是例子：
+    </p>
+    <div class="dv0">
+        <a href="#">第一课</a>
+        <a href="#">第二课</a>
+        <a href="#">第三课</a>
+        <a href="#">第四课</a>
+
+    </div>
+</body>
+</html>

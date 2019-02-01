@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10.4.2使用盒模型实现多栏布局</title>
+</head>
+<style>
+    .dv0 {
+        display: box;
+        display: -webkit-box;
+        width: 960px;
+        height: 500px;
+        border: 1px solid red;
+    }
+
+    .dv0 div {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid rosybrown;
+        box-sizing: border-box;
+        border-radius: 12px 12px 0px 0px;
+        background-color: #ccc;
+
+    }
+</style>
+
+<body>
+
+</body>
+<div class="dv0">
+    <div style="width:300px;height:350px;">
+        一、本版只能发布原创作品，包括Windows、Android、iOS和Mac平台等相关应用程序，非原创作品可以发布到『精品软件区』，违规发帖将给予删除和扣分。
+        二、发布各种原创作品时，必须加上软件正常运行截图或者破解后正常运行的截图、软件介绍和使用说明，发布前请自行测试程序是否正常工作。
+        同时所有发布的作品最好要有明显的能证明是自己原创的因素，如修改标题增加“吾爱破解论坛”和“www.52pojie.cn”字样，可以获得更多加分和更长时间加亮推荐。
+    </div>
+    <div style="width:260px;height:400px;">
+        对于经常更新的软件，请勿再发新主题进行更新，除非原帖无法编辑回复了，否则直接在原帖编辑更新即可，禁止刷多个主题。
+        如果没有截图或者原创证明，可能将会被移动至精品区或者被删除，您可至『站务处理』进行申诉。
+        对于封装调用别人接口的程序不算原创，禁止发布原创区；修改版权、拿别人源代码进行篡改冒充原创作品的行为我们将严惩不贷！
+    </div>
+    <div style="width:300px;height:377px;">
+        1、对于需要经常频繁更新的软件，比如1个月更新2个版本以上并且每次更新后老的版本就失效的程序，也请上传到网盘，以节省论坛空间。
+        2、论坛禁止使用网挣网盘，推荐使用以下存活较久的网盘，考虑到网盘经常无故把附件吞噬，建议在打包压缩的时候进行加密，比如设置解压密码为52pojie，防止附件被网盘吞噬，发帖时候带上解压密码就好了。
+        http://pan.baidu.com
+        http://www.weiyun.com
+        http://www.lanzous.com
+    </div>
+</div>
+<p>
+从上面例子可以看出，只要把多个div元素放在了设置display:box的div元素内，即可实现多栏布局，非常方便。
+</p>
+<p>还有一点需要指出，<b>分栏布局和多栏布局是不同的：</b></p>
+<ul>
+    <li>分栏布局只是将一篇文章分成多个栏目显示，HTML对内容的分栏位置是不确定的，因此分栏布局只适合单篇文章。</li>
+    <li>多栏布局则是由开发者自己控制将页面分成多栏，分栏位置可以自己控制，因此更适合页面布局。</li>
+</ul>
+<p>除此之外，CSS3为盒模型提供了如下属性：</p>
+<ul>
+    <li>box-orient:设置box盒模型的子元素排列方向，该属性支持如下两个属性值。
+        <ul>
+            <li>horizontal:box盒模型里子元素水平排列。如果没有为子元素指定高度，水平排列的box盒模型里子元素的高度等于父容器的高度。</li>
+            <li>vertical:box盒模型里的子元素垂直排列。如果没有为子元素指定宽度，垂直排列的box盒模型里子元素的宽度等于父容器的宽度。</li>
+        </ul>
+
+    </li>
+
+    <li>box-ordinal-group:设置box盒模型里子元素的显示顺序。</li>
+    <li>box-flex:设置box盒模型里子元素自适应宽度的比例。例如：box盒模型多余的空白宽度为150px，其中第一个子元素设置为box-flex为1，第二个子元素设置box-flex为2，
+        那么多余的空白宽度将会分给第一个元素的宽度为150*1/（1+2）即50px，分给第二个元素的宽度为100px；
+    </li>
+</ul>
+
+</html>

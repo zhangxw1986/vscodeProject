@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10.1布局相关属性</title>
+</head>
+<style>
+    .dv0 {
+        border: 1px solid red;
+        overflow: hidden;
+    }
+    .dv0 div {
+        width: 100px;
+        height: 20px;
+        border: 1px solid #123fd1;
+        padding: 5px;
+        margin: 5px;
+    }
+</style>
+
+<body>
+    <p>CSS除了可以控制前面几章介绍的样式之外，还可以控制页面布局，比如可以通过float属性来控制多列布局，使用clear属性强制换行等。
+        在CSS布局属性中，display属性是一个功能非常丰富的属性，它除了支持inline和block两种基本的盒模型之外，还可以通过指定display
+        为none来隐藏HMTL元素，也可以指定inline-block、inline-table、list-item、run-in等盒模型。通过display属性可以对HTML元素
+        灵活布局，本章将会详细介绍display各种属性值的功能。
+    </p>
+    <p>除了display属性控制盒模型之外，CSS3还新增了box-shadow属性，允许开发者为盒模型元素添加阴影，包括控制阴影的颜色、偏移和模糊度。
+        CSS3还新增了分栏布局功能，分栏布局可以强行把一段文字分成多栏显示，而CSS3提供的盒模型布局则可以更轻松的实现多栏布局。
+    </p>
+    <h3>10.1布局相关属性</h3>
+    <ul>
+        <li>float:该属性控制目标HTML组件是否浮动以及如何浮动。当通过该属性设置某个对象浮动后，该对象被当做块（bolck）组件处理，即
+            相当于display属性被设置为block。也就是说，即使display属性设置了其他属性值，该属性值依然是block。浮动HTML组件将会漂浮
+            紧紧跟随它的前一个组件，直到遇到边框、内补丁（padding）、外补丁（margin）或另一个块（block-level）组件为止。该属性
+            支持left、right两个属性值，分别指向对象向左、向右浮动。
+        </li>
+        <li>clear：该属性用于设置HTML组件的左、右是否允许出现浮动现象。该属性支持如下属性值：
+            <ul>
+                <li>none:默认值。两边都允许出现浮动组件。</li>
+                <li>left:不允许左边出现浮动组件。</li>
+                <li>right:不允许右边出现浮动组件。</li>
+                <li>both:两边都不允许出现浮动组件。</li>
+            </ul>
+        </li>
+        <li>clip:该属性控制对HTML元素进行剪裁。该属性值可指定为auto（不剪裁）或rect（number、number、number、number），其中
+            rect()用于在目标组件上定义一个矩形，目标组件只有位于该矩形内的区域才会被显示出来。<br>
+            <sup><b>
+                    只有当该HTML组件的position属性设置为absolute、且它的overflow设置为hidden时才能很好的看到该属性的效果。
+                </b>
+            </sup>
+        </li>
+        <li>overflow:设置当HTML组件不够容纳内容时的显示方式。该属性支持以下几个属性值。
+            <ul>
+                <li>visiable:该属性值指定HTML组件既不剪切内容也不添加滚动条。这是默认值。</li>
+                <li>auto:该属性值指定当HTML组件不够容纳内容时将自动添加滚动条，允许用户通过拖动滚动条来查看内容。</li>
+                <li>hidden:该属性值指定HTML组件自动剪裁那些不够空间显示的内容。</li>
+                <li>scroll:该属性指定HTML组件总是显示滚动条。</li>
+            </ul>
+        </li>
+        <li>overflow-x:只控制水平方向的显示方式。</li>
+        <li>overflow-y:只控制垂直方向的显示方式。</li>
+        <li>visibility:适用于CSS2，用于设置目标对象是否显示。与display属性不同，当通过该属性隐藏某个XHTML元素后，该元素占用的
+            页面空间依然会被保留。该属性的两个常用值为visiable和hidden，分别用于控制目标对象的显示与隐藏。
+        </li>
+        <li>display:用于设置目标对象是否及如何显示。该属性支持的属性值很多，该属性主要用于控制CSS的盒模型，下面还会详细介绍各属性值的功能。</li>
+    </ul>
+    <p>float属性功能实例：</p>
+    <!-- <img src="../images/beigong1.jpg" alt=""> -->
+
+    <div class="dv0">
+        <div style="float:left;">float:left1</div>
+        <div style="float:left">float:left2</div>
+        <div style="float:right">float:right1</div>
+        <div style="float:right">float:right2</div>
+        <div style="height: 50px;">普通的div</div>
+        <!-- <div style="width: 110px;">普通div2</div> -->
+    </div>
+    <sup><b>float浮动属性总结：<br><ul>
+        <li>1、float属性一般只用于文字环绕，不建议在别的CSS布局上，因为其与所有的float布局都可以用别的属性替换。</li>
+        <li>2、元素浮动后其display属性值为block，并且如果该元素是非替换元素，则宽高会尽可能的小。</li>
+        <li>3、元素浮动后会脱离文档流，其后的块级元素（非块级的还是会承认该浮动元素的存在的）盒子布局时会<em style="color:red;">无视该元素的存在
+        </em>，但是其内的文字却会承认该浮动元素的存在。</li>
+        <li>4、对父元素的影响：当一个子元素设置为浮动后，它的布局范围会超过父元素布局范围。并且不能撑开父元素的盒子范围，需要父元素清除浮动。</li>
+        <li>5、对元素本身的影响：当元素没有设置宽度值，而设置了浮动属性，元素的宽度随内容的变化而变化。设置固定属性后，以固定属性为准。</li>
+        <li>6、对其他元素的影响：当元素设置浮动属性后，会对相邻的元素产生影响。相邻元素特指紧邻后面的元素。</li>
+    </ul></b></sup>
+    
+</body>
+
+</html>

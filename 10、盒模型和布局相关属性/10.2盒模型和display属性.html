@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10.2盒模型和display属性</title>
+    <style>
+    #test1{
+        width:300px;
+        height:80px;
+        border: 1px solid red;
+        background-color: #ccc;
+        margin-top: 10px;
+    }
+    #test2{
+        width:300px;
+        height:80px;
+        border: 1px solid yellowgreen;
+        background-color: yellow;
+        margin-top: 10px;
+    }
+    .dv0 a{
+        display: inline-block;
+        width:100px;
+        height:40px;
+        border: 1px solid yellowgreen;
+    }
+    a:hover{
+        background-color: aquamarine;
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+    <h4>10.2.1两种最基本的盒模型</h4>
+    <p>就最基本的盒模型来说，HTML组件的盒模型分为两种：</p>
+    <ul>
+        <li>block类型：这种盒模型的组件默认占据一行，允许通过CSS设置宽度、高度。例如div、p等。</li>
+        <li>inline类型：这种盒模型的组件不会占据一行（默认允许一行放置多个组件），即使通过CSS设置高度、宽度也不会起作用。例如span、a等元素。</li>
+    </ul><br><hr>
+
+
+    <h4>10.2.2 none值</h4>
+    <p>display属性可以指定为none值，用于设置目标对象隐藏，一旦该对象隐藏，其占用的页面空间也会释放。与此对应的是visibility属性，
+        该属性也可用于设置目标对象是否显示。与display属性不同，当通过visibility隐藏某个HTML元素后，该元素占用的页面空间依然会被保留。
+        visibility属性的两个常用值为visible和hidden，分别用于控制目标对象的显示和隐藏。
+    </p>
+    <p>例子如下：</p>
+    <input type="button" value="隐藏" onclick="document.getElementById('test1').style.display='none';">
+    <input type="button" value="显示" onclick="document.getElementById('test1').style.display=''">
+    <div id="test1">使用display显示和隐藏div===test1</div>
+    <input type="button" value="visibility隐藏" onclick="document.getElementById('test2').style.visibility='hidden';">
+    <input type="button" value="visibility显示" onclick="document.getElementById('test2').style.visibility='visible';">
+    <div id="test2">使用visibility显示和隐藏div====test2</div>
+    <div>占位div</div>
+    <br><hr>
+    <h4>10.2.3 inline-block模型</h4>
+    <p>CSS还提供了一种inline-block盒模型，通过为display属性设置inline-block即可实现这种盒模型，这种盒模型是inline模型
+        和block模型的综合体：inline-block盒模型的元素既不会占据一行，同时也支持width、height指定宽度和高度。
+    </p>
+    <sup><b>通过使用inline-block盒模型可以非常方便的实现多个div的并列显示。也就是说使用inline-block盒模型也可以实现前面介绍的多栏布局。</b></sup>
+    <sup><b>在默认情况下，多个inline-block盒模型的组件将会采用底端对齐的方式，也就是他们的底部会在同一水平线上，这可能不是多栏布局期望的结果。
+        为了让多个inline-block盒模型的组件顶端对齐，为他们增加vertical-align:top;即可。
+    </b></sup>
+
+    <div class="dv0">
+        <a href="#" class="a1">这是第一列</a>
+        <a href="#" class="a2">这是第二列</a>
+        <a href="#" class="a3">这是第三列</a>
+    </div>
+
+</body>
+</html>

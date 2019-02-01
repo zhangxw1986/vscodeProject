@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>样式单的基本使用</title>
+
+    <!-- 法一：连接外部样式文件 -->
+    <link rel="stylesheet" href="css/my.css">
+    <!-- 法二：导入外部样式文件 -->
+     <!-- <style>
+        @import "css/my.css"
+    </style> -->
+     /* 法三：内部样式表 */
+    <style>
+        .cls {
+            font-size: 18px;
+            color: #60C;
+            height: 30px;
+            width: 200px;
+            border-top: 3px solid #CCCCCC;
+            border-left: 3px-solid #CCCCCC;
+            border-bottom: 3px solid #000000;
+            border-right: ipx solid #000000;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>四种使用样式单的方法</h3>
+    <p>四种使用样式单的方法如下：</p>
+    <ul>
+        <li>1、连接外部样式文件：这种方式将样式文件彻底与HTML文档分离，样式文件需要额外引入。这种方式下，一批样式可控制多个文档。</li>
+        <li>2、导入外部样式文件：这种方式与上一种方式类似，只是使用@import来引入外部样式表</li>
+        <li>3、使用内部样式定义：这种方式在HTML头部定义样式，使用style标签。这种方式下每批样式只能控制一份文档。</li>
+        <li>4、使用内联样式：这种方式将样式内联定义到具体的HTML元素，通常用于精确控制一个HTML元素的表现。这种方式下每个样式只能控制单个HTML元素。</li>
+    </ul>
+    <h4>1、连接外部样式文件</h4>
+    <table>
+        <tr>
+            <td>曼联</td>
+        </tr>
+        <tr>
+            <td>曼城</td>
+        </tr>
+        <tr>
+            <td>利物浦</td>
+        </tr>
+    </table>
+
+    <br><br>
+    <h4>2、导入外部样式文件</h4>
+    <p>与连接外部样式文件的功能差不多，只是语法上有区别，导入外部样式需要在style元素内部@import来导入外部样式文件</p>
+    <sup><b>尽量少使用这种方法</b></sup>
+
+    <h4>3、使用内部样式表</h4>
+    <p>一般不建议使用这种方法，缺点有三：</p>
+    <ul>
+        <li>如果此CSS样式需要被其他HTML文档使用，那么这些CSS样式必须在其他HTML文档中重复定义。</li>
+        <li>大量CSS嵌套在HTML文档中，导致HTML文档过大，大量的重复下载，导致网络负载加重。</li>
+        <li>如果需要整改整站风格时，必须依次打开每个页面重复修改，不利于工程化管理。</li>
+    </ul>
+    <sup><b>如果想让某些样式仅对这个页面有效，而不会影响整个站点，则优先使用内部样式定义</b></sup>
+
+    <div class="cls">这是内部样式表的示例</div>
+    <br><br>
+
+    <h4>4、使用内联样式表</h4>
+    <p>内联样式表只对单个标签有效，它甚至不会影响整个文件。内联样式表可以精确控制某个HTML元素的外观表现。并且运行通过JavaScript动态修改XHTML元素的CSS样式，从而改变该元素的外观。</p>
+    <p>为了使用内联样式，CSS扩展了HTML元素，几乎所有的HTML元素增加了一个style通用属性。</p>
+    <div class="cls2" style="font-size: 18px;
+                            color:#60C;
+                            height: 30px;
+                            width: 200px;
+                            background-color: aquamarine;"
+    
+    >内联样式的实现</div><br>
+    <sup><b>当定义一个css样式时，需要指定两个部分：Seletor和属性定义部分。Seletor决定对哪个HTML元素起作用，属性定义部分
+            如{property:value...}这些属性定义决定对HTML元素起怎么样的作用。当使用内联样式时，CSS样式直接指定到具体的HTML元素，因为无需指定Selector部分。</b></sup>
+</body>
+
+</html>

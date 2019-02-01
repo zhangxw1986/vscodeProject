@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原有表单及表单控件</title>
+</head>
+
+<body>
+    <h3>原有表单及表单控件有：form、input、label、button、select、textarea</h3>
+    <h5>表单form</h5>
+    <p>form元素用于生成表单，该元素不会生成可视化部分。在H5规范以前，其他的表单控件如单行文本框、多行文本框、单选按钮
+        、复选框等都必须放在form元素内。
+    </p>
+    <p>其属性有：action/method/enctype/name/target/ application/x-wwww-form-urlencoded /
+        text/plain / multipart/form-data</p>
+    <p>单纯的form元素既不生成可视化内容，也不生成表单控件，甚至不能提交表单，必须和其他表单控件配合使用。</p>
+    <p><i>HTML中，提交请求通常两种方式：提交表单和使用超链接。提交表单可以POST方式请求，超链接请求只能是GET方式。</i></p>
+    <p><b>当在form元素定义一个或多个表单控件时，一旦提交表单，该表单里的表单控件将会转换成请求参数，转换规则如下：
+        </b></p>
+    <ul>
+        <li>每个有name属性的表单控件对应一个请求参数，没有name属性的表单控件不会生成请求参数</li>
+        <li>如果多个表单控件有相同的name属性，则多个表单控件只生成一个请求参数，只是该参数有多个值</li>
+        <li>表单控件的name属性指定请求参数名，value属性指定请求参数值</li>
+        <li>如果某个表单控件设置了disabled属性，则该表单控件不再生成请求参数</li>
+    </ul>
+    <p>tabIndex属性：指定按Tab键时的输入焦点顺序</p>
+    <hr>
+    <h5>表单控件</h5>
+
+    <h6>机关处运维门户</h6>
+    <form action="http://11.132.171.42:8080/JgtgWeb/jsp/login.do" method="POST" target="_blank">
+    单行文本框-用户名: <input type="text" id="username" name="username"><br>
+    密码框-密 码： <input type="text" id="password" name="password"> <br>  
+    <input type="submit" id="dis" name="dis" value="提交"><br>
+    <hr>
+    不能编辑文本框：<input type="text" name="username" id="username2" readonly><br>
+    隐藏域：<input type="hidden" id="hidden" name="hidden"><br>
+    <br>
+    第一组单选框：<br>
+    <input type="radio" id="color" name="color" value="red">红色
+    <input type="radio" id="color2" name="color" value="blue">蓝色
+    <input type="radio" id="color3" name="color" value="yellow">黄色<br>
+    <br>
+    两个复选框：<br>
+    <input type="checkbox" id="website" name="website" value="www.baidu.com">百度<br>
+    <input type="checkbox" id="website2" name="website" value="www.sina.com.cn">新浪<br>
+    <br>
+    文件上传域：<br>
+    <input type="file" id="fileup" name="fileup"><br>
+    <!-- 图像域：<br> -->
+    <!-- <input type="image" src="../images/flower.JPG" alt="flower"><br> -->
+    四个按钮： <br>
+    <input type="submit" id="ok" name="ok" value="提交">
+    <input type="submit" id="submit" name="submit" value="提交" disabled>
+    <input type="reset" id="cancel" name="cancel" value="重置">
+    <input type="button" id="no" name="no" value="无动作"><br>
+    <br>
+
+    <hr>
+
+    </form>
+    <h5>使用label定义标签</h5>
+    <p>label元素用于在表单元素中定义标签，这些标签对其他可生成请求参数的表单控件元素（如单行文本框、密码框等）进行说明，
+        label元素不需要生成请求参数，因此不要为label元素指定value属性值。
+    </p>
+    <p>让label标签和表单控件关联在一起有两种方式：</p>
+    <ul>
+        <li>隐式使用for属性,label的for属性关联表单控件的id值</li>
+        <li>将普通文本、表单控件一起放在label元素内部</li>
+    </ul>
+    <sup>优先使用隐式关联的方式</sup><br>
+    <hr>
+
+    <h5>button按钮</h5>
+    <p>button元素可以定义一个按钮，元素内部可以包含普通文本、文本格式化标签、图像等内容</p>
+    <p>button按钮与<input type="button"> 相比功能更强大，button元素内部可包含的内容更多</p>
+    <p>button元素的属性可以有disabled、name、type（只能是button/reset/submit之一）、value等</p><br>
+    <hr>
+    <h5>列表框和下拉菜单</h5>
+    <p>select元素用于创建下拉菜单或者列表框，该元素必须和<b>option元素</b>一起使用，每个option元素代表一个列表项或菜单项</p>
+    <p>与其他表单控件不同，select元素本身不能指定value属性，该值有option表单控件对应的属性来生成，</p>
+  
+    <b> <sup>select到底是下拉菜单还是列表框，是根据是否指定了size或multiple属性来决定，只要指定了两者之一，就是列表框，否则就是下拉菜单</sup></b>  <br>
+
+    下面是简单下拉菜单：<br>
+    <form action="http://11.132.171.42:8080/JgtgWeb/jsp/task/task_list" method="get">
+        <label for="skills">skills选择：</label>
+        <select name="skills" id="skills">
+            <option value="java">java</option>
+            <option value="python">python</option>
+            <option value="c++">c++</option>
+            <option value="javascript">javascript</option>
+        </select><br>
+        <br>
+        下面是允许多选的列表框：<br>
+        <select name="books" id="books" multiple="multiple" size="6">
+            <option value="java">疯狂java讲义</option>
+            <option value="python">head first java</option>
+            <option value="c++">21天入门</option>
+        </select><br>
+        <br>
+        下面是允许多选的列表框： <br>
+        <select name="club" id="club" multiple size="10">
+           <optgroup label="英超">
+               <option value="man utd">曼联</option>
+               <option value="arsenal">阿森纳</option>
+               <option value="liverpool">利物浦</option>
+           </optgroup>
+           <optgroup label="西甲">
+                <option value="real madrid">皇马</option>
+                <option value="barca">巴萨</option>
+           </optgroup>
+        </select><br>
+
+        <br>
+
+        <h5>使用textarea定义文本域</h5>
+        <p>textarea用于生成多行文本域，它既可以接收用户输入，用户可以选中其中的文本，所以可以指定onselect和onchange两个属性，分别用于响应文本域内文本被选中、文本被修改事件</p>
+        
+
+    </form>
+</body>
+
+</html>

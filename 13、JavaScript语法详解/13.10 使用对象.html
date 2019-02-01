@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>13.10 使用对象</title>
+</head>
+<body>
+      <h3>13.10 使用对象</h3>
+      <p>随着代码的增加，为了提供更好的软件复用，建议使用对象和函数。</p>
+      <br><hr>
+      <h4>13.10.1 面向对象的概念</h4>
+      <p>JavaScript并不是面向对象的程序设计语言，面向对象设计的基本特征：继承、多态等没有得到很好的实现。在纯粹的面向对象语言里，最基本的程序单位是类、类与类之间提供严格的继承关系。比如Java中的类，所有的类都可以通过extends显示继承父类，或者么欧人集成系统的Object类，而JavaScript并没有提供规范的语法让开发者定义类。</p>
+      <p>在纯粹的面向对象程序设计语言里，严格使用new关键字创建对象，而new关键字调用该类的构造器，通过这种方式可以返回该类的实例。例如在Java中通过如下代码创建对象实例：</p>
+      <code>
+        Person p = new Person();
+      </code>
+      <p>
+        假设Person类已有了Person的构造器，通过构造器即可返回Person实例。但JavaScript则没有这样严格的语法，JavaScript中的每个函数都可用于创建对象，返回的对象既是该类的实例，也是Object类的实例。例如：
+      </p>
+      <code>
+          function Person(name){ <br>
+           &nbsp; this.name = name;<br>
+        }<br>
+        var p = new Person("yeeku");<br>
+        if(p instanceof Person ){document.write('p是Person的实例' )}  <br>
+        if(p instanceof Object ){document.write('p是Object的实例' )};<br>
+      </code>
+      <input type="button" value="确认对象的类型" 
+          onclick="if(p instanceof Person ){document.write('p是Person的实例' + '<br>')};          if(p instanceof Object ){document.write('p是Object的实例' + '<br>')};">
+      <script>
+        function Person(name){
+            this.name = name;
+        }
+        var p = new Person("yeeku");
+      </script><br>
+      <p>从上面可以看出，上面的JavaScript在定义Person函数的同时，也得到了一个Person类，因此程序通过Person创建的对象既是Person类的实例，也是Object类的实例。</p>
+      <p>由于JavaScript的函数定义不支持继承语法，因此JavaScript没有完善的继承机制。所以我们习惯上称JavaScript是基于对象的脚本语言。</p>
+     <br><hr>
+     <h4>13.10.2对象和关联数组</h4>
+     <p>JavaScript对象与纯粹的面向对象语言的对象存在一定的区别：JavaScript中的的对象本质上是一个关联数组，或者说更像Java里的Map数据结构，由一组key-value对组成，与Java中Map对象存在区别的是，JavaScript对象的value不仅可以是值（包括基本类型和复合类型的值），也可以是函数，此时的函数就是该对象的方法，当value是基本类型或复合类型的值时，此时的value就是该对象的属性。</p>
+     <b>因此当需要访问某个JavaScript对象的属性时，不仅可以使用obj.propName的形式，也可以采用obj[propName]的形式，有些时候甚至必须使用这样的形式，例如：</b><br>
+     <code>
+        function Person1(name,age){  <br>
+        &nbsp;  this.name = name;<br>
+        &nbsp; this.age = age;<br>
+        &nbsp;  this.info = function(){<br>
+          &nbsp;&nbsp; alert('info methods');<br>
+          &nbsp;  };<br>
+        }<br>
+         var p1 = new Person1('zxw',12); <br>
+         for(prop in p1){<br>
+          &nbsp;  document.writeln('p对象的' + prop + '属性值为：' + p1[prop] );<br>
+         }<br>
+     </code>
+     <input type="button" value="测试[]遍历访问属性" 
+            onclick="for(prop in p1){
+              document.writeln('p对象的' + prop + '属性值为：' + p1[prop] + '<br>');
+            }">
+     <script>
+       function Person1(name,age){
+         this.name = name;
+         this.age = age;
+         this.info = function(){
+           alert('info methods');
+         };
+       }
+        var p1 = new Person1('zxw',12);
+        
+     </script>
+     <p>上面程序中粗体字代码遍历了Person对象的每个属性，因为遍历每个属性时循环计数器是Person对象的属性名，因此程序必须<b style="color:burlywood;">根据属性名来访问Person对象的属性，此时不能采用p1.prop的形式，因此如果这样的话，程序会认为prop是p1的属性。</b></p>
+     <p>JavaScript中的对象全部是Object的子类。因此各对象之间完全平等，各对象之间并不存在直接的父子关系，JavaScript提供了一些内建类，通过这些内建类可以方便的创建各自的对象。</p>
+</body>
+</html>

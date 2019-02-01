@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>8.2边框相关属性</title>
+    <style>
+        .dv0 div {
+            width: 300px;
+            height: 40px;
+        }
+
+        .dv1 div {
+            width: 300px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>8.2边框相关属性</h3>
+    <p>边框相关属性用于设置目标对象的边框特征，包括边框颜色、粗细，以及使用的线型。边框相关属性有如下几个：</p>
+    <ul>
+        <li>border:这是一个复合属性，用于设置目标组件的边框样式。可同时设置边框的粗细、线型、颜色。</li>
+        <li>border-color: 用于设置边框的颜色。
+            <ul>
+                <li>提供4个值：分别代表上、右、下、左</li>
+                <li>提供1个值：将用于设置4个边的属性</li>
+                <li>提供2个值：第一个设置上下边框颜色；第二个设置左右两个边框颜色</li>
+                <li>提供3个值：第一个设置上边框，第2个设置左右两个边框，第3个设置下边框。</li>
+            </ul>
+        </li>
+        <li>border-style: 用于设置组件的边框类型。</li>
+        <li>border-width: 用于设置目标组件的边框宽度。</li>
+    </ul>
+    <li>border-top/right/bottom/left-color/style/width:设置相应变的颜色、线型、宽度。</li>
+    <p>上面的边框相关属性中，边框颜色可以是任何有效的颜色值，而线宽可以是任何有效的长度值，线型支持以下数值：</p>
+    <ul>
+        <li>none:无边框</li>
+        <li>hidden:隐藏边框</li>
+        <li>dotted: 点线边框</li>
+        <li>dashed: 虚线边框</li>
+        <li>solid: 实线边框</li>
+        <li>double: 双线边框</li>
+        <li>groove: 3D凹槽边框</li>
+        <li>ridge: 3D凸槽边框</li>
+        <li>inset:3D凹入边框</li>
+        <li>ouset:3D凸出边框</li>
+    </ul>
+    <p>示例:展示边框</p>
+    <div class="dv0">
+        border:5px solid #666:
+        <div style="border:5px solid #666">宽度为5的灰色实线边框</div>
+        border:2px dashed #666:
+        <div style="border:2px dashed #666">宽度为2的灰色虚线边框</div>
+        border:2px dotted #666:
+        <div style="border:2px dotted #666">宽度为2的灰色点线边框</div>
+        border:5px groove #666:
+        <div style="border:5px groove #666">宽度为5的灰色凹槽边框</div>
+        border:8px inset #666:
+        <div style="border:8px inset #666">宽度为8的灰色凹入边框</div>
+        border:8px outset #666:
+        <div style="border:8px outset #666">宽度为8的灰色凸出边框</div>
+        border-width:8px 2px;border-style:dashed dotted;border-color:#ccc #444;
+        <div style=" border-width:8px 2px;border-style:dashed dotted;border-color:#ccc #444;">上下边框：8px dashed #ccc <br />
+            左右两个边框:2px dotted #444</div>
+    </div>
+    <br><br>
+    <hr>
+    <h4>8.2.1CSS3提供的渐变边框</h4>
+    <p>CSS3提供了4个属性来支持渐变边框：</p>
+    <p>border-top/right/bottom/left-colors:该属性用于设置目标组件上的边框颜色，如果设置每个边框的宽度为npx，那么就可以设置n种颜色，每种颜色1px的宽度。
+        如果颜色数量小于边框宽度，那么最后一个颜色会填充剩余的宽度。
+    </p>
+    <b><sup>这4个属性目前只有firefox支持，且使用该属性时必须在前面增加-moz-前缀。</sup></b>
+    <br><br>
+    <hr>
+    <h4>8.2.2CSS3提供的圆角边框</h4>
+    <p>CSS3为支持圆角边框提供了如下支持：</p>
+    <p>border-radius:该属性用于指定圆角边框的圆角半径，可指定1-4个值。</p>
+    <p>border-top-left/top-right/bottom-right/bottom-left-radius:分别设置左上角、右上角、右下角、左下角的圆角半径。</p>
+    <div class="dv1">
+        <div style="border:3px solid #444;border-radius:8px;">半径为8的圆角边框</div>
+    </div>
+    <br><br><hr>
+    <h4>8.2.3CSS3提供的图片边框</h4>
+    <p>CSS3为图片边框提供了如下支持：</p>
+    <p>border-image:该属性的值比较复杂，应该遵循如下格式：</p>
+    <code>
+        border-image-source border-image-slice[/border-image-width]? border-image-repeat
+    </code>
+    <p>
+        <b><sup>该部分暂时省略。</sup></b>
+    </p>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>13.8 函数</title>
+</head>
+<body>
+    <h3>13.8 函数</h3>
+    <p>JavaScript是一种基于对象的脚本语言，JavaScript代码复用的单位是函数，但它的函数结构比结构化程序设计语言的函数更丰富。
+        JavaScript语言中的函数就是"一等公民"，它可以独立存在；而且JavaScript的函数完全可以作为一个类使用（而且它还是该类唯一的
+        构造器）；与此同时，函数本身也是一个对象，函数本身是Function实例。JavaScript函数的功能非常丰富，如果想要深入学习JavaScript，
+        那就必须认真学习JavaScript函数。
+    </p>
+    <br>
+    <h4>13.8.1 定义函数的三种方式</h4>
+    <p>JavaScript是弱类型语言，因此定义函数时，既不需要声明函数的返回值类型，也不需要声明函数参数的类型。</p>
+    <p>JavaScript目前支持3中函数定义方式：</p>
+    <br><hr>
+    <h5>13.8.1.1 定义命名函数</h5>
+    <p>定义命名函数的语法格式如下：</p>
+    <code>
+        function functionName(parameter-list){  <br>
+          &nbsp;  statements...  <br>
+        }    <br>
+    </code>
+
+    <p>函数的最大作用是提供代码复用，将需要重复使用的代码块定义为函数，提供更好的代码复用。</p>
+    <b>在同一个script元素中时，JavaScript允许先调用函数，然后再定义函数（函数提升）；但在不同的script元素中时，必须先定义
+        函数，然后再调用函数。也就是说，在后面的script元素中可以调用前面script里定义的函数。
+    </b>
+    <p>函数可以有返回值，也可以没有返回值。函数的返回值使用return语句返回，在函数的运行过程中，一旦遇到第一条return语句，
+        函数就返回返回值，函数运行结束。看如下例子：
+    </p>
+    <code>
+            function retHello(name){  <br>
+            &nbsp;    if(typeof name == "string"){  <br>
+            &nbsp;&nbsp;         return "hello " + name;  <br>
+            &nbsp;    }   <br>
+            &nbsp;    return "名字只能为字符串";  <br>
+        }  <br>
+    </code>
+    <input type="button" value="点击执行retHello函数" onclick="alert(retHello('zxw'));" >
+    <script>
+        function retHello(name){
+                if(typeof name == "string"){
+                    return "hello " + name;
+                }
+                return "名字只能为字符串";
+        }
+    </script>
+    <p>定义命名函数的语法简单易用，因此对很多JavaScript初级用户来说这也是见的最多的一种函数定义方法。但实际上采用这种语法定义函数
+        可读性不好---因为在定义JavaScript函数时也得到了一个对象。
+    </p>
+    <br><hr>
+    <h5>13.8.1.2定义匿名函数</h5>
+    <p>JavaScript提供了定义匿名函数的方式，这种创建匿名函数的语法格式如下：</p>
+    <code>
+        function(parameter-list){    <br>
+            statements..            <br>
+        }<b style="color:coral;">;</b>  <br>
+    </code>
+    <p>这种函数定义语法无需指定函数名，而是将参数列表紧跟function关键字之后，在函数定义后面不要忘了紧跟分行;</p>
+    <p>当通过这种语法格式定义了函数之后，实际上就是定义了一个函数对象（即Function实例），接下来可以将这个对象赋给另外一个变量。</p>
+    <p>例子如下：</p>
+    <code>
+            var f = function(name){   <br>
+             &nbsp;   document.writeln('匿名函数:===》'); <br>
+             &nbsp;   document.writeln('你好'+name); <br>
+            }; <br>
+    </code>
+    <input type="button" value="点击执行匿名函数f" onclick="f('zxw');">
+    <script>
+        var f = function(name){
+            document.writeln('匿名函数<br>');
+            document.writeln('你好'+name);
+        };
+    </script>
+    <p>匿名函数的语法可读性非常好；程序使用function关键字定义一个函数对象（Function类的实例），然后把这个对象赋值给f变量，
+        以后程序即可通过f来调用这个匿名函数。
+    </p>
+    <b>如果你是一个有经验的JavaScript开发者，或者阅读过大量优秀的JavaScript源码（比如Prototype.js，jQuery.js等），将会
+        在这些JavaScript源代码中看到它们基本都是采用这种方法来定义函数的。使用匿名函数的另一个好处是更加方便，当需要为类、对象
+        定义方法时，使用匿名函数的语法有更好的可读性。
+    </b> <br>
+    <b>JavaScript的函数非常特殊，它既是可重复调用的代码块，也是一个Function实例。</b>
+    <h5>13.8.1.3 使用Function类匿名函数</h5>
+    <p>Function类，该类也可以用于定义函数，Function类构造器的参数个数可以不受限制，Function可以接收一系列的字符串参数，其中
+        最后一个字符串参数sh函数的执行体，执行体的各语句以分号（；）隔开，而前面的各字符串参数则是函数的参数。
+    </p>
+    <p>可读性不好。</p>
+
+
+</body>
+</html>

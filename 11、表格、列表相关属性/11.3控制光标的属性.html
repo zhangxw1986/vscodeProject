@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>11.3控制光标的属性</title>
+</head> 
+<style>
+    .dv0{
+        width: 1200px;
+        height: 600px;
+        border: 2px solid red;
+    }
+    .dv0 .dv{
+        width: 180px;
+        height: 80px;
+        display: inline-block;
+        margin: 8px;
+        border:1px solid orange;
+    }
+</style>
+<body>
+    <p>通过CSS的cursor属性可以改变光标在目标组件上的形状，该属性支持如下属性值：</p>
+    <ul>
+        <li>all-scroll:代表十字箭头光标。</li>
+        <li>col-resize:代表水平拖动线光标。</li>
+        <li>crosshair：代表十字线光标。</li>
+        <li>move：代表移动十字箭头光标。</li>
+        <li>help：代表带问号的箭头光标。</li>
+        <li>no-drap:代表禁止光标。</li>
+        <li>not-allowed:代表禁止光标。</li>
+        <li>pointer:代表手型光标。</li>
+        <li>progress:代表带沙漏的箭头光标。</li>
+        <li>row-resize：代表垂直拖动线光标。</li>
+        <li>text:代表文本编辑光标。通常就是一个大写的I字光标。</li>
+        <li>vertical-text：代表垂直文本编辑光标。通常就是大写I字光爆旋转90度。</li>
+        <li>wait:代表沙漏光标。</li>
+        <li>*-resize:代表可在各种方向上拖动的光标。支持w-resize、s-resize、n-resize、e-resize、ne-resize、sw-resize、
+            sw-resize、se-resize、nw-resize等各种属性值。n、s、e、w分别代表北、南、东、西方向。
+        </li>
+    </ul>
+    <p>代码示例如下：</p>
+    <div class="dv0">
+        <div class="dv" style="cursor:all-scroll;">十字箭头光标</div>
+        <div class="dv" style="cursor:col-resize;">水平拖动线光标</div>
+        <div class="dv" style="cursor:crosshair;">十字线光标</div>
+        <div class="dv" style="cursor:move;">代表移动十字箭头光标</div>
+        <div class="dv" style="cursor:help;">带问号的箭头光标</div>
+        <div class="dv" style="cursor:no-drop;">禁止光标</div>
+        <div class="dv" style="cursor:not-allowed;">禁止光标</div>
+        <div class="dv" style="cursor:pointer;">手型光标</div>
+        <div class="dv" style="cursor:progress;">带沙漏的箭头光标</div>
+        <div class="dv" style="cursor:row-resize;">垂直拖动线光标</div>
+        <div class="dv" style="cursor:text;">文本编辑光标</div>
+        <div class="dv" style="cursor:vertical-text;">垂直文本编辑光标</div>
+        <div class="dv" style="cursor:wait;">沙漏光标</div>
+        <div class="dv" style="cursor:n-resize;">可向上拖动的光标</div>
+        <div class="dv" style="cursor:ne-resize;">上、右可拖动的光标</div>
+        <div class="dv" style="cursor:se-resize;">下、右可拖动的光标</div>
+  
+    </div>
+</body>
+</html>

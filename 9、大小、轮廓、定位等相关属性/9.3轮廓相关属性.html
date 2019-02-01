@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>9.3轮廓相关属性</title>
+    <style>
+        div {
+            font-size: 12pt;
+            width: 400px;
+            height: 60px;
+            border: 1px solid black;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>轮廓相关属性主要用于让目标对象周围有一圈“光晕”效果，这圈光晕不会占用页面实际的物理布局。通过轮廓相关属性，可设置该“光晕”
+        的颜色、线宽、线型等属性，轮廓相关属性有如下几个：
+    </p>
+    <ul>
+        <li>outline:这是一个复合属性，可全面设置目标对象轮廓的颜色、线型、线宽三个属性。</li>
+        <li>outline-color:用于设置组件的轮廓线型。该属性支持的属性值有none、dotted、dashed、solid、double、groove、groove、
+            ridge、inset、outset，这些属性值与前面介绍的边框线型时各属性值的意义完全相同。
+        </li>
+        <li>outline-width:用于设置目标组件的轮廓宽度。</li>
+        <li>outline-offset:用于设置目标组件的轮廓偏移距（即轮廓与边框之间的距离）。</li>
+    </ul>
+    outline:rgba(50,50,50,0.5) solid 10px;
+    <div style="outline: rgba(50,50,50,0.5) solid 16px;">宽度为10的灰色实线轮廓</div>
+    outline:rgba(50,50,50,0.5) groove 16px;
+    <div style="outline:rgba(50,50,50,0.5) groove 16px;">宽度为16的凹槽线轮廓</div>
+    outline:rgba(50,50,50,0.5) ridge 16px;outline-offset:10px;
+    <div style="outline:rgba(50,50,50,0.5) ridge 16px;outline-offset:10px;">宽度为16、距离边框10px的虚线轮廓</div>
+    <p>从以上示例可以看出，组件的轮廓位于组件的边框之外，而且组件的轮廓并不占用页面空间。</p>
+</body>
+
+</html>

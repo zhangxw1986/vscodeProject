@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>h5新增的客户端校验</title>
+</head>
+<body>
+    <h3>H5为表单控件额外增加了一些校验属性</h3>
+    <h4>3.4.1 使用校验属性进行校验</h4>
+    <p>h5为表单控件新增了以下几个属性：</p>
+    <ul>
+        <li>required:该属性指定该表单控件必须填写。该属性的值必须是required或完全省略属性值。</li>
+        <li>pattern：该属性指定该表单控件的值必须符合指定的正则表达式。该属性的值必须是一个合法的正则表达式。</li>
+        <li>min、max、step：这三个属性只对数值类型、日期类型的input元素有效，这三个属性控制该表单控件的值必须在min~max之间，并符合step步长。</li>
+    </ul>
+    <h4>实验：</h4>
+    <form action="add">
+        <label for="name">图书名：</label><input type="text" name="name" id="name" required><br>
+        <label for="isbn">图书ISBN：</label><input type="text" name="isbn" id="isbn" 
+                                    required pattern="\d{3}-\d-\d{3,5}"><br>
+        <label for="price">图书价格：</label><input type="number" name="price" id="price" min="20" max="500" step="5" ><br>
+        <input type="submit" value="提交"><br>
+    </form>
+    <hr>
+    <h4>3.4.2 调用checkValidity方法进行校验</h4>
+    <p>校验属性的方法比较简单，但是“呆板”一些，如果开发者想通过对话框来提示错误或有其他校验要求，可借助<b>checkValidity()方法</b>进行校验</p>
+    <ul>
+        <li>如果表单对象调用checkValidity()方法返回true，则表明该表单对象所有表单控件都有效，只要有任意一个不能通过校验，表单对象的checkValidity方法都会返回false</li>
+        <li>如果表单对象调用checkValidity方法返回true，则表明该表单控件可以通过校验，否则返回false。</li>
+    </ul>
+    <br><h4>实验：使用checkValidity方法</h4>
+    <form action="check">
+          <label for="birthday">生日：</label><input type="date" id="birthday" name="birthday"><br>
+          <label for="email">邮箱地址：</label><input type="text" id="email" name="email"><br> 
+          <input type="submit" value="提交" onclick="return check();">
+    </form>
+    <script>
+        var check = function(){
+            return commonCheck("birthday","生日","字段必须是有效的日期")
+                    &&commonCheck("email","邮箱地址","字段必须符合电子邮件的格式");
+        }
+        function commonCheck(field,fieldName,tip){
+            var tarEle = document.getElementById(field);
+            if(tarEle.value.trim() == ""){
+                alert(fieldName + "字段不能为空");
+                return false;
+            }else if(!tarEle.checkValidity()){
+                alert(fieldName + tip);
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+    <br><hr>
+    <h4>3.4.4 关闭校验</h4>
+    <p>h5提供了两种方法，可以关闭对表单控件输入的校验</p>
+    <ul>
+        <li>为form元素增加novalidate属性，该属性的值要么是novalidate，要么就省略该属性值</li>
+        <li>为type=submit的input或button元素设置formnovalidate属性，该属性的值要么是novalidate，要么省略属性值。</li>
+    </ul>
+    
+</body>
+</html>

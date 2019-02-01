@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>12.1.1 4种基本变形</title>
+</head>
+<style>
+    .dv0{
+        display: inline-block;
+        width:1000px;
+        height:1100px;
+        border: 1px solid wheat;
+        background-color: rgba(226, 220, 220, 0.445);
+    }
+    .dv0 .dv{
+        width:280px;
+        height:80px;
+        display: inline-block;
+        margin: 40px;
+        border: 3px solid orangered;
+    }
+</style>
+<body>
+    <h4>12.1.1 4种基本变形</h4>
+    <p>通过为transform指定不同的变形函数，即可在页面上实现对HTML组件的变形。如下页面代码示范了4种基本的变形功能。需要指出的是，
+        目前主流浏览器并未支持标准的transform属性，因此在实际开发中还需要添加各浏览器厂商的前缀，例如-moz-、-webkit-、-o-等前缀。
+    </p>
+    <p>例子如下：</p>
+    <div class="dv0">
+        <div class="dv">文字</div> 未变形   <div class="dv">文字</div>
+        <div class="dv">文字</div>  rotate 旋转30度 <div class="dv" style="transform:rotate(30deg);">文字</div>
+        <div class="dv">文字</div>  translate 位移120px，-80px <div class="dv" style="transform:translate(120px,-80px);">文字</div>
+        <div class="dv">文字</div>  scalte 缩放1.9 0.4 <div class="dv" style="transform:scale(1.9,0.4);">文字</div>
+        <div class="dv">文字</div>  横向倾斜30度 <div class="dv" style="transform:skew(30deg);">文字</div>
+        <div class="dv">文字</div>  纵向倾斜30度  <div class="dv" style="transform:skewY(30deg);">文字</div>
+     </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>14.1 DOM模型概述</title>
+</head>
+<body>
+    <p>DOM:文档对象模型（Document Object Model）的简称。</p>
+    <p>借助DOM模型，可以将一个结构化文档转换成DOM树，程序就可以访问、修改树里的节点，也可以新增、删除树里的节点。
+        在程序操作这颗DOM树时，结构化文档也会随之动态改变。
+    </p>
+    <p>换言之，DOM提供访问、修改文档的编程接口，通过这些接口，使得JavaScript脚本能动态的修改HTML页面。</p>
+    <h3>14.1 DOM模型概述</h3>
+    <p>HTML文档只有一个根节点，而其他节点以根节点的子节点或孙节点的形式存在，最终形成一个结构化文档。</p>
+    <p>DOM模型提供导航、访问结构化文档节点，新增、删除、修改结构化文档的功能。</p>
+    <p>DOM是一种思想，目前各浏览器都基于这种思想，提供了DOM解析器。DOM解析器的作用就是完成结构化文档和DOM树之间的转换
+        关系。
+    </p>
+    <ul>
+        <li>DOM解析器解析结构化文档：就是将磁盘上的结构化文档转换为内存中的DOM树；</li>
+        <li>DOM解析器输出结构化文档：就是将内存中的DOM树转换成磁盘上的结构化文档。</li>
+    </ul>
+    <img src="images/DOM解析器.JPG" alt="DOM解析树">
+    <p>当浏览器装载一个HTML页面后，就已经解析并得到了DOM树，随后JavaScript脚本便可修改这颗DOM树，HTML页面会随之改变。</p>
+</body>
+</html>

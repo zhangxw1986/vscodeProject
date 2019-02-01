@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>13.4 复合数据类型</title>
+</head>
+<body>
+    <h3>13.4复合类型</h3>
+    <p>复合类型是由多个基本数据类型（也可以是复合类型）组成的数据体。JavaScript中的复合类型大致上有如下三种:</p>
+    <ul>
+        <li>Object:对象</li>
+        <li>Array:数组</li>
+        <li>Function：函数</li>
+    </ul>
+    <br><hr>
+    <h4>13.4.1对象</h4>
+    <p>对象是一系列命名变量、函数的集合。其中命名变量既可以是基本数据类型，也可以是复合类型。对象中的命名变量称为属性，对象中的
+        函数称为方法。对象访问属性和函数的方法都是通过"."实现的，例如如下代码用于判断浏览器版本：
+    </p>
+    <p>正如前文提到的，JavaScript是基于对象的脚本语言，它提供了大量的内置对象供用户使用。除了Object之外，JavaScript还提供了
+        如下的内置类。
+    </p>
+    <ul>
+        <li>Array：数组类。</li>
+        <li>Date：日期类。</li>
+        <li>Error：错误类。</li>
+        <li>Function：函数类</li>
+        <li>Math：数学类。</li>
+        <li>Number类：数值类。</li>
+        <li>Object：对象类。</li>
+        <li>String：字符串类。</li>
+    </ul>
+    <br>
+    <h4>13.4.2 数组</h4>
+    <p>数组是一系列的变量。与其他强类型语言不同的是：JavaScript数组元素的类型不必相同。</p>
+    <b style="color:coral;">定义数组的方法有三个：</b>
+    <ul style="list-style-type:decimal;">
+        <li>var a = [3,4 ,"3"];</li>
+        <li>var b = [];</li>
+        <li>var c = new Array();</li>
+    </ul>
+    <p>JavaScript为数组提供了一个length属性，该属性可以得到数组的长度，JavaScript的数组长度可以随意变化，它总是等于
+        所有元素索引最大值+1。
+    </p>
+    <p>JavaScript作为动态、弱类型语言，归纳起来数组有如下三个特征：</p>
+    <ul>
+        <li>JavaScript数组的长度可变，数组长度总等于所有元素索引最大值+1.</li>
+        <li>同一数组中的元素类型可以不同。</li>
+        <li>访问数组元素时不会越界，访问并未赋值的数组元素时，该元素的值为undefined。</li>
+    </ul>
+    <br><br>
+    <h4>13.4.3 函数</h4>
+    <p>从语法定义角度看，JavaScript函数与java方法有些相似，但实际上他们差别很大，主要存在如下4点区别：</p>
+    <ul>
+        <li>JavaScript函数无需声明返回值。</li>
+        <li>JavaScript函数无需声明形参类型。</li>
+        <li>JavaScript的函数可以独立存在，无需属于任何类。</li>
+        <li>JavaScript函数必须用function关键字定义。</li>
+    </ul>
+
+    <h4>关于typeof和instanceof</h4>
+    <p>typeof运算符用于判断某个变量的数据类型，它既可作为函数来表示，例如 typeof(a)可返回变量a的数据类型；也可作为一个运算符
+        来使用，例如typeof a也可返回变量a的数据类型。
+    </p>
+    <b style="color:coral;">不同类型的从参数使用typeof运算符的返回值如下：</b>
+    <ul style="list-style-type:decimal;color:coral;">
+        <li>undefined: undefined</li>
+        <li>null: object</li>
+        <li>布尔类型： boolean</li>
+        <li>数值类型：number</li>
+        <li>字符串值：string</li>
+        <li>对象：object</li>
+        <li>函数：function</li>
+    </ul>
+    <code>
+            var a0 = 5; <br>
+            var b0 = true; <br>
+            var str0 = "hello javascript";<br>
+    </code>
+    <input type="button" value="测试typeof" onclick="alert('a0的类型是：'+typeof(a0) +'\n' +
+            'b0的类型是：'+typeof(b0) +'\n'+'str0的类型是：'+typeof(str0) +'\n');">
+    <script>
+        var a0 = 5;
+        var b0 = true;
+        var str0 = "hello javascript";
+
+    </script>
+</body>
+</html>

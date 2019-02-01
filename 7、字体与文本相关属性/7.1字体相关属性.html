@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字体相关属性</title>
+</head>
+<body>
+    <h3>字体相关属性</h3>
+        <p>本章介绍CSS3中字体和文本相关属性，这些属性是HTML页面上使用最多的属性，我们经常需要控制HTML页面上的字体颜色、字体大小、字体粗细等，这些字体外观都是通过字体相关属性控制的。
+            除此之外，文本的对齐方式、文本的换行风格等都是通过文本相关属性来控制的。
+            除此之外，CSS3新增的一个功能是增加了服务器字体功能，这样避免了浏览器浏览网页时字体缺失导致网页效果变差的问题。通过CSS3的服务器字体功能，可以控制浏览器使用服务器端包含的字体，这样可保证即使浏览者单独机器上没有安装相关字体，浏览时也可呈现统一的界面。
+        </p>
+    <p>CSS为控制文本的字体提供了大量属性。这些字体相关属性主要用于控制文本的字体、颜色、修饰等外观。字体相关属性如下：</p>
+    <ul>
+        <li>font:复合属性，其属性值是形如font-style、font-variant、font-weight、font-size、line-height、font-family的复合属性值。
+            使用font属性值可同时控制文字的样式、字体粗细、字体大小、字体等属性。为了更具体的进行控制，通常不建议使用该属性。
+        </li>
+        <li>color:该属性用于控制文字颜色，该属性的值可以是任何有效的颜色值，包括字符串类型的颜色名、十六进制的颜色值，或使用rgb()函数设置的RGB值，设置包括CSS3提供的HSL颜色值等。</li>
+        
+        <li>font-family: 设置文字的字体，因为字体需要浏览器内嵌字体的支持，该属性可以设置多个显示字体，浏览器按该属性指定的
+            多个字体依次搜索，以优先找到的字体来显示文字。多个属性之间以英文逗号(,)隔开。
+        </li>
+        <li>font-size: 该属性设置文字的字体大小，此处的字体大小既可以是相对的字体大小，也可以是绝对的字体大小。该属性支持如下属性值。
+            <ul>
+                <li>xx-small: 绝对字体尺寸，最小字体。</li>
+                <li>x-small: 绝对字体尺寸，较小字体。</li>
+                <li>small: 绝对字体尺寸，小字体。</li>
+                <li>medium：绝对字体尺寸。正常大小的字体，这是默认值。</li>
+                <li>large:绝对字体尺寸。大字体。</li>
+                <li>x-large: 绝对字体尺寸，较大字体。 </li>
+                <li>xx-large: 绝对字体尺寸，最大字体。</li>
+                <li>larger: 相对字体尺寸。相对于父组件中的字体进行相对增大。</li>
+                <li>smaller: 相对字体尺寸。相对于父组件中的字体进行相对减小。</li>
+                <li>length: 直接设置字体大小。该值既可设置为一个百分比值，意味着该字体大小是父组件字体大小的百分比；也可以设置为一个数值+长度单位，例如11pt、11px等。</li>
+            </ul>
+        </li>
+
+        <li>font-size-adjust： 该属性用于控制对不同字体的字体尺寸进行微调。该属性可以指定为none（不进行任何调整）或用一个数值代表调整比例。</li>
+        <li>font-stretch: 该属性用于改变文字横向的拉伸，该属性的默认值是normal，即不拉伸。还有两个属性值，即narrower和wider，前者是横向压缩，后者是横向拉伸。</li>
+        <li>font-style: 该属性用于设置文字风格，是否采用斜体等。该属性的常用属性值有：normal、italic、oblique，这些属性一次设置为文字正常、斜体、倾斜字体。</li>
+        <li>font-weight: 该属性用于设置字体是否加粗，该属性的值表示加粗的程度，加粗的程度用lighter、normal、bold、bolder等常用属性值表示，即
+            更细、正常、加粗、更粗。还可用具体的数值：用100、200...900来控制字体的加粗程度。
+        </li>
+        <li>text-decoration: 该属性用于控制文字是否有修饰线，如下划线等。该属性的值有none、blink、underline、line-through和overline等，分别对应
+            的修饰效果为无修饰、闪烁、下划线、中划线和上划线。
+        </li>
+        <li>font-variant: 该属性用于设置文字的大写字母的格式。该属性支持normal、small-caps两个属性值，分别对应于正常字体、小型的大写字母。</li>
+        <li>text-shadow: 该属性用于设置文字是否有阴影效果</li>
+        <li>text-transform: 该属性通常用于设置文字的大小写。该属性的值可以是none、capitalize、uppercase和lowercase，分别代表不转换、首字母大写、全部大写、全部小写。</li>
+        <li>该属性用于设置字体的行高，即字体最低端与字体内部顶端之间的距离。为负值的行高可用来实现阴影效果。</li>
+        <li>letter-spacing: 该属性用于设置字符之间的间隔。该属性将指定的间隔加到每个字符之后，但最后一个文字不受该属性的影响。该属性支持normal和数值+长度单位（pt、px）两种属性值。</li>
+        <li>word-spacing: 该属性用于设置单词之间的间隔。该属性支持normal和数值+长度单位（如11pt、13px）两种属性值。</li>
+    </ul>
+<br><br><hr>
+<h4>属性示范</h4>
+color: #888888:
+<span style="color:#888888;">测试文字</span><br>
+color:red:
+<span style="color:red;">测试文字</span><br>
+font-family:楷体_GB2312:
+<span style="font-family: '楷体_GB2312' ">测试文字</span><br>
+font-size:20pt和20px:
+<span style="font-size:20pt;">测试文字</span>  <span style="font: size 20px;">测试文字</span><br>
+font-size:xx-large:
+<span style="font-size:xx-large;">测试文字</span><br>
+font-stretch:narrower:
+<span style="font-stretch:narrower">测试文字</span><br>
+font-stretch:widder:
+<span style="font-stretch:widder">测试文字</span><br>
+font-style:italic:
+<span style="font-style:italic">测试文字</span><br>
+font-weight:bold:
+<span style="font-weight:bold">测试文字</span><br>
+font-weight:900:
+<span style="font-weight:900">测试文字</span><br>
+text-decoration:blink:
+<span style="text-decoration:blink;">测试文字</span><br>
+text-decoration: underline:
+<span style="text-decoration:underline;">测试文字</span><br>
+text-decoration: line-through:
+<span style="text-decoration:line-through;">测试文字</span><br>
+font-variant:small-caps:
+<span style="font-variant:small-caps">hello</span><br>
+text-transform:uppercase:
+<span style="text-transform:uppercase">hello</span><br>
+text-transform:capitalize:
+<span style="text-transform:capitalize">hello</span><br>
+line-height:30pt:
+<span style="line-height:30pt">测试文字</span><br>
+letter-spacing:5pt:
+<span style="letter-spacing:5pt;">hello world!</span><br>
+word-spacing:60pt:
+<span style="word-spacing:60pt;">hello world</span>
+</body>
+</html>

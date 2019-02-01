@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用FileReader</title>
+</head>
+
+<body>
+    <h3>使用FileReader上传文件</h3>
+    <p>开发者可以通过FileReader对象在客户端读取文件上传域所选择的文件内容</p>
+    <p>FileReader提供了如下三种方法读取文件内容：</p>
+    <ul>
+        <li>readAsText(file,encoding):以文本文件的方式读取该文件</li>
+        <li>readBinaryString(file):以二进制的方式来读取该文件，通过这种方式可以读取文件内容的二进制数据，这样就可以通过Ajax把数据上传到服务器</li>
+        <li>readAsDataURL(file):以DataURL方式来读取文件，这种方式也可用于读取二进制文件，只是这种方式会
+            采用base64方式把文件u的内容编码成DataURL格式的字符串
+        </li>
+        <li>abort():停止读取</li>
+    </ul>
+    <sup><b>注：DataUR实际上也是一种保存二进制文件的方式，在一些特殊场景（比如不支持二进制流的网络环境），也会考虑把二进制文件
+        转换成DataURL格式的字符串，然后把这个字符串通过网络进行传输。需要的时候我们也可以把DataURL格式的字符串恢复成原来的文件。
+    </b>
+    </sup>
+    <p><b style="color:red;">FileReader的所有readXxx()方法都是异步方法，这些方法都不会直接返回读取的文件内容，程序必须以监听的方式来获取读取的结果</b></p>
+    <p>FileReader提供了如下事件来监听读取过程：</p>
+    <ul>
+        <li>onloadstart:FileReader开始读取数据时触发该事件指定的函数。</li>
+        <li>onprogress:FileReader正在读取数据时触发该事件指定的函数。</li>
+        <li>onload:FileReader成功读取数据后触发该事件的函数。</li>
+        <li>onloadend：FileReader读取数据完成后触发该事件指定的函数，无论读取成功还是读取失败都触发该事件指定的函数。</li>
+        <li>onerror：FileReader读取数据失败时触发该事件的函数</li>
+    </ul>
+    <p>为了获取成功读取文件的内容，可以为onload事件绑定事件监听器来实现。在事件监听函数中，程序代码可以通过FileReader对象的result属性来访问读取的文件内容。</p>
+    <hr>
+    <h4>实验一：使用FileReader对象，通过三种方法读取文件内容</h4>
+    浏览文件：<input type="file" id="file1"><br><br>
+
+    <div id="result">result：</div>
+    <input type="button" value="读取文本文件" onclick="readText()"><br><br>
+    <input type="button" value="读取二进制文件" onclick="readBinary()"><br><br>
+    <input type="button" value="以DataURL方式读取" onclick="readURL()"><br><br>
+
+    <h4>实验二：利用onprogress事件监控文件读取进度</h4>
+    <input type="file" id="file2"><br><br>
+    <progress id="pro" value="0"></progress>
+    <div id="result2"></div>
+    <input type="button" value="读取二进制文件" onclick="readBinary2()"><br><br>
+
+    <script>
+        var reader = null;
+        if (FileReader) {
+            reader = new FileReader();
+            console.info(reader);
+        } else {
+            alert("浏览器不支持该FileReader类型");
+        }
+        // 读取文本文件
+        var readText = function () {
+            //获取文件类型
+            console.info(document.getElementById("file1").files[0].type);
+            var re = new RegExp(/text\/\w+/);   //正则表达式判断文件类型是否为text类型
+            // 读取文件，读完文件内容时触发事件响应函数，将读取的内容写到页面div里
+            if (re.test(document.getElementById("file1").files[0].type)) {
+                // 第一种方法
+                reader.readAsText(document.getElementById("file1").files[0], "UTF-8");
+                reader.onload = function () {
+                    document.getElementById("result").innerHTML = reader.result;
+                }
+            } else {
+                alert("您选择的不是文件");
+            }
+        }
+        
+        //二进制方式读取文件
+        var readBinary = function(){
+                reader.readAsBinaryString(document.getElementById("file1").files[0]);
+                reader.onload = function(){
+                document.getElementById("result").innerHTML = reader.result;
+                } 
+        }
+
+        var readURL = function(){
+            reader.readAsDataURL(document.getElementById("file1").files[0]);
+            reader.onload = function(){
+                document.getElementById("result").innerHTML = reader.result;
+            }
+        }
+        
+              //二进制方式读取文件
+              var readBinary2 = function(){
+                reader.readAsBinaryString(document.getElementById("file2").files[0]);
+                var pro = document.getElementById("pro");
+                pro.max = document.getElementById("file2").files[0].size;
+                reader.onprogress = function(evt){
+                    pro.value = evt.loaded;
+                }
+        }
+
+
+    </script>
+</body>
+
+</html>

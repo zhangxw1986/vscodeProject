@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>13.8.7 函数的独立性</title>
+</head>
+<body>
+  <p>虽然定义函数时可以将函数定义成某个类的方法，或定义成某个对象的方法。但JavaScript的函数是“一等公民”，它永远是独立的，函数永远不会从属于其他类、对象。</p>
+  <p>示例如下：</p>
+  <code>
+      function Person(name){ <br>
+       &nbsp; this.name = name;<br>
+       &nbsp;  this.info = function(name){<br>
+        &nbsp;   alert("我的名字是: " + this.name);<br>
+        }<br>
+      }<br>
+      var p = new Person("zxw");<br>
+      var name = "测试名称";<br>
+      
+  </code>
+  <input type="button" value="点击调用p.info()" onclick="p.info();"><br>
+  <input type="button" value="点击调用p.info.call(window);" onclick="p.info.call(window);">
+  <script>
+    function Person(name){
+      this.name = name;
+      this.info = function(name){
+        alert("我的名字是: " + this.name);
+      }
+    }
+    var p = new Person("zxw");
+    var name = "测试名称";
+    
+  </script>
+  <br>
+  <p>
+    需要指出的是，JavaScript函数永远是独立的。虽然程序的确是在Person类中定义的info()方法，但这个info()方法依然是独立的，程序只要通过p.info()即可调用这个函数。因此也可以用call函数调用这个函数，调用者甚至不是Person对象！！！而变成了window对象。
+  </p>
+  <p>当使用匿名内嵌函数定义某个类的方法时，该内嵌函数益阳市独立存在的，该函数也不是完全作为该类实例的附庸存在，这些内嵌函数也可以被分离出来独立使用，包括成为另一个对象的函数，如下实例：</p>
+  <code>
+      function Dog(name,age,bark){  <br>
+       &nbsp; this.name = name; <br>
+       &nbsp;  this.age = age; <br>
+       &nbsp;  this. bark = bark; <br>
+       &nbsp;  this.info =  function(){ <br>
+        &nbsp;   alert(this.name + "的年龄为：" + this.age + ",它的叫声是：" + this.bark); <br>
+        &nbsp;  } <br>
+      } <br>
+      var dog = new Dog("五塘",12,"wow~ ⊙o⊙") ; <br>
+      function Cat(name,age){ <br>
+        &nbsp;  this.name = name; <br>
+        &nbsp;  this.age = age; <br>
+      } <br>
+      var cat = new Cat("kitty",21); <br>
+
+  </code>
+  <input type="button" value="点击调用dog.info();" onclick="dog.info();">
+  <input type="button" value="点击调用alert(dog.info.call(cat));" onclick="dog.info.call(cat);">
+  <script>
+    function Dog(name,age,bark){
+      this.name = name;
+      this.age = age;
+      this. bark = bark;
+      this.info =  function(){
+        alert(this.name + "的年龄为：" + this.age + ",它的叫声是：" + this.bark);
+      }
+    }
+    var dog = new Dog("五塘",12,"wow~ ⊙o⊙") ;
+    function Cat(name,age){
+      this.name = name;
+      this.age = age;
+    }
+    var cat = new Cat("kitty",21);
+  </script>
+</body>
+</html>

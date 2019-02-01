@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>9.2定位相关属性</title>
+    <style>
+        .dv0{
+           position:relative;
+           border: 1px solid red;
+           width: 300px;
+           height: 200px;
+       }
+       .dv0 div{
+           position: absolute;
+           left: 20px;
+           top:20px;
+           width:180px;
+           height:88px;
+           background-color: #ccc;
+           z-index: 2;
+       } 
+       .dv1{
+           margin-top: 20px;
+           position:relative;
+           border: 1px solid red;
+           width: 200px;
+           height: 80px;
+       }
+       .dv1 div{
+           width:200px;
+           height:30px;
+           border: 1px dotted #ddf112;
+       }
+       
+    </style>
+</head>
+<body>
+    <p>定位相关属性用于设置目标组件的位置，包括是否漂浮于页面之上，通过使用漂浮的div元素，可以自由移动页面元素位置，从而可在页面上产生浮动效果。
+        常用的定位相关属性如下：
+    </p>
+    <ul>
+        <li>position:用于设定目标对象的定位方式。
+            <ul>
+                <li>absolute:会允许该对象漂浮于页面之上，根本无需考虑他周围内容的布局；</li>
+                <li>relative:会保持对象在正常的HTML流中，目标对象的位置将参照前一个对象的位置进行定位；</li>
+                <li>static:目标对象仅以页面作为参照系。</li>
+            </ul>
+        </li>
+        <li>z-index：用于设置目标对象的漂浮层的层序，该值越大，漂浮层越浮于上面。此属性仅当position属性值为relative或absolute时有效。此属性对窗口空间select没有影响。</li>
+        <li>top:用于设置目标对象相对于最近一个具有定位设置的父对象的顶边偏移，此属性仅当position属性值为relative或absolute时有效。</li>
+        <li>right:与上定义类似</li>
+        <li>bottom:与上定义类似</li>
+        <li>left:与上定义类似</li>
+    </ul>
+    <div class="dv0">
+    struts <br>
+    hibernate <br>
+    spring <br>
+    jvm <br>
+        <div>侧答复hi了就发的反垃圾</div>
+    </div>
+    <!-- 以下是反例：说明只有postion属性值为relative或absolute时，top等属性才有效 -->
+    <div class="dv1">
+            <div style="position:static;top:20px;">侧答复hi了就发的反垃圾</div>
+            <div style="position:static;left:30px">侧答复hi了就发的反垃圾</div>
+    </div>
+    <p>对于上面页面中position属性为absolute的div元素，将完全不受页面其他元素的影响，直接基于页面定位；如果设置position属性为relative，div将受到其他元素影响，会
+        基于页面中的文本元素定位；如果设置position属性为static，那么页面的left、top等定位属性将失效。
+    </p>
+    
+</body>
+</html>

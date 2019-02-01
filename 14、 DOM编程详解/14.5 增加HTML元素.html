@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>14.5 增加HTML元素</title>
+</head>
+<body>
+    <p>JavaScript脚本可以为DOM动态的增加节点，程序为DOM树增加节点时，页面会动态的增加HTML元素。当需要为页面增加HTML元素时，
+        应按如下两个步骤操作：
+    </p>
+    <ul>
+        <li>创建或复制节点。</li>
+        <li>添加节点。</li>
+    </ul>
+
+    <h4>14.5.1 创建或复制节点</h4>
+    <p>创建节点通常借助于document对象的createElement方法来实现。语法如下：</p>
+    <code>
+        document.createElement(Tag):创建Tag标签对应的节点。
+    </code>
+    <br>
+    <p>示例如下：</p>
+    <code>
+            var a = document.createElement("div"); <br>
+            alert(a); <br>
+    </code>
+    <input type="button" value="点击创建div" onclick="var a = document.createElement('div'); alert(a);">
+    <br>
+    <p>创建一个节点的开销可能过大，实际上我们还可以复制一个已有的节点，复制已有节点的系统开销略小。通过调用Node的
+        cloneNode()方法即可复制一个已有节点，该方法的语法格式如下：
+    </p>
+    <code>
+        Node cloneNode(boolean deep):复制当前节点。当deep为true时，表示在复制当前节点的同时，复制该节点的全部后代节点；
+        当deep为false时，表示仅复制当前节点。
+    </code>
+    <p>以下是示例：</p>
+    <ul id="d">
+        <li>这是默认的li</li>
+    </ul>
+    <script>
+        var ul = document.getElementById("d");
+        var ajax = ul.firstChild.nextSibling.cloneNode(false);
+        ajax.innerHTML = "这是复制的li信息";
+        // ul.appendChild(ajax);   //使用appendChild在最后添加节点
+        ul.insertBefore(ajax,ul.firstChild); //使用insertBefore在指定节点前添加节点
+    </script>
+
+    <br><hr>
+    <h4>14.5.2 添加节点</h4>
+    <p>当一个节点创建成功后，一定要将该节点添加到DOM中才行。对于普通的节点，可采用Node对象的如下方法来添加节点：</p>
+    <ul>
+        <li>appendChild(Node newNode): 将newNode添加成当前节点的最后一个节点。</li>
+        <li>insertBefore(Node newNode,Node refNode)：在refNode节点之前插入newNode节点。</li>
+        <li>replaceChild(Node newChild,Node oldChild)：将oldChild节点替换成newChild节点。</li>
+    </ul>
+    <p>示例可参照前面。至于其他特殊的HTML元素，则包含了更多的添加节点的方法。例如select有更简单的方法来添加子节点，
+        table、tr等也有其他方法来添加子节点
+    </p>
+    <br><hr>
+    <h4>14.5.3 为列表框、下拉菜单添加选项</h4>
+    <p>为列表框、下拉菜单添加子节点，也就是为他们添加选项。添加选项有两种方法：</p>
+    <ul>
+        <li>调用HTMLSelectElement的add()方法添加选项。</li>
+        <li>直接为select的指定选项赋值。</li>
+    </ul>
+    <p>使用HTMLSelectElement对象的add用于添加新选项，语法如下：</p>
+    <code>
+        add(HTMLOptionElement option,HTMLOptionElement before): 在before选项之前添加option选项。如果想将option选项
+        添加在最后，则将before指定为null即可；<br>或者依然使用之前介绍的appendChild(option)添加亦可。
+    </code>
+    <p>代码示例如下：</p>
+    <code>
+            var a = document.createElement("select"); <br>
+            for(var i = 0; i&lt10; i++){ <br>
+             &nbsp;   var op = document.createElement("option"); <br>
+             &nbsp;     op.innerHTML = '新增的选项'+ i; <br>
+             &nbsp;      a.add(op,null); <br>
+            } <br>
+            a.size = 10; <br>
+            document.body.appendChild(a); <br>
+    </code><br>
+
+    <script>
+        var a = document.createElement("select");
+        for(var i = 0; i<10; i++){
+            var op = document.createElement("option");
+            op.innerHTML = '新增的选项'+ i;
+            a.add(op,null);
+        }
+        a.size = 10;
+        document.body.appendChild(a);
+    </script>
+    <p>IE8不兼容使用add方法，为了兼容性，还可使用直接为指定选项赋值的方法来添加选项。</p>
+    <p>为指定选项赋值所支持的值必须是一个有效的选项，创建选项除了可以使用前面所示的createElement()方法之外，还可以使用
+        如下构造器：
+    </p>
+    <code>
+        new Option(text,value,defaultSelected,selected) <br>
+        该构造器有4个参数，这4个参数的说明如下：
+        <ul>
+            <li>text:改选项的文本，即该选项所呈现的内容。</li>
+            <li>value：选中该选项的值。</li>
+            <li>defaultSelected：设置默认是否选中该选项。</li>
+            <li>selected：设置该选项当前是否被选中。</li>
+        </ul>
+    </code>
+    <p>并不是每次构造该选项都需要指定4个参数，也可只指定一个参数或两个参数，如果构造Option对象时只指定了一个参数，则
+        该参数是Option的text值，如果指定了两个参数，则第一个参数是text，第二个参数是value。
+    </p>
+    <p>示例如下：</p>
+    <code>
+          
+                    var a1 = document.createElement("select"); <br>
+                    for(var i = 0; i&lt10; i++){ <br>
+                    &nbsp;    var op1 = new Option('新增的选项'+ i,i); <br>
+                    &nbsp;    a1.options[i] = op1; <br>
+                    } <br>
+                    a1.size = 10; <br>
+                    document.body.appendChild(a1); <br>
+             
+    </code><br>
+    <script>
+            var a1 = document.createElement("select");
+            for(var i = 0; i<10; i++){
+                var op1 = new Option('新增的选项'+ i,i);
+                a1.options[i] = op1;
+            }
+            a1.size = 10;
+            document.body.appendChild(a1);
+        </script>
+    <br><hr>
+    <h4>14.5.4 动态添加表格内容</h4>
+    <p>表格元素、表格行有另外的添加子元素的方法。实际上，他们可以在添加子元素的同时创建这些子元素。也就是说，添加表格
+        子元素时，往往无需使用document的createElement()方法来创建节点。
+    </p>
+    <p>HTMLTableElement对象有如下方法：</p>
+    <ul>
+        <li>insertRow(index)：在index处插入一行。返回新创建的HTMLTableRowElement。</li>
+        <li>createCaption()：为该表格创建标题。返回新创建的HTMLTableCaptionElement。如果该表格已有标题，则返回已有的
+            标题对象。
+        </li>
+        <li>createTFoot():为该表格创建tfoot元素，返回新创建的HTMLTableFootElement。如果该表格已有tfoot元素，则返回已有的
+            tftoot元素。
+        </li>
+        <li>createTHead()：为该表格创建thead元素，返回新创建的HTMLTableHeadElement。如果该表格已有thead元素，则返回
+            已有的thead元素。
+        </li>
+    </ul>
+    <p>HTMLTableRowElement对象代表表格行，该对象包含如下方法用于插入表格行：</p>
+    <ul>
+        <li>insertCell(long index)：在index处创建一个单元格，返回新创建的单元格。</li>
+    </ul>
+    <p>示例：通过脚本在页面动态生成一个表格。</p>
+    <script>
+        var a = document.createElement("table");
+        a.border = 1;
+        var caption = a.createCaption();
+        caption.innerHTML = "动态创建添加的表格标题";
+        for(var i = 0; i < 5; i++){
+            var tr = a.insertRow(i);
+            for(var j=0; j<7; j++){
+                var td = tr.insertCell(j);
+                td.innerHTML = "单元格内容" + i +" " + j;
+            }
+        }
+        document.body.appendChild(a);
+    </script>
+    <p>图中表格结构为HTMLTableElement--&gtHTMLTableRowElement --&gt HTMLTableCellElement。每个表格元素包含若干个
+        表格行子节点，每个表格行节点又包含若干个单元格子节点。
+    </p>
+</body>
+</html>

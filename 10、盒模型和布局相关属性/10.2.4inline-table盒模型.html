@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10.2.4 inline-table盒模型</title>
+    <style>
+    td{
+        border: 1px solid khaki;
+    }
+    table{
+        display: inline-table;
+        border-collapse: collapse;
+        width: 360px;
+        vertical-align: top;
+    }
+    </style>
+</head>
+<body>
+    <p>在默认情况下，table元素属于block盒模型，该元素默认占据一行：它的左边、右边不允许出现其他内容；该元素也可以通过width、
+        height设置宽度和高度。
+    </p>
+    <p>CSS为table元素提供了一个inline-table盒模型，这个盒模型允许表格通过width、height设置宽度和高度，并且允许它的左边和右边出现其他内容。</p>
+    <p>为了控制表格与前、后内容垂直对齐，可以通过添加vertical-align属性来实现，设置该属性为top，这标明让该表格与前、后内容
+        顶端对齐；设置该属性为bottom，这表明让该表格与前、后内容底端对齐。
+    </p>
+    <p>以下是例子：</p> 
+    <span>前面内容</span>
+    <table>
+        <tr>
+            <td>1234</td>
+            <td>5678</td>
+        </tr>
+        <tr>
+            <td>11111</td>
+            <td>22222</td>
+        </tr>
+    </table>
+    <span>后面内容</span>
+</body>
+</html>

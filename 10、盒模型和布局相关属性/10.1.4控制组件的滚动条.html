@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10.1.4使用overflow控制组件的滚动条</title>
+</head>
+<style>
+    .dv0 div {
+        width: 300px;
+        height: 80px;
+        border: 1px solid red;
+        white-space: nowrap;
+        /*强制在同一行显示内容，直至遇到br换行*/
+        margin: 15px;
+
+    }
+</style>
+
+<body>
+    <p>CSS提供了overflow、overflow-x、overflow-y三个属性来控制HTML组件不够容纳内容时的显示方式，这三个属性单独功能基本相似，区别是
+        overflow同时控制两个方向，而overflow-x只控制水平方向，overflow-y只控制垂直方向。
+    </p>
+    <div class="dv0">
+        <div>
+            <h4>不设置overflow属性</h4>
+            测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字
+        </div>
+        <div style="overflow:hidden;">
+            <h4>设置overflow属性为hidden</h4>
+            测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字
+        </div>
+        <div style="overflow:auto;">
+                <h4>设置overflow属性为auto</h4>
+                测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字
+            </div>
+    </div>
+
+</body>
+
+</html>

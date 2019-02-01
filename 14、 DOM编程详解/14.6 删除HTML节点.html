@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>14.6 删除HTML节点</title>
+</head>
+
+<body>
+    <p>删除HTML元素也是通过删除节点来完成的。对于普通的HTML元素，可用通用方法来删除节点，而列表框、下拉菜单、表格则有
+        额外的方法来删除HTML元素。
+    </p>
+    <br>
+    <h4>14.6.1 删除节点</h4>
+    <p>删除节点通常借助于父节点，Node对象提供了如下方法来删除子节点。</p>
+    <ul>
+        <li>removeChild(oldNode)：删除oldNode子节点。</li>
+    </ul>
+    <p>在从父节点中删除该子节点后，该子节点代表的内容也会消失。下面的代码示例：</p>
+    <input type="button" id="add" value="增加" disabled onclick="add();">
+    <input type="button" id="del" value="删除" onclick="del();">
+    <div id="test" style="width:240px;height:50px;border:1px solid red;">被控制的目标元素</div>
+    <script>
+        var body = document.body;
+        var target = document.getElementById("test");
+        var add = function(){
+            body.appendChild(target);
+            document.getElementById("add").disabled = "disabled";
+            document.getElementById("del").disabled = "";
+        };
+        var del = function(){
+            body.removeChild(target);
+            document.getElementById("add").disabled = "";
+            document.getElementById("del").disabled = "disabled";
+        };
+    </script>
+    <br>
+    <h4>14.6.2 删除列表框、下拉菜单的选项</h4>
+    <p>删除列表框、下拉菜单的选项有两种方法：</p>
+    <ul>
+        <li>利用HTMLSelectElement对象的remove()方法删除选项。</li>
+        <li>直接将制定选项赋为null即可。</li>
+    </ul>
+    <p>对于HTMLSelectElement对象而言，remove(long index)：删除指定索引处的选项。</p>
+    <p>以下是示例：</p>
+    <input type="text" name="optvalue" id="optvalue">
+    <input type="button" value="增加选项" id="add1" onclick="add();">
+    <input type="button" value="删除选项" id="del1" onclick="del();"><br><br>
+    <select name="sel" id="sel" size="8" style="width:120px;"></select>
+    <script>
+        var selectt = document.getElementById("sel");
+        var add = function(){
+            var op = new Option(document.getElementById('optvalue').value);
+            selectt.add(op);
+        };
+        var del = function(){
+            if(selectt.options.length > 0){
+                var op = selectt.remove(selectt.options.length - 1);
+            }
+        }
+    </script>
+    <p>如果想删除某个列表框、下拉菜单的全部选项，没有必要采用循环的方式逐一删除每个选项，将列表框或下拉菜单的innerHTML
+        属性赋为null，即可一次性删除该列表项、下拉菜单的全部选项。
+    </p>
+    <br>
+    <h4>14.6.3 删除表格的行或单元格</h4>
+    <p>用于删除表格的行或单元格的方法有如下两个：</p>
+    <ul>
+        <li>deleteRow(long index)：删除表格中index索引处的行；该方法是HTMLTableElement对象的方法。</li>
+        <li>deleteCell(long index)：删除某行index索引处的单元格；该方法是HTMLRowElement对象的方法。</li>
+    </ul>
+    <input type="button" value="删除最后一行" id="delLastRow" onclick="delLastRow();">
+    <input type="button" value="删除最后一行的最后一个单元格" id="delLastCell" onclick="delLastCell();">
+    <table id="itable" border="1" style="width:400px;">
+        <caption>删除表格示例标题</caption>
+        <tr>
+            <td>1.1</td>
+            <td>1.2</td>
+            <td>1.3</td>
+        </tr>
+        <tr>
+            <td>2.1</td>
+            <td>2.2</td>
+            <td>2.3</td>
+        </tr>
+        <tr>
+            <td>3.1</td>
+            <td>3.2</td>
+            <td>3.3</td>
+        </tr>
+        <tr>
+            <td>4.1</td>
+            <td>4.2</td>
+            <td>4.3</td>
+        </tr>
+    </table>
+    <script>
+        var table = document.getElementById("itable");
+        var delLastRow = function(){
+            if(table.rows.length > 0 ){
+                table.deleteRow(table.rows.length - 1);
+            }
+        };
+        var lastRow = table.rows.item(table.rows.length - 1);
+        var delLastCell = function(){
+            if(lastRow.cells.length > 0 ){
+                lastRow.deleteCell(lastRow.cells.length -1);
+            }
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文本相关属性</title>
+</head>
+<style>
+    div {
+        border: 1px solid red;
+        height: 30px;
+        width: 200px;
+    }
+</style>
+<body>
+    <p>文本相关属性用于控制整个段、或整个div元素的显示效果，包括文字的缩进、段落内文字的对齐等显示方式。</p>
+    <ul>
+        <li>text-indent:用于设置文本的缩进。默认是0，被另一个元素（如br）断开的元素不能应用本属性。</li>
+        <li>text-overflow: 用于控制溢出文本的处理方法。该属性支持如下两个属性值：
+            <ul>
+                <li>clip: 如果该元素指定了overflow:hidden属性值，该元素中文本溢出时，clip指定只是简单的剪裁溢出的文本。</li>
+                <li>ellpsis: 如果该元素指定了overflow:hidden属性值，当该元素中文本溢出时，ellipse指定剪切溢出的文本，并显示溢出标记。</li>
+            </ul>
+        </li>
+        <li>vertical-align：用于设置目标元素里内容的垂直对齐方式，通常有顶端对齐，底对齐等。
+            <ul>
+                <li>auto:对元素的文本neiro执行自动对齐。</li>
+                <li>baseline: 默认值，将支持valign属性的元素的文本内容与基线对齐。</li>
+                <li>sub: 将元素的内容与文本下标对齐。</li>
+                <li>super: 将元素的内容与文本上标对齐。</li>
+                <li>top:默认值。将支持valig属性的元素的文本的内容与元素的顶端对齐。</li>
+                <li>middle: 将支持valign属性的元素的文本内容对齐到元素的中间。</li>
+                <li>bottom: 默认值。将支持valign属性的元素的文本内容与元素的底端对齐。</li>
+                <li>length: 指定文本内容相对于基线的偏移距离，既可使用百分比形式，也可使用绝对距离形式。</li>
+            </ul>
+        </li>
+        <li>direction: 用于设置文本流入的方向，该属性的合法值有ltr（从左向右）和rtl（从右向左）。此属性不会影响拉丁字母、数字字符，他们总是ltr方向。</li>
+        <li>word-break: 用于设置目标组件中文本内容的换行方式，该属性支持如下：
+            <ul>
+            <li>normal: 靠浏览器的默认规则进行换行。通常，浏览器的处理规则是：对于西方文字来说，浏览器只会在半角空格、连字符的地方进行换行，不会再单词中间换行；
+                对于中文来说浏览器可以在任何一个中文字符后换行。
+            </li>
+            <li>keep-all:只能在半角空格或连字符处换行。</li>
+            <li>break-all:允许设置在单词中间换行。</li>
+        </ul>
+        </li>
+        <li>white-space: 用于设置目标组件中文本内容对空格的处理方式。该属性支持如下两个属性：
+            <ul>
+            <li>normal: 默认处理方式，文本自动处理换行，假如抵达容器边界会转到下一行。</li>
+            <li>nowrap: 强制在同一行内显示所有文本，直到文本结束或者遇到br元素。</li>
+        </ul>
+        </li>
+        <li>word-wrap: 用于shezh目标组件中文本内容的换行方式。该属性支持如下两个值：
+            <ul>
+                <li>normal:靠浏览器的默认规则进行换行。</li>
+                <li>break-word:设置允许在单词中间换行。</li>
+            </ul>
+        </li>
+        
+    </ul>
+    <br><br><hr>
+    <!-- 缩进20pt -->
+    text-indent:20pt <div style="text-indent:20pt">测试文字</div>
+    <!-- 缩进40pt -->
+    text-indent:50pt <div style="text-indent:50pt;">测试文字</div>
+    <!-- text-align:center -->
+    text-align:center <div style="text-align:center">测试文字</div>
+    <!-- text-align:right -->
+    text-align:right <div style="text-align:right">测试文字</div>
+    <!-- direction:rtl -->
+    direction:rtl <div style="direction:rtl">测试文字</div>
+    <!-- direction:ltr -->
+    direction:ltr <div style="direction:ltr">测试文字</div>
+    <!-- white-space:nowrap -->
+    white-space:nowrap <div style="white-space:nowrap">测试文字测试文字测试文字测试文字测试文字测试文字测试文字测试文字</div>
+     <!-- 当文字溢出时，只是简单的剪切 -->
+    text-overflow:clip <div style="overflow:hidden;white-space:nowrap;text-overflow:clip">测试文字测试文字测试文字测试文字测试文字测试文字测试文字</div>
+   <!-- 当文字溢出时，剪切之后显示剪切标记 -->
+   text-overflow:clip <div style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis">测试文字测试文字测试文字测试文字测试文字测试文字测试文字</div>
+</body>
+</html>

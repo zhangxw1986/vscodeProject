@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>12.1.2 同时应用多种变形</title>
+</head>
+<style>
+  .dv0{
+        display: inline-block;
+        width:1000px;
+        height:210px;
+        border: 1px solid wheat;
+        background-color: rgba(226, 220, 220, 0.445);
+    }
+    .dv0 .dv{
+        width:280px;
+        height:80px;
+        display: inline-block;
+        margin: 40px;
+        border: 3px solid orangered;
+    }
+</style>
+<body>
+    <p>如果希望为HTML组件同时应用多种变形，则可以为transform同时指定多个变形函数。实际上，我们可以为transform属性同时指定
+        无数个变形函数。如下示例：
+    </p>
+    <div class="dv0">
+        <div class="dv">文字</div> 变形 <div class="dv" style="transform:translate(200px,60px) scale(1.4,0.4) rotate(39deg);">变形后</div>
+    </div><br>
+    <b style="color:saddlebrown;">需要注意的是，变形处理的顺序很重要，即使是3种同样的变换，如果变换的顺序不同，得到的效果也不相同。</b>
+</body>
+</html>

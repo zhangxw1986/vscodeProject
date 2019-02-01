@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>13.3.2 字符串类型</title>
+</head>
+<body>
+    <h4>13.3.2 字符串类型</h4>
+    <p>JavaScript的字符串必须用引号括起来，此处的引号既可以是''，也可以是""。</p>
+    <p>JavaScript没有字符类型。定义var a = 'a'; 变量a依然是字符串类型，而非字符类型。</p>
+    <p>JavaScript中的字符串与Java中的字符串主要有两点区别：</p>
+    <ul style="color:coral;list-style-type:lower-roman;">
+        <li>JavaScript中的字符串可以用单引号括起来；</li>
+        <li>JavaScript中比较两个字符串是否相等使用==即可，无需使用equals()方法。</li>
+    </ul>
+    <p>JavaScript以String内建类来表示字符串。String内建对象包含一系列方法操作字符串，String类有如下基本方法和属性操作字符串：</p>
+    <ul style="list-style-type:decimal;">
+        <li>String():类似于面向对象语言中的构造器，使用该方法可以构建一个字符串。</li>
+        <li>charAt():获取字符串特定索引处的字符。</li>
+        <li>charCodeAt():返回字符串中特定索引处的字符所对应的Unicode值。</li>
+        <li>length:属性，直接返回字符串长度。JavaScript中的中文字符算一个字符。</li>
+        <li>toUpperCase():将字符串的所有的字母转换成大写字母。</li>
+        <li>toLowerCase():将字符串的所有字母转换成小写字母。</li>
+        <li>fromCharCode():静态方法，直接通过String类调用该方法，将一系列Unicode值转换成字符串。</li>
+        <li>indexOf():返回字符串中特定字符串第一次出现的位置。</li>
+        <li>lastIndexOf():返回字符串中特定字符串最后出现的位置。</li>
+        <li>slice():返回字符串的某个子串，功能比substring更强大，支持负数参数。</li>
+        <li>match():使用正则表达式搜索目标子字符串。</li>
+        <li>search():使用正则表达式搜索目标子字符串。</li>
+        <li>concat():用于将多个字符串拼接成一个字符串。</li>
+        <li>split():将某个字符串分割成多个字符串，可以指定分隔符。</li>
+        <li>replace():将字符串中某个子串以特定字符串替代。</li>
+    </ul>
+    <p>以下是简单例子：</p>
+    <code>
+            var a = 'abc中国'; <br>
+            var b = a.length; <br>
+            var c = String.fromCharCode(97,98,23232); <br>
+    </code>
+    <input type="button" value="String对象属性和方法" onclick="alert('b的值是：'+b + '\n'+'a的第三个字符：' +a.charAt(3) +
+            '\n'+ 'a第三个字符的unicode:'+a.charCodeAt(3)+ '\n'+ 'c的值是：' +c);"><br><br>
+    <script>
+        var a = 'abc中国';
+        var b = a.length;
+        var c = String.fromCharCode(97,98,23232);
+    </script>
+    indexOf()和lastIndexOf()用于判断某个子串的位置，其语法格式如下：
+    <ul>
+        <li>indexOf(searchString [,startIndex]):搜索目标字符串searchString出现的位置，其中startIndex指定搜索的起始索引位置。</li>
+        <li>lastIndexOf(searchString [,startIndex]):搜索目标字符串searchString最后一次出现的位置。如果字符串中没有包含目标字符串，
+            则返回-1。功能更强大的搜索方法是search(),它支持使用正则表达式进行搜索。
+        </li>
+    </ul>
+
+    <code>
+            var a1 = 'hello javascript manutd'; <br>
+            var b1 = a1.indexOf('a');  <br>
+            var c1 = a1.indexOf('a',10);  <br>
+            var d1 = a1.lastIndexOf('a');  <br>
+    </code>
+    <input type="button" value="indexOf()测试" onclick="alert('a字符首次出现位置:' +b1+'\n' 
+            + 'a字符在10索引之后出现的位置：'+c1 +'\n' +'a字符lastIndexof的位置' +d1);"><br><br>
+    <script>
+        var a1 = 'hello javascript manutd';
+        var b1 = a1.indexOf('a');
+        var c1 = a1.indexOf('a',10);
+        var d1 = a1.lastIndexOf('a');
+    </script>
+    <p>JavaScript中的substring()和slice()语法格式如下：</p>
+    <ul>
+        <li>substring(start[,end]):截取返回子字符串。从start(包括)索引处，截取到end(不包括)索引处，不截取end搜索处的
+            字符。如果没有end参数，将从start处一直截取到字符串尾。
+        </li>
+        <li>slice(start[,end]):与substring功能基本一致，区别是slice()可以接受负数作为索引，当使用负索引值时，表示从
+            字符串的右边开始计算索引，即最右边的索引为-1。
+        </li>
+    </ul>
+    <p>以下是例子：</p>
+    <code>
+        var a2 = "abcdefghijklmnop";  <br>
+        var b2 = a2.slice(0,4);   <br>
+        var c2 = a2.slice(2,4);    <br>
+        var d2 = a2.slice(2,-1);    <br>
+        var e2 = a2.slice(-4,-1);   <br>
+    </code>
+    <input type="button" value="slice函数测试" 
+        onclick="alert('a2的值'+a2+'\n' +'b2的值'+b2+'\n'+'c2的值'+c2+'\n'+'d2的值'+d2+'\n'+'e2的值'+e2+'\n');"><br><br>
+    <script>
+    var a2 = "abcdefghijklmnop";
+    var b2 = a2.slice(0,4);
+    var c2 = a2.slice(2,4);
+    var d2 = a2.slice(2,-1);
+    var e2 = a2.slice(-4,-1);
+    </script>
+    <p>match()和search()方法都支持使用正则表达式作为子串；</p>
+    <p>区别是前者返回匹配的子字符串的数组，后者返回匹配的索引值。match()支持
+            使用全局匹配，通过使用g标志来表示全局匹配；match()方法返回所有匹配正则表达式的子串所组成的数组。</p>
+    <p>match()方法返回值是字符串数组或null，如果包含匹配值，将返回字符串数组，否则返回null。</p>
+    <p>search()方法返回的是整数变量，如果搜索到匹配子串，则返回子串的索引值，否则返回-1。</p>
+    <code>
+            var s3 = "abcd--abcdefd@.comdfab";   <br>
+            var a = s3.search(/[a-z]+@.[a-zA-Z]m/); <br>
+            var b3 = s3.match(/[a-d]+/g); <br>
+    </code>
+    <input type="button" value="search()函数测试" onclick="alert('a3的值是：'+a3);">
+    <input type="button" value="match()函数测试" onclick="alert('b3的值是：' +b3);"><br><br>
+    <script>
+        var s3 = "abcd--abcdefd@.comdfab";
+        var a3 = s3.search(/[a-z]+@.[a-zA-Z]+m/);
+        var b3 = s3.match(/[a-d]+/g);
+    </script>
+    <p>如果需要在字符串中使用单引号、双引号等特殊字符，则必须使用转义字符。JavaScript的转义字符是"\"，下面是常用的转义字符：</p>
+    <ul>
+        <li>\b:退格</li>
+        <li>\t:tab制表符</li>
+        <li>\n:换行</li>
+        <li>\v:垂直的制表符</li>
+        <li>\r:回车</li>
+        <li>\": "双引号</li>
+        <li>\':'单引号</li>
+        <li>\\:反斜线\</li>
+        <li>\OOO:使用八进制表示的拉丁字母，OOO表示一个3位的八进制整数，范围是000~377。</li>
+        <li>\xHH:使用十六进制表示的拉丁字母，HH表示一个2位的十六进制整数，范围是00~FF。</li>
+        <li>\uHHHH:使用十六进制数（该数值指定该字符的Unicode值）表示的字符，HHHH表示一个4位的十六进制整数。</li>
+    </ul>
+    
+</body>
+</html>

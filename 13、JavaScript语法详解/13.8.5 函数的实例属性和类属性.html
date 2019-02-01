@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>13.8.5函数的实例属性和类属性</title>
+</head>
+<body>
+    <h4>13.8.5 函数的实例属性和类属性</h4>
+    <p>由于JavaScript函数不仅仅是一个函数，而且是一个类，该函数还是此类唯一的构造器，只要调用函数时在前面使用new关键字，
+        就可以返回一个Object，这个Object不是函数的返回值，而是函数本身产生的对象。</p>
+    <b style="color:crimson;">因此在JavaScript的函数中定义的变量不仅有局部变量，还有实例属性和类属性两种。</b> 
+    <p>根据函数中声明变量的方式，函数中的变量有三种：</p> 
+    
+    <ul style="list-style-type:lower-alpha;color: coral;">
+        <li>局部变量：在函数中以普通方式声明的变量，包括以var或不加任何前缀声明的变量。</li>
+        <li>实例属性：在函数中以this前缀修饰的变量。</li>
+        <li>类属性：在函数中以函数名为前缀修饰的变量。</li>
+    </ul>
+    <p>前面已经对局部变量做了介绍，局部变量是只能在函数里访问的变量。实例属性和类属性则是面向对象的概念：实例属性是属于某个对象的，
+        因此必须通过对象来访问；类属性是属于整个类（也就是函数）本身的，因此必须通过类（也即是函数）来访问。
+    </p>
+    <p>同一个类（也就是函数）只占用一块内存，因此每个类属性将只占一块内存；同一个类（也就是函数）每创建一个对象，系统将会
+        为该对象的实例属性分配一块内存，示例如下：
+    </p>
+    <code>
+            var p1 = new Person("zxw","CHN"); <br>
+            document.writeln("创建第一个Person对象:"); <br>
+            //输出第一个对象的name和国籍 <br>
+            document.writeln("p1的name属性为===》"+ p1.name + ""); <br>
+            document.writeln("p1的national属性为：===》" + p1.national + ""); <br>
+            document.writeln("通过Person访问静态national属性为:===>"+ Person.national + ""); <br>
+            //输出aa变量值 <br>
+            document.writeln("p1的aa属性值是：===》" + p1.aa + ""); <br>
+            //创建Person的第二个对象p2 <br>
+            var p2 = new Person("zwy","CHN"); <br>
+            document.writeln("创建两个对象之后：" + ""); <br>
+            //再次输出p1的name和国籍 <br>
+            document.writeln("p1的name属性为===》"+ p1.name + ""); <br>
+            document.writeln("p1的national属性为：===》" + p1.national + ""); <br>
+            //输出p2的name和国籍 <br>
+            document.writeln("p2的name属性为===》"+ p2.name + "");<br>
+            document.writeln("p2的national属性为：===》" + p2.national + "");<br>
+            //输出类属性的national值<br>
+            document.writeln("通过Person访问静态national属性为" + Person.national + "");<br>
+    </code>
+    <script>
+        function Person(name,national){
+            //this修饰的变量是实例属性
+            this.name = name;
+            //函数名修饰的变量是类属性
+            Person.national = national;
+            //函数内，用var修饰的变量是局部变量
+            var aa = "a";
+        }
+        //创建Person对象的第一个对象p1，name为zxw，国籍为CHN
+        var p1 = new Person("zxw","CHN");
+        document.writeln("创建第一个Person对象:<br>");
+        //输出第一个对象的name和国籍
+        document.writeln("p1的name属性为===》"+ p1.name + "<br>");
+        document.writeln("p1的national属性为：===》" + p1.national + "<br>");
+        document.writeln("通过Person访问静态national属性为:===>"+ Person.national + "<br>");
+        //输出aa变量值
+        document.writeln("p1的aa属性值是：===》" + p1.aa + "<br><hr>");
+        //创建Person的第二个对象p2
+        var p2 = new Person("zwy","CHN");
+        document.writeln("创建两个对象之后：" + "<br>");
+        //再次输出p1的name和国籍
+        document.writeln("p1的name属性为===》"+ p1.name + "<br>");
+        document.writeln("p1的national属性为：===》" + p1.national + "<br>");
+        //输出p2的name和国籍
+        document.writeln("p2的name属性为===》"+ p2.name + "<br>");
+        document.writeln("p2的national属性为：===》" + p2.national + "<br>");
+        //输出类属性的national值
+        document.writeln("通过Person访问静态national属性为" + Person.national + "<br>");
+    </script>
+    <br>
+    <p>Person函数的age属性为实例属性，因为每个实例的age属性都可以完全不同，程序应通过Person对象来访问age属性。</p>
+    <p>national属性为类属性，该属性完全属于Person类，因此必须通过Person类来访问national属性，Person对象没有national属性，所以
+        通过Person对象访问该属性将返回undeifined，而aa则是Person的局部变量，在Person函数以外无法访问该变量。
+    </p>
+    <b style="color:coral;">值得指出的是，JavaScript与Java不一样，它是一种动态语言，它允许随时为对象增加属性和方法，当我们直接为对象的某个属性
+        赋值时，即可视为给对象增加属性，如下示例：
+    </b><br>
+    <code>
+            function Student(subject,grade){  <br>
+                //定义subject类属性  <br>
+                Student.subject = subject;<br>
+                //定义grade实例属性<br>
+                this.grade = grade;<br>
+    
+            }<br>
+            var s1 = new Student("Chinese","93");<br>
+            with(document){<br>
+                writeln("s1的subject属性值为：===》" + s1.subject + "");<br>
+                writeln("s1的grade属性值为：===》" + s1.grade + "");<br>
+                writeln("Student的subject属性值为：===》" +Student.subject +"");<br>
+            }<br>
+            //注意在这类添加了实例属性<br>
+            s1.subject = "job";<br>
+            with(document){<br>
+                writeln("s1的subject属性值为：===》" + s1.subject + "");<br>
+                writeln("s1的grade属性值为：===》" + s1.grade + "");<br>
+                writeln("Student的subject属性值为：===》" +Student.subject +"");<br>
+            }<br>
+    </code>
+    <script>
+        function Student(subject,grade){
+            //定义subject类属性
+            Student.subject = subject;
+            //定义grade实例属性
+            this.grade = grade;
+
+        }
+        var s1 = new Student("Chinese","93");
+        with(document){
+            writeln("s1的subject属性值为：===》" + s1.subject + "<br>");
+            writeln("s1的grade属性值为：===》" + s1.grade + "<br>");
+            writeln("Student的subject属性值为：===》" +Student.subject +"<br>");
+        }
+        //注意在这类添加了实例属性
+        s1.subject = "job";
+        with(document){
+            writeln("s1的subject属性值为：===》" + s1.subject + "<br>");
+            writeln("s1的grade属性值为：===》" + s1.grade + "<br>");
+            writeln("Student的subject属性值为：===》" +Student.subject +"<br>");
+        }
+    </script>
+    <br>
+    <p>从上述例子可以看出，为对象s1添加实例属性subject并赋值后，并未影响Student的类属性subject的值。</p>
+    <b>如果直接定义一个全局变量，实际上这个全局变量会“附加”到window对象上，作为window对象的实例属性。因此，程序可以用
+        window对象作为调用者来访问这个全局变量。
+    </b>
+</body>
+</html>

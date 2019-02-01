@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS3新增的服务器字体</title>
+    <style>
+        /* 定义服务器字体，font-family定义服务器字体名称 */
+    @font-face {
+        font-family: it;
+        src:url("css/义启隶书体.ttf") format("TrueType");
+    }
+    </style>
+</head>
+<body>
+    <p>CSS3以前，前端开发者开发网页时只能使用最普通的字体，有些网页设置根本不会设置字体，这是因为我们在网页上设置某种字体后，如果
+        客户端希望正常显示页面，则必须在客户端已安装这种字体；否则该网页上的字体设置在客户端就不会起作用。
+    </p>
+    <p>CSS3的出现改变了这种现状，CSS3允许使用服务器字体，如果客户端没有安装这种字体，客户端就会自动下载这种字体。
+    </p>
+    <h4>7.4.1使用服务器字体</h4>
+    <p>使用服务器字体非常简单，只要使用@font-face定义服务器字体即可。@font-face的语法格式如下：</p>
+    <code>
+        @font-face {
+            font-family: name;
+            src: url(url) format(fontformat);
+            sRules
+        }
+    </code>
+    
+    <p>上面语法格式中的font-family属性值用于指定该服务器字体的名称，这个名称可以随意定义；</p>
+    <p>src属性中通过url指定改字体的字体文件的绝对火相对路径;format则用于指定该字体的字体格式，到目前为止，服务器字体还支持TrueType
+        格式（对应于*.ttf字体文件）和OpenType格式（对应于*.otf字体文件）。
+    </p>
+    <div style="font-family:it;font-size:36pt">  义启隶书体隶书简体中文ttf字体下载 </div>
+
+    <br><br><hr>
+    <h4>7.4.2使用粗体、斜体字</h4>
+    <p>在网页上指定字体时，除了可以指定特定字体之外，还可以指定使用粗体、斜体字，但在使用服务器字体时，<b>需要为粗体、斜体、粗斜体
+        使用不同的字体文件（需要相应的下载不同的字体文件）。</b>
+    </p>
+    <code>
+        @font-face {
+            font-family: name;
+            src: url(url) format(fontformat);
+            font-weight:bold;
+        }
+    </code>
+    <p>从上面代码看，定义粗体字、斜体的服务器字体主要注意两点：</p>
+    <ul>
+        <li>使用粗体字、斜体字专门的字体。</li>
+        <li>在@font-family中增加font-weight、font-style等定义</li>
+    </ul>
+    <br><hr>
+    <h4>7.4.3优先使用客户端字体</h4>
+    <p>虽然CSS3提供了服务器字体的功能，但也不能动不动上来就用“服务器字体”，因为用服务器字体需要从远程服务器下载字体文件，因此效率并不好。实际上
+        我们还是应该尽量使用浏览者的客户端字体，只有当客户端不存在这种字体时，才考虑使用服务器字体作为替代方案，CSS3也为这种方案提供了支持。
+    </p>
+    <p>CSS3使用@font-face定义服务器字体时，src属性除了可以使用url来指定服务器字体的路径之外，也可以使用local指定客户端字体名称。</p>
+    <code>
+        @font-face {
+            font-family: name;
+            src: local(localfontformat),url(fontformat) format("TrueType");
+        }
+    </code>
+</body>
+</html>

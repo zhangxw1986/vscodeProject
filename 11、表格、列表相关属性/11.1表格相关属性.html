@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>11.1表格相关属性</title>
+</head>
+<style>
+    table{
+        width: 400px;
+        border:1px solid royalblue;
+        margin-left: 30px;
+    }
+    td{
+        background-color: #eee;
+        border:1px solid red;
+    }
+    .tb {
+        table-layout: fixed;
+        border-collapse: collapse;
+        border: 1px solid magenta;
+    }
+    .tb td {
+        background-color: #ccc;
+        border: 1px solid  maroon;
+    }
+</style>
+<body>
+    <p>除了前面介绍的各种边框、背景、布局相关的各种属性之外，CSS还针对表格、列表等特定组件提供了相应属性。
+        <ul>
+            <li>表格相关属性可以控制表格的边框样式，表格标题所在位置、表格布局等</li>
+            <li>列表相关属性可以控制列表样式，包括改变列表项的标记，甚至使用自定义图片作为列表项的标记等。</li>
+            <li>media query功能可以针对不同的显示类型、不同参数细节的输出媒体使用不同的CSS布局，从而允许页面进行自适应调整。</li>
+        </ul>
+    </p>
+    <h4>11.1表格相关属性</h4>
+    <p>表格相关属性主要用于控制表格的外观，表格相关属性有如下几个：</p>
+    <ul>
+        <li>border-collapse:用于设置表格里行和单元格边框的显示方式。该属性控制两个单元格的边框是否合到一起，还是按照
+            标准的HTML样式分开。该属性有两个值: <b style="color:red;">seperate</b>(边框分开，使得单元格的分割线为双线)
+            和<b style="color:red;">collapse</b>（边框合并，使得单元格的分割线为单线）。
+        </li>
+        <li>border-spacing:当设置border-spacing为seperate时，该属性用于设置两个单元格之间的间距。</li>
+        <li>caption-side：用于设置表格标题位于表格哪边。该属性必须和caption元素一起使用。该属性有4个值，即top、bottom、left、right，
+            分别对应于将表格标题放在表格的上、下、左、右处。
+        </li>
+        <li>empty-cells:该属性控制单元格内没有内容时，是否显示单元格边框，只有当border-collapse属性设置为seperate时，该属性才有效，
+            该属性支持show(显示)和hide（隐藏）两个属性值。
+        </li>
+        <li>table-layout:用于设置表格宽度布局的方法。该属性支持auto和fixed两个属性值，其中auto是默认值，也就是平时常见的表格布局方式。
+            fixed指定使用固定布局方式。
+        </li>
+    </ul>
+    <p>定义三个表格的例子如下：</p>
+    <!-- 表格的的单元格边框合并到一起，看起来分割线为单线，表格标题在右边。 -->
+    border-collapse：collapse;caption-side:right;
+    <table style="border-collapse:collapse; caption-side:right;">
+        <caption style="caption-side:right;">表格标题</caption>
+        <tr>
+            <td>1.1</td>
+            <td>1.2</td>
+        </tr>
+        <tr>
+            <td>2.1</td>
+            <td>2.2</td>
+        </tr>
+    </table>
+    <br><hr>
+    
+    <!-- 表格的单元格边框不合并，看起来分割线为双线，隐藏空单元格 -->
+    <table style="border-collapse:separate; empty-cells: hide;">
+        <tr>
+            <td>1.1</td>
+            <td>1.2</td>
+        </tr>
+        <tr>
+            <td>2.1</td>
+            <td></td>
+        </tr>
+    </table>
+    <br><hr>
+
+      <!-- 表格的单元格边框不合并，看起来分割线为双线，设置单元格之间的距离 -->
+      <table style="border-collapse:separate; border-spacing: 15px;">
+        <tr>
+            <td>1.1</td>
+            <td>1.2</td>
+        </tr>
+        <tr>
+            <td>2.1</td>
+            <td></td>
+        </tr>
+    </table>
+    <br><hr>
+    <h5>控制表格布局</h5>
+    <p>通过指定table-layout为fixed，可以控制表格的布局方式，该属性值有auto和fixed两个，默认为auto，当指定为fixed时是一种固定
+        布局方式。在这种布局方式下，表格的宽度会按如下方式计算得到。
+    </p>
+    <ul>
+        <li>如果通过col或colgroup元素设定了每列的的宽度，则表格宽度等于所有列宽的总和。</li>
+        <li>如果表格的第一个单元格设置了宽度信息，则表格宽度等于第一行内所有单元格宽度的总和。</li>
+        <li>直接平均分配每列的宽度，忽略单元格内容的实际宽度。</li>
+    </ul>
+    <p>如下列子：</p>
+    表格的宽度由如下两个col计算得出
+    <table class="tb">
+        <col style="width:180px;">
+        <col style="width:80px;">
+        <tr>
+            <td>1.1</td>
+            <td>1.2</td>
+        </tr>
+        <tr>
+            <td>2.1</td>
+            <td></td>
+        </tr>
+    </table>
+    <br><hr>
+    表格的宽度由如下第一行单元格的宽度计算得出
+    <table class="tb">
+        <tr>
+            <td style="width:200px;">1.1</td>
+            <td style="width:180px;">1.2</td>
+        </tr>
+        <tr>
+            <td>2.1</td>
+            <td>2.2</td>
+        </tr>
+    </table>
+    <br><hr>
+    每列将会平均分配该表格的宽度
+    <table class="tb">
+        <tr>
+            <td>1.1</td>
+            <td>1.2</td>
+        </tr>
+        <tr>
+            <td>2.1</td>
+            <td>2.2</td>
+        </tr>
+    </table>
+    <br><hr>
+    
+</body>
+</html>

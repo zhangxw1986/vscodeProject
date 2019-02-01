@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10.3对盒添加阴影</title>
+</head>
+    <style>
+    .dv0 {
+        width:500px;
+        height:300px;
+        border:1px solid deeppink;
+    }
+    .dv0 .dv1{
+        margin: 15px;
+        padding:5px;
+        width:200px;
+        height: 40px;
+        border: 1px solid darkseagreen;
+    }
+    .dv0 .dv2{
+        margin: 15px;
+        padding:5px;
+        width:200px;
+        height: 80px;
+        border: 1px solid darkseagreen;
+    }
+    </style>
+<body>
+    <p>CSS3增加了box-shadow属性为盒模型添加阴影，该属性可用于为整个盒模型添加阴影。</p>
+    <h4>10.3.1使用box-shadow属性</h4>
+    <p>box-shadow属性可以为所有盒模型的元素整体添加阴影。这是一个复核属性，它有如下5个值：</p>
+    <ul>
+        <li>hOffset:该属性值控制阴影在水平方向的偏移。</li>
+        <li>vOffset:该属性值控制阴影在垂直方向的偏移。</li>
+        <li>blurLength:该属性值控制阴影的模糊程度。</li>
+        <li>scaleLength:该属性值控制阴影的缩放程度。</li>
+        <li>color:该属性值控制阴影的颜色。</li>
+    </ul>
+    <p>下面页面代码示范了如何使用box-shadow属性为盒模型添加阴影</p>
+    <div class="dv0">
+        <div class="dv1" style="box-shadow: -10px -8px 6px #444;display:inline-block;">box-shadow:-10px -8px 6px #444;(左上阴影)</div>
+        <div class="dv1" style="box-shadow:  10px -8px 6px rgb(155, 81, 81);display:inline-block;">box-shadow: 10px -8px 6px #444;(右上阴影)</div>
+        <div class="dv1" style="box-shadow:  -10px 8px 6px rgb(74, 126, 110);display:inline-block;">box-shadow: -10px 8px 6px #444;(左下阴影)</div>
+        <div class="dv1" style="box-shadow:  10px 8px 20px rgb(142, 134, 190);display:inline-block;">box-shadow: 10px 8px 6px #444;(右下阴影)</div>
+        <div class="dv2" style="box-shadow:  10px 8px 20px -10px rgb(142, 134, 190);display:inline-block;">box-shadow: 10px 8px 20px -10px #444;(右下阴影，缩小阴影区域)</div>
+        <div class="dv2" style="box-shadow:  10px 8px 20px 15px rgb(185, 100, 143);display:inline-block;">box-shadow: 10px 8px 20px 15px #444;(右下阴影，放大阴影区域)</div>
+    </div>
+</body>
+</html>

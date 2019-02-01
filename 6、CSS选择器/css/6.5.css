@@ -1,0 +1,108 @@
+/* 1、root伪类选择器 */
+:root {
+    background-color: #eee;
+}
+
+/* 2、:first-child、:last-child、:nth-child(n)、:nth-last-child(n)、:only-child伪类选择器 */
+
+.chil>li:first-child {
+    border: 1px solid red;
+}
+.chil>li:last-child {
+    background-color: #aaa;
+}
+ol>li:nth-child(2n) {
+    color: #666;
+}
+
+.chil>li:nth-last-child(2) {
+    font-weight: bold;
+}
+
+span:only-child {
+    font-size: 30pt;
+    font-family: "隶书";
+}
+
+/* 以下是odd/even的写法： */
+#od>li:nth-child(odd) {
+    margin: 10px;
+    border: 2px dotted black;
+}
+#od>li:nth-child(even) {
+    padding: 4px;
+    border: 1px solid goldenrod;
+}
+
+/* 以下是xn+y的写法： */
+#xn>li:nth-child(3n+1) {
+    border: 1px solid navy;
+}
+
+/* 以下是type的写法： */
+.ty>span:first-of-type {
+    border: 1px solid khaki;
+}
+span:last-of-type {
+    border: 1px solid lightcoral;
+}
+span:nth-of-type(2) {
+    color: #158211;
+}
+/* :empty {
+    border: 1px dashed wheat;
+} */
+
+
+/* UI元素状态伪类选择器 */
+td {
+    border: 1px solid blanchedalmond;
+    padding: 4px;
+}
+
+tr:hover {
+    background-color: #31f32a;
+}
+input:active {
+    background-color: blue;
+}
+:focus {
+    text-decoration: underline;
+}
+tr:enabled {
+    font-family: "隶书";
+    font-weight: bold;
+    font-size: 14pt;
+}
+:disabled {
+    font-family: "隶书";
+    font-size: 14pt;
+}
+:checked {
+    outline: red solid 5px;
+}
+:default {
+    outline: #bbb solid 5px;
+}
+
+
+/* 只读、可读可写的设置 */
+.red td {
+    border: 1px solid royalblue;
+    padding: 4px;
+}
+
+input:read-only {
+    background-color: #eee;
+}
+input:read-write {
+    background-color: #8e8;
+}
+
+
+:target {
+    background-color: #ff0;
+}
+ div:not(#java) {
+     background-color: #0ff;
+ }

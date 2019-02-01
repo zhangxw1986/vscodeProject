@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS3新增的伪类选择器</title>
+</head>
+<body>
+    <link rel="stylesheet" href="css/6.5.css">
+</body>
+    <h3>伪类选择器</h3>
+    <p>伪类选择器与伪元素选择器有些类似，伪类选择器主要用于对已有选择器做进一步限制，对已有选择器能匹配的元素做进一步的过滤。CSS3.0提供的伪类选择器主要分为以下三类：</p>
+    <ul>
+        <li>结构性伪类选择器</li>
+        <li>UI元素状态伪类选择器</li>
+        <li>其他伪类选择器</li>
+    </ul>
+    <br><hr>
+
+    <h4>结构性伪类选择器</h4>
+    <p>结构性伪类选择器指的是根据HMTL元素之间的结构关键进行筛选的伪类选择器。结构性伪类选择器有如下几个：</p>
+    <ul>
+        <li>Selector:root: 匹配文档的根元素。在HTML文档中根元素永远是 html元素。</li>
+        <li>Selector:first-child: 匹配符合Selector选择器，而且必须是其父元素的第一个子节点的元素。 </li>
+        <li>Selector:last-child: 匹配符合Selector选择器，而且必须是其父元素的最后一个子节点的元素。</li>
+        <li>Selector:nth-child(n): 匹配符合Selector选择器，而且必须是其父元素的第n个子节点的元素。</li>
+        <li>Selector:nth-last-child(n): 匹配符合Selector选择器，而且必须是其父元素的倒数第n个子节点的元素。</li>
+        <li>Selector:only-child: 匹配符合Selector选择器，而且必须是其父元素的唯一子节点的元素。</li>
+        <li>Selector:first-of-type: 要求符合匹配Selector选择器，而且是与他同类型、同级的兄弟元素中的第一个元素。</li>
+        <li>Selector:last-of-type: 符合Selector选择器，而且是与他同类型、同级的兄弟元素中的最后一个元素。</li>
+        <li>Selector:nth-of-type: 符合Selector选择器而且是与他同类型、同级的兄弟元素中的第n个元素。</li>
+        <li>Selector:nth-last-of-type: 符合Selector选择器，而且是与他同类型、同级的兄弟元素中的倒数第n个元素。</li>
+        <li>Selector:only-of-type: 符合Selector选择器，而且是与他同类型、同级的兄弟元素中的唯一一个元素。</li>
+        <li>Selector:empty: 符合Selector选择器，而且其内部没有任何子元素（包括文本节点）的元素。</li>
+    </ul>  <br>
+    <sup><b>上面这些伪类选择器中，伪类选择器前面的Selector选择器可以省略，如果省略了该选择器，则Selector将不作为匹配条件。</b></sup>
+
+    <h5>1、:root伪类选择器</h5>
+    <p>设置html元素的背景色为#eee</p>
+    <br>
+    <h5>2、:first-child、:last-child、:nth-child(n)、:nth-last-child(n)、:only-child伪类选择器</h5>
+    <p>这组伪类选择器依次要求匹配该选择器的元素必须是其父元素的第一个子节点、最后一个子节点、第n个子节点、倒数第n个子节点、唯一的子节点，这是他们的共同特征。</p>
+    <ol class="chil">
+        <li>曼联</li>
+        <li>曼城</li>
+        <li>切尔西</li>
+        <li>阿森纳</li>
+    </ol>
+    <ul class="chil">
+        <li>巴塞罗那</li>
+        <li>皇家马德里</li>
+        <li>马德里竞技</li>
+        <li>巴伦西亚</li>
+        <li><span>AC米兰</span></li>   
+    </ul>
+    <span>这才是正常的span</span><br>
+    <p>对于:nth-child和:nth-last-child两个伪类选择器，还支持以下用法：</p>
+    <ul>
+        <li>Selector:nth-child(odd/event)：匹配符合Selector选择器，而且必须是其父元素的第奇/偶数个子节点的元素。</li>
+        <li>Selector:nth-last-child(odd/even)：匹配符合Selector选择器，而且必须是其父元素倒数的第奇/偶数个子节点的元素。</li>
+        <li>Selector:nth-child(xn+y):匹配符合Selector选择器，而且必须是其父元素的第xn+y个子节点的元素。</li>
+        <li>Selector:nth-last-child(xn+y):匹配符合Selector选择器，而且必须是其父元素倒数的第xn+y个子节点的元素。</li>
+    </ul>
+    <p>以下是odd/even的写法：</p>
+    <ul id="od">
+        <li id="cc">博格巴</li>
+        <li>鲁尼</li>
+        <li>范尼</li>
+        <li>斯科尔斯</li>
+        <li>瑞恩</li>
+    </ul>
+
+    <p>以下是xn+y的写法：</p>
+    <ul id="xn">
+        <li>C罗</li>
+        <li>梅西</li>
+        <li>武磊</li>
+        <li>莫德里奇</li>
+    </ul>
+    <br>
+    <h5>3、:first-of-type、:last-of-type、:nth-of-type(n)、:nth-last-of-type(n)、:only-of-type伪类选择器</h5>
+    <p>这组伪类选择器与前面那组xxx-child伪类选择器有些类似，但这组伪类选择器并不要求它们是父元素的第一个、最后一个、第n个、倒数第n个、唯一一个元素；这组伪类选择器
+        只要求它们是与其有共同类型、同级元素的第一个、最后一个、第n个、倒数第n个、唯一一个元素。
+    </p>
+    <p>用法如下：</p>
+    <div >中超</div>
+    <span>英超</span>
+    <span>西超</span>
+    <span>意甲</span>
+    <span>法甲</span>
+    <hr>
+    <div class="ty">
+        <div>利物浦</div>
+        <span>狼队</span>
+        <span >南安普顿</span>
+        <span>纽卡斯尔</span>
+        <div>森林狼</div>
+        <div>诺丁汉森林</div>
+    </div>
+    <br>
+    <h5>:empty空元素</h5>
+    <p>:empty伪类选择器要求该元素只能是空元素，不能包含子节点，也不能包含文本内容（连空格都不允许）。</p>
+    <div></div>
+    <div></div>
+    <br><hr>
+
+    <h4>UI元素状态伪类选择器</h4>
+    <p>UI元素状态伪类选择器主要用于根据UI元素的状态进行筛选。UI元素状态伪类选择器有如下几个：</p>
+    <ul>
+        <li>Selecotr:link: 匹配Selector选择器且未被访问前的元素（通常只能是超链接）。 </li>
+        <li>Selector:visited: 匹配Selector选择器且已被访问过的元素（通常只能是超链接）。</li>
+        <li>Selector:active: 匹配Selector选择器且处于被用户激活（在鼠标点击与释放之间的事件）状态的元素。</li>
+        <li>Selector:hover: 匹配Selector选择器且处于鼠标悬停状态的元素。</li>
+        <li>Selector:focus: 匹配Selector选择器且已得到焦点的元素。</li>
+        <li>Selector:enabled: 匹配Selector选择器且当前处于可用状态的元素。</li>
+        <li>Selector:disabled: 匹配你Selector选择器且当前处于不可用状态的元素。</li>
+        <li>Selector:checked: 匹配Selector选择器且当前处于选中状态的元素。</li>
+        <li>Selector:default: 匹配Selector选择器且页面打开时处于选中状态（即使当前没有被选中亦可）的元素。</li>
+        <li>Selector:read-only: 匹配Selector选择器且处于只读状态的元素。</li>
+        <li>Selector:read-write: 匹配Selector选择器且处于读写状态的元素。</li>
+        <li>Selector::selection: 匹配Selector选择器的元素中当前被选中的内容。</li>
+    </ul>
+    <sup><b>在上面这些伪类选择器中，伪类选择器前面的Selector选择器可以省略，如果省略了该选择器，则Selector将不作为匹配条件。
+        而且::selection选择器前面有两个冒号，一定不要搞错。
+    </b></sup>
+    <br>
+    <h5>:hover、:active、:focus、enabled、:disabled、:checked、:default等伪类选择器用法:</h5>
+    <table style="width: 400px;border-collapse: collapse">
+    <tr>
+        <td>鲁尼</td>
+        <td>30</td>
+    </tr>
+    <tr>
+        <td>德赫亚</td>
+        <td>20</td>
+    </tr>
+    <tr>
+        <td>桑切斯</td>
+        <td>35</td>
+    </tr>
+    </table>
+    <button disabled>不可用的按钮</button>
+    <input type="text" disabled value="不可用的文本框">
+    <button>可用的按钮</button>
+    <input type="text" value="可用的文本框">
+    男：<input type="radio" value="male" name="gender">
+    女：<input type="radio" value="female" name="gender">
+    未知：<input type="radio" value="unknown" name="gender" checked>
+    <br>
+    <h5>:read-write、：read-only伪类选择器用法</h5>
+    <table style="width: 400px;border-collapse: collapse" class="red">
+    <tr>
+        <td>曼联</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>切尔西</td>
+        <td>2</td>
+    </tr>
+    <tr contenteditable="true">
+        <td>曼城</td>
+        <td>3</td>
+    </tr>
+    </table>
+    <input type="text" value="只读的文本框" readonly>
+    <input type="text" value="可读写的文本框">
+    <br>
+    <h5>:not和:target</h5>
+    <p>CSS3新增了两个特殊的伪类选择器:</p>
+    <ul>
+        <li>Selector:target: 匹配符合Selector选择器且必须是命名锚点目标的元素。</li>
+        <li>Selector1:not(Selector2): 匹配符合Selector1选择器，但不符合Selector2选择器的元素，相当于用Selector1减去Selector2</li>
+    </ul>
+    <p>:target选择器要求元素必须是命名锚点的目标，而且必须是当前正在访问的目标。:target选择器非常实用，页面可通过该选择器高亮显示正在被访问的目标，下面是示范：</p>
+    <p id="menu">
+    <a href="#java">JAVA课程</a>
+    <a href="#python">Python课程</a>
+    </p>
+    <div id="java">
+        <h4>java课程</h4>
+        <p>java课程的内容介绍：00000</p>
+    </div>
+    <div id="python">
+        <h4>python课程</h4>
+        <p>python课程的介绍：003123</p>
+    </div>
+    <p>:not伪类选择器就是用两个选择器做减法，下面是示范：</p>
+    
+</html>

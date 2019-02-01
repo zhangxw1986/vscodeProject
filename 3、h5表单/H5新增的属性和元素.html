@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>H5新增的属性和元素</title>
+</head>
+<body>
+  <h3>HTML5为表单空间新增的属性</h3>
+  <h4>form属性</h4>
+  <p>h5为表单空间新增了form属性，用于定义该表单空间所属的表单，该属性的值应该是它所属表单的id.这样表单控件可以放在form元素之外，从而提高灵活性</p>
+  <form action="add" id="addForm">
+    物品名：<input type="text" name="name">
+    <input type="submit" value="添加">
+  </form>
+  物品描述：<textarea name="desc" id="desc" cols="30" rows="10" form="addForm"></textarea>
+
+  <br>
+  <br>
+  <hr>
+  <h4>formaction属性</h4>
+  <p><b>
+    给不同的按钮指定不同的action属性。
+  </b></p>
+  <form action="https://www.52pojie.cn/forum.php?" method="post" id="form1">
+    用户名：<input type="text" name="mod" autofocus placeholder="请输入用户名"><br>
+    密码：<input type="text" name="fid" placeholder="请输入密码"><br>
+  </form>
+    <input type="submit" value="注册" form="form1" formaction="regist">
+    <input type="submit" value="登录" form="form1" formaction="login">
+  <br>
+  <hr>
+  <h4>formxxxx属性</h4>
+  <p>
+    <b>对于type是submit或image的表单控件，可以指定以下属性</b><br>
+    formenctype:该属性可以让按钮动态的改变表单enctype属性。<br>
+    formmethod:该属性可以让按钮动态的设置以POST或GET方式提交。<br>
+    formtarget:该属性可以让按钮动态该表单的target属性。<br>
+  </p>
+
+  <br>
+  <hr>
+  <h4>autofocus属性</h4>
+  <p><b>该属性很实用，当为某个表单控件设置该属性后，浏览器打开时会自动获得焦点</b></p>
+  <br>
+  <hr>
+  <h4>placeholder属性</h4>
+  <p>实用表单控件的用户提示信息</p>
+  <br>
+  <hr>
+
+  <h4>list属性</h4>
+  <p>相当于文本框与下拉菜单结合的组件，该组件既允许用户输入，也允许用户通过下拉菜单进行选择</p><br>
+  <p>list属性的值应该是一个datalist组件的id，也就是说，list属性必须与datalist元素结合使用</p><br>
+  <form action="原有表单.html" method="POST">
+    请输入图书：<input type="text" name="name" list="books"><br>
+    <input type="submit" value="购买">
+  </form>
+  <datalist id="books">
+    <option value="java">疯狂java讲义</option>
+    <option value="ee">java ee讲义</option>
+    <option value="python">python 讲义</option>
+  </datalist>
+
+  <br><hr>
+  <h4>autocomplete属性</h4>
+  <p>该属性主要用于与list属性结合使用，当为文本框指定了有效的list属性之后，该文本框下面总会显示一个下拉菜单供用户选择，但有些时候出于安全性考虑，开发者不想让用户看到这个下拉菜单，就用autocomplete属性来实现。</p>
+  <ul>
+    <li>on:打开autocomplete，文本框下方会显示下拉菜单</li>
+    <li>off:关闭autocomplete，文本框下方不会显示下拉菜单</li>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>在脚本中修改显示样式</title>
+</head>
+<script>
+    document.onclick=function(){
+        var bgc="";
+        for(var i=0;i<6;i++){
+            var tmp = Math.round(Math.random() * 16);
+            var t = tmp.toString(16);
+            bgc += "" + t;
+        }
+        console.log(bgc);
+        document.body.style.backgroundColor = "#" + bgc;
+    };
+</script>
+<style>
+    .solid {
+        width: 160px;
+        text-align: center;
+        border-right: #222  3px solid;
+        border-top: #ddd 3px solid;
+        border-left: #ddd 3px solid;
+        border-bottom: #222 3px solid;
+        background-color: #ccc;
+    }
+
+</style>
+<body>
+    <h3>通过JavaScript的DOM修改显示样式</h3>
+    <p>使用脚本动态修改CSS样式非常简单，按如下步骤就可动态修改目标元素的CSS样式：</p>
+    <p>（1）获取需要设置CSS样式的目标元素，例如可以使用getElementById()方法。</p>
+    <p>（2）修改目标元素的CSS样式。常用的方法有两种：</p>
+    <ul>
+        <li>修改内联CSS属性值：使用如"obj.style.属性名=属性值"的javascript代码即可。</li>
+        <li>修改HTML元素的class属性值：使用如"obj.className=class选择器"的javascript脚本即可。</li>
+    </ul>
+    <sup><b>需要注意的是，脚本中的CSS属性名和页面中的静态CSS属性名称并不相同。例如静态中CSS属性名为background-color，脚本中属性名backgroundColor。</b></sup>
+    <p>以下是示例：随机改变页面的背景颜色</p>
+    <br><br>
+    <p>以下是示例：动态增加立体效果：</p>
+    <p>立体效果是一种很简单的CSS效果，其原理是通过为其增加4个边框实现的，其中左、上边框的颜色稍浅，而下、右边框的颜色稍深。</p>
+    <input type="button" id="btn" value="增加立体效果">
+    <div id="up">有立体效果的层</div>
+
+    <script>
+        document.getElementById("btn").onclick = function(){
+        document.getElementById("up").className = "solid";
+    };
+    </script>
+
+</body>
+</html>

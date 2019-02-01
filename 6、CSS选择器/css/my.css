@@ -1,0 +1,15 @@
+.cls {
+    width: 200px;
+    height: 100px;
+    background-color: aquamarine
+}
+table {
+    background-color: beige;
+    width: 400px;
+}
+td {
+    background-color: #ffffff;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    text-shadow: -8px 6px 2px #333;
+}

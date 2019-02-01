@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>13.8.6 调用函数的3种方式</title>
+</head>
+<body>
+  <h4>13.8.6 调用函数的3种方式</h4>
+  <p>调用函数有3种方式：</p>
+  <h5>13.8.6.1 直接调用函数</h5>
+  <p>直接调用函数时最常见、最普通的方式。这总方式直接以函数附加的对象作为调用者，在函数后括号内传入参数来调用函数。例如下面例子：</p>
+  <code>
+      //调用window对象的alert方法 <br>
+      window.alert("直接调用函数"); <br>
+  </code>
+  <script>
+    //调用window对象的alert方法
+    window.alert("直接调用函数");
+    
+  </script>
+  <br>
+  <h5>13.8.6.2 以call()方法调用函数</h5>
+  <p>直接调用函数的方式简单、易用，但这种调用方式不够灵活。有些时候调用函数时需要动态的传入一个函数引用，此时为了动态的调用函数，就需要使用call方法来调用函数了。</p>
+  <p>假如我们需要定义一个形如each(array,fn)的函数，这个函数可以自动迭代处理array数组元素，而fn函数则负责对数组元素进行处理---此时需要在each函数中调用fn函数，但目前fn函数并未确定，因此无法采用直接调用的方式来调用fn函数，需要通过call（）方法来调用函数。</p>
+  <script>
+    //定义一个each函数
+    var each = function(array,fn){
+      for(var index in array){
+        //以window为调用者来调用fn函数
+        //index、array[index]是传给fn函数的参数
+        fn.call(null,index,array[index])
+      }
+    };
+    each([3,42,5],function(index,ele){
+      document.write(index +'===='+ ele +'<br>');
+    })
+                     
+  </script>
+  <br>
+  <p>从调用语法来看，不难发现，通过call()调用函数的语法格式为：</p>
+  <b style="color: burlywood;">函数引用.call(调用者,参数1，参数2...)</b>
+  <p>由此可以得到直接调用函数与通过call()调用函数的关系如下：</p>
+  <b style="color: burlywood;">调用者.函数(参数1,参数2...) = 函数.call(调用者,参数1，参数2...)</b>
+  <br>
+  <h5>13.8.6.3 以apply()方法调用函数</h5>
+  <p>apply()方法与call（）方法的功能基本相似，他们都可以动态的调用函数。apply与call函数的区别如下：</p>
+  <ul>
+    <li>通过call()调用函数时，必须在括号中详细列出每个参数。</li>
+    <li>通过apply()调用函数是，可以再括号中以arguments来代表所有参数。</li>
+  </ul>
+  <p>如下代码示范了call()与apply（）函数的关系：</p>
+  <code>
+      var myfun = function(a,b){  <br>
+        &nbsp; alert("a=="+a +'\n b==' +b  ) <br>
+      }; <br>
+      //以call（）方法动态调用函数   <br>
+      myfun.call(window,13,42);  <br>
+      var example = function (num1,num2) {  <br>
+        &nbsp; myfun.apply(this,arguments);  <br>
+      };  <br>
+      example(11,22);  <br>
+      myfun.apply(window,[111,222]);  <br>
+  </code>
+  <script>
+    var myfun = function(a,b){
+      alert("a=="+a +'\n b==' +b  )
+    };
+    //以call（）方法动态调用函数
+    myfun.call(window,13,42);
+    var example = function (num1,num2) {
+      myfun.apply(this,arguments);
+    };
+    example(11,22);
+    myfun.apply(window,[111,222]);
+  </script>
+  <br>
+  <p>对比上面两行代码不难发现，当通过call（）动态调用函数时，需要为被调用方法逐个的传入参数，当通过apply（）方法动态的调用方法时，能以arguments一次性的传入多个参数。</p>
+</body>
+</html>

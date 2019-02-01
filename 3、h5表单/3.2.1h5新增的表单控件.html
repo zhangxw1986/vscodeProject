@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>h5新增的表单控件</title>
+</head>
+<body>
+    <h3>新增output表单控件</h3>
+    <p>H5新增了一个output表单控件，该元素用于显示输出，比如计算结果或脚本的输出。</p>
+    <sup><b>output元素所生成的表单控件并不会生成请求参数，它只是用于显示输出</b> </sup>
+    <form action="do">
+        请选择颜色：<input type="color" id="color1" name="color1"><br>
+        您选择的颜色是：<output for="color1"  name="cname" onforminput="innerHTML=color1.value;"></output><p></p>
+        请选择范围：<input type="range" min="1" max="10" step="1" id="range1" name="range1"> <br>
+        您选择的值是: <output for="range1" name="rname" onforminput="innerHTML=range1.value"></output><p></p>
+        <input type="submit" value="提交" id="sub1">
+    </form>
+</body>
+</html>

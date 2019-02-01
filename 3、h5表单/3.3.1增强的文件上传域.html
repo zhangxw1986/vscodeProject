@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>增强的文件上传域</title>
+</head>
+
+<body>
+    <h3>文本上传增强</h3>
+    过去有几点局限性：
+    <ul>
+        <li>每次只能选择一个文件进行上传。</li>
+        <li>客户端代码只能获取被上传文件的文件路径，无法访问实际的文件内容。</li>
+    </ul>
+    <p>h5的改进：允许同时上传多个文件，且h5允许客户端javascript访问实际的文件内容。</p>
+    <h4>FileList对象和File对象</h4>
+    <p>h5为type="file"的input元素增加了如下两个元素：</p>
+        <ul>
+            <li>accept属性：该属性控制允许上传的文件类型。该属性值为一个或多个MIME类型字符串。多个MIME字符串之间应以逗号分隔。</li>
+            <li>multiple属性：允许上传多个文件。</li>
+        </ul>
+    <p>File对象是一个JavaScript对象，JavaScript可以通过该对象获取用户浏览的所有文件信息。File对象通常包含如下属性：</p>
+    <ul>
+        <li>name:返回该File对象对应的文件名，不包括文件路径部分。</li>
+        <li>type：该File对象的对应的文件MIME类型字符串。</li>
+        <li>size：该File对象的文件的大小。</li>
+    </ul><br>
+    <hr>
+    <p>文件上传示例：</p>
+    <form action="do">
+        <input type="file" multiple   id="img">
+        <input type="button" value="显示文件" onclick="showDetails();">
+    </form>
+    <script>
+        var showDetails = function(){
+            var images = document.getElementById("img");
+            console.info(images.files);
+            var fileList = images.files;
+            for(var i = 0; i < fileList.length; i++){
+                var file = fileList[i];
+                div = document.createElement("div");
+                div.innerHTML="第" +(i+1) +"个文件的文件名称是"+ file.name +",该文件类型是：" +file.type +"，该文件大小是:" +file.size;
+                document.body.appendChild(div);
+            }
+        }
+    </script>
+</body>
+
+</html>

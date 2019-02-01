@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10.4 CSS3的多栏布局</title>
+    <style>
+        .dv0 .dv1 {
+            column-count: 2;
+            border: 1px solid slateblue;
+            width: 960px;
+            height: 200px;
+            background-color: #ccc;
+        }
+
+        .dv2 .dv3 {
+            column-count: 3;
+            column-width: 200px;
+            border: 1px solid darkgoldenrod;
+            width: 960px;
+            height: 200px;
+            background-color: #ddd;
+        }
+
+        .dv4 .dv5 {
+            columns: 240px 3;
+            border: 1px solid mediumblue;
+            width: 960px;
+            height: 200px;
+            background-color: #eee;
+            /* 设置栏目间距 */
+            column-gap: 60px;
+            /* 设置栏目之间的分隔条： */
+            column-rule: 10px groove lightskyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <p>前面介绍了通过float属性或通过display:inline-block 来实现多栏布局，但通过这种方式实现的多栏布局底部无法对齐，而且通过
+        传统方式来实现多栏布局比较繁琐，为了解决这个问题，CSS3专门提供了多栏布局的功能。
+    </p>
+    <h4>10.4.1 CSS3新增的分栏功能</h4>
+    <p>通过CSS3实现分栏非常简单，只要简单的增加column-count属性即可。下面是例子：</p>
+    <div class="dv0">
+        可以为所有盒模型的元素整体添加阴影：
+        <div class="dv1">
+            <h5>这是一个column-count属性</h5>
+            box-shadow属性
+            hOffset:该属性值控制阴影在水平方向的偏移。
+            vOffset:该属性值控制阴影在垂直方向的偏移。
+            blurLength:该属性值控制阴影的模糊程度。
+            scaleLength:该属性值控制阴影的缩放程度。
+            color:该属性值控制阴影的颜色。
+            下面页面代码示范了如何使用box-shadow属性为盒模型添加阴影
+            box-shadow属性可以为所有盒模型的元素整体添加阴影。这是一个复核属性，它有如下5个值：
+
+            hOffset:该属性值控制阴影在水平方向的偏移。
+            vOffset:该属性值控制阴影在垂直方向的偏移。
+            blurLength:该属性值控制阴影的模糊程度。
+            scaleLength:该属性值控制阴影的缩放程度。
+            color:该属性值控制阴影的颜色。
+            下面页面代码示范了如何使用box-shadow属性为盒模型添加阴影
+        </div>
+    </div>
+    <p>实际上，为了实现分栏效果CSS3增加了大量属性，如下所示：</p>
+    <ul>
+        <li>columns:这是一个复核属性，通过该属性可同时指定栏目宽度、栏目数两个属性值，该属性相当于同时制定column-width、column-count属性。</li>
+        <li>column-width:该属性指定一个长度值，用于指定每个栏目的宽度。</li>
+        <li>column-count:该属性值指定一个整数值，用于指定栏目数。</li>
+        <li>column-rule:这是一个复合属性，用于指定各栏目之间的分隔条。该属性可同时指定分隔条的宽度、样式、颜色。该属性相当于同时指定
+            column-rule-width、column-rule-style、column-rule-color属性。
+        </li>
+        <li>column-rule-width：该属性指定一个长度值，用于指定栏目之间分隔条的宽度。</li>
+        <li>column-rule-style：该属性用于指定分隔条的线型。该属性支持的值有none、dotted、dashed、solid、double、groove
+            、ridge、inset、outset，这些属性值与前面介绍的边框线型的意义一样。
+        </li>
+        <li>column-rule-color:用于设置分割条的颜色。</li>
+        <li>column-gap:该属性是一个长度值，用于指定各栏目之间的间距。</li>
+        <li>colum-fill：该属性用于控制栏目的高度。该属性支持以下两个值：
+            <ul>
+                <li>auto:各栏目的高度随着其内容的多少而变化。</li>
+                <li>balance:各栏目的高度将会统一成内容最多的那一栏的高度。</li>
+            </ul>
+        </li>
+
+    </ul>
+    <p>下面代码示范了column-width、column-count的属性：</p>
+    <div class="dv2">
+        <div class="dv3">3. 年休假
+             试用期满且连续工作满一年以上；调入人员自报到之日起，在总行本部工作满半年后，且连续工龄满1年以上，可享受年休假。
+             工作1-10年休假5天，11-20年休假10天，超过20年休假15天。
+             国家法定节假日、公休日不计入年休假的假期。
+             累计工作年限满1年、满10年、满20年后，从下月起享受相应的年休假天数。
+             年休假一个年度内可以集中安排，也可以分段安排，一般不跨年度安排。
+             因工作原因当年无法安排年休假的，申请期限可以延长至次年三月底。
+            4. 婚假
+             在婚姻登记机关办理登记手续后，可以享受婚假，原则上须在结婚一年内休完。
+             员工结婚，可以享受婚假3天；符合晚婚条件的（男员工年满25周岁，女员工年满23周岁），可增加婚假7天。
+             婚假包括法定节假日和公休日在内。
+             员工提交婚假申请，须提供结婚证复印件。
+        </div>
+    </div>
+    <p>下面代码示范了更复杂的分栏属性：</p>
+    <div class="dv4">
+        <div class="dv5">
+            产假和哺乳假
+             女员工在生育期间，可以享受产假。
+             产假为98天，其中产前休假15天，符合晚育条件的（女方年满24周岁）,增加奖励假期30天；奖励假可由男方休，也可以女方休。女员工申请30天奖励假，须提供配偶方未休该假的相关证明。
+             对符合国家独生子女政策的员工，如本人申请，经所在部门批准，可再增加产假3个月。
+             女员工生育二胎，依法享有产假98天。
+             女员工怀孕，在工作时间内进行产前检查，视同正常工作。
+             女员工哺乳不满1周岁的婴儿，每个工作日给予两次哺乳时间，每次30分钟，并可合并使用。
+             注：有关请假类的详细规定及其他假，请查看《中国建设银行总行本部员工考勤管理办法-建总发〔2009〕224号》文。
+            7. 调休
+             员工加班、值班，根据中心考勤办法，可申请调休，连续调休时间最长不超过5个工作日。
+             员工进行24小时值班，第二天须进行调休。
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>13.7 流程控制语句</title>
+</head>
+<body>
+  <h3>13.7 流程控制</h3>
+  <h4>13.7.1分支：if和switch语句</h4>
+  <h4>13.7.2 while循环</h4>
+  <h4>13.7.3 do while循环</h4>
+  <h4>13.7.4 for 循环</h4>
+  <h4>13.7.5 for in循环</h4>
+  <p>for in 循环的本质是一种foreach循环，它主要有两个作用：</p>
+  <ul>
+    <li>遍历数组里的所有数组元素。</li>
+    <li>遍历JavaScript对象的所有属性。</li>
+  </ul>
+  <p>for in循环的语法格式如下：</p>
+  <code>
+    for（index in object）{ <br>
+      statements....   <br>
+    } <br>
+  </code>
+  <p>当遍历数组时，for in循环的循环计数器是数组元素的索引值。看如下代码：</p>
+  <code>
+    var a = ['hello',"world","javascript"]; <br>
+   for (var m in a){<br>
+    &nbsp; document.writeln("索引是：==》" +m+ "。   值是：==》" +a[m] ); <br>
+    }<br>
+  </code>
+  <script>
+    var a = ['hello',"world","javascript"];
+    for (var m in a){
+      document.writeln("索引是：==》" +m+ "。   值是：==》" +a[m] + "<br>"); 
+    }
+  </script>
+  <p>除此之外，for in循环还可以遍历对象的所有属性。此时，循环计数器是该对象的属性名。看如下代码：</p>
+  <script>
+    document.writeln("<h5>navigator对象的全部属性如下：</h5>")
+    for(m in navigator){
+        // document.writeln("属性 " + m +" 的值是：==>"+ navigator[m]);
+        // document.writeln("<br>");
+    }
+  </script>
+  <h4>13.7.6 break和continue</h4>
+</body>
+</html>
+

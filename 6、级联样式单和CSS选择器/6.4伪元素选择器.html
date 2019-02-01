@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>伪元素选择器</title>
+  <style>
+  ul {
+    list-style: none;
+
+  }
+  span {
+    display: block;
+  }
+  
+  .fl::first-letter {
+    color: hotpink;
+    font-size: 40pt;
+    font-weight: bold;
+  }
+
+.fline::first-line{
+  color: chocolate;
+  font-size: 30pt;
+ 
+}
+.bef::before {
+  content: "Crazy So many:";
+  color: darkcyan;
+  font-weight: bold;
+  background-color: grey;
+}
+
+.aft::after {
+  content: url("images/cat2.jpg")；
+  /* content: "test"; */
+}
+.no::after {
+  content: "  new result";
+}
+
+.quo {
+  quotes: "<<"  ">>"；
+}
+.quo::before {
+  content: open-quote;
+}
+.quo::after {
+  content: close-quote;
+}
+.ct {
+  counter-increment: mycounter;
+}
+.ct::before {
+  content: counter(mycounter,katakana) '.';
+  font-size: 20pt;
+  font-weight: bold;
+}
+
+  </style>
+</head>
+<body>
+  <h3>伪元素选择器</h3>
+
+  <h4>CSS中伪类/伪元素的概念</h4>
+  <p>伪类选择元素基于的是当前元素处于的状态，或者说元素当前所具有的特性，而不是元素的id、class、属性等静态的标志。由于状态是动态变化的，所以一个元素达到一个特定状态时，它可能得到一个伪类的样式；当状态改变时，它又会失去这个样式。由此可以看出，它的功能和class有些类似，但它是基于文档之外的抽象，所以叫伪类。
+
+    与伪类针对特殊状态的元素不同的是，伪元素是对元素中的特定内容进行操作，它所操作的层次比伪类更深了一层，也因此它的动态性比伪类要低得多。实际上，设计伪元素的目的就是去选取诸如元素内容第一个字（母）、第一行，选取某些内容前面或后面这种普通的选择器无法完成的工作。它控制的内容实际上和元素是相同的，但是它本身只是基于元素的抽象，并不存在于文档中，所以叫伪元素。</p>
+    <p>简单说，CSS 伪元素用于向某些选择器设置特殊效果。</p>
+    <a href="https://www.cnblogs.com/lflj/p/6439837.html" target="_blank">伪元素解释博客</a><br><br>
+    CSS提供的伪元素选择器有如下几个：
+    <ul>
+      <li>:first-letter:该选择器对应的CSS样式对指定对象内的第一个字符起作用。</li>
+      <li>:first-line:该选择器对应的CSS样式对指定对象内的第一行内容起作用。</li>
+      <li>:before:该选择器<b>与内容相关的属性结合使用</b>,用于指定对象内部的前端插入内容。</li>
+      <li>:after:该选择器<b>与内容相关的属性结合使用</b>,用于在指定对象内不的尾端添加内容。</li>
+    </ul>
+    <br><hr>
+
+    <h4>first-letter伪元素</h4>
+    <p class="fl">其中:first-letter伪元素仅对块元素（如div,p,section等元素）起作用，如果想对内联元素如（span等元素）使用该属性，必须先设定该对象的height、width属性，或者设定position属性为absolute，或者设定display为block。通过该选择器配合font-size，float属性可制作首字下沉的效果。</p>
+    <span class="fl">abc</span>
+    <section class="fl">又到了周日晚上</section>
+    <p class="fl">这不是一个普通的p</p>
+    <br><hr>
+
+    <h4>first-line伪元素</h4>
+    <p>:first-line伪元素同样只对块元素（如div，p，section）起作用，如果要对内联元素（如span）等元素使用该属性，必须先设定对象的height，width属性，或者设定position属性为absolute，或者设定display属性为block。</p>
+    <sup><b>如果没有通过width属性为html元素设置宽度，该元素的宽度可能随浏览器窗口的大小发生改变，这样第一行内容的 长度可能会变化。</b></sup>
+    <span class="fline">xyz</span>
+    <section class="fline">去年今日此门中，人面桃花相映红</section>
+    <p class="fline" style="widows: 200px;">周末结束了</p>
+
+    <br><hr>
+    <h4>:before、:after伪元素</h4>
+    <b><p>：before、：after两个伪元素必须和内容相关的属性结合使用</p></b>
+    <a href="6.4.1内容相关属性.html" target="_blank">内容相关属性介绍</a>
+    <br>
+
+    <h5>1-插入内容:</h5>
+    <div class="bef">曼联4：1富勒姆</div>
+    <div class="bef">切尔西2：0曼城</div>
+    <div class="bef">伯恩茅斯1：4利物浦</div>
+    <br>
+
+    <h5>2-插入图像</h5>
+    <div class="aft">曼联4：1富勒姆</div>
+    <div class="aft">切尔西2：0曼城</div>
+    <div class="aft">伯恩茅斯1：4利物浦</div>
+    <img src="images/cat2.jpg" alt="猫">
+    <br>
+
+    <h5>3-只插入部分元素</h5>
+    <p>如果想只在部分元素后面插入内容，就需要在:before和:after伪元素选择器之前先使用更严格的CSS选择器。</p>
+    <div>
+    <div class="no">曼联4：1富勒姆</div>
+    <div class="yes">切尔西2：0曼城</div>
+    <div class="no">伯恩茅斯1：4利物浦</div>
+  </div>
+
+  <h5>4-配合quotes属性执行插入</h5>
+  <p>使用quotes属性可以定义open-quote和close-quote。然后就可以在content属性中应用quotes属性所定义的open-quote和close-quote了。</p>
+      <div class="quo">曼联4：1富勒姆</div>
+      <div class="quo">切尔西2：0曼城</div>
+      <div class="quo">伯恩茅斯1：4利物浦</div>
+
+      <br>
+      <h5>5-配合counter-increment属性添加编号</h5>
+      <p>有时需要为多条内容添加编号，可通过counter-increment属性定义计数器，然后通过content属性引用计数器即可。</p>
+      <p>使用counter-increment属性定义计数器非常简单，该属性的值所指定的字符串就是该计数器的名称。</p>
+      <div class="ct">曼联4：1富勒姆</div>
+      <div class="ct">切尔西2：0曼城</div>
+      <div class="ct">伯恩茅斯1：4利物浦</div>
+</body>
+</html>

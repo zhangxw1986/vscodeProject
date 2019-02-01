@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>13.10.3 继承和prototype</title>
+</head>
+<body>
+    <h4>13.10.3 继承和prototype</h4>
+    <p>在面向对象的程序设计语言里，类与类之间有显示的继承关系，一个类可以显示的指定继承自哪个类，子类将具有父类的所有属性和方法，
+        JavaScript虽然也支持类、对象的概念，但没有继承的概念，只能通过一种特殊的手段扩展原来的JavaScript类。
+    </p>
+    <p>事实上，每个JavaScript对象都是相同基类（Object类）的实例，因此所有的JavaScript对象之间没有明显的继承关系。而且JavaScript
+        是一种动态语言，它允许自由地为对象增加属性和方法，当程序为对象的某个不存在的属性赋值时，即可认为是为该对象增加属性。
+        例子如下：
+    </p>
+    <code>
+            var p = {}; <br>
+            &nbsp; p.age = 30;<br>
+            &nbsp; p.info = function(){<br>
+                alert("info method");<br>
+            }<br>
+    </code>
+    <script>
+        var p = {};
+        p.age = 30;
+        p.info = function(){
+            alert("info method");
+        }
+    </script>
+    <b>前面介绍过，定义JavaScript函数时，也就得到了一个同名的类，而且该函数就是该类的构造器。因此我们认为定义一个函数的同时，
+        实际上也定义了一个构造器。
+    </b>
+    <p>当定义函数时，函数中以this修饰的变量是实例属性，如果某个属性值是函数时，即可认为该属性变成了方法。例如下面代码：</p>
+    <code>
+            function Person(name,age){ <br>
+              &nbsp;  this.name = name;<br>
+              &nbsp;   this.age = age;<br>
+              &nbsp;    this.info =function(){<br>
+                &nbsp; &nbsp;     document.writeln("用户的名字是： " + this.name);<br>
+                &nbsp; &nbsp;     document.writeln("用户的年龄是： " + this.age);<br>
+                &nbsp;   }<br>
+            }<br>
+            var p1 = new Person("zxw",12);<br>
+        p1.info();<br>
+        document.writeln("<br>");<br>
+        var p2 = new Person("zwy",2);<br>
+        p2.info();<br>
+        document.writeln("<br>");<br>
+    </code>
+    <script>
+        function Person(name,age){
+            this.name = name;
+            this.age = age;
+            this.info =function(){
+                document.writeln("用户的名字是： " + this.name);
+                document.writeln("用户的年龄是： " + this.age);
+            }
+        }
+        var p1 = new Person("zxw",12);
+        p1.info();
+        document.writeln("<br>");
+        var p2 = new Person("zwy",2);
+        p2.info();
+        document.writeln("<br>");
+    </script>
+    <br>
+    <p>代码在的定义Person函数的同时，也定义了一个Person类，而且该Person函数就是Person类的构造器，该构造器不仅为Person实例完成
+        了初始化，还为Person实例提供了一个info方法。
+    </p>
+    <b>但是这种提供info方法的方式非常不友好，原因如下：</b>
+    <ul>
+        <li>性能低下：每次创建实例时，都会重新为info方法定义空间，系统就会存在很多个info函数，可能导致内存泄漏问题，引发性能下降。</li>
+        <li>使得info函数中的局部变量产生闭包：闭包会扩大局部变量的作用域，使得局部变量一直存活到函数之外的地方。</li>
+    </ul>
+    <code>
+            function Animal(name){ <br>
+             &nbsp;   this.name = name;<br>
+             &nbsp;    var local = 'locallll';<br>
+             &nbsp;    this.info = function(){<br>
+                &nbsp;  &nbsp;     document.writeln('局部变量的值为： ' + local );<br>
+                &nbsp;  &nbsp;  return local;<br>
+                &nbsp;   }<br>
+            }<br>
+            var cat  =  new Animal("cat");<br>
+            var var1 = cat.info();<br>
+            document.writeln("函数外部调用的变量值为： " + var1);<br>
+    </code>
+    <script>
+        function Animal(name){
+            this.name = name;
+            var local = 'locallll';
+            this.info = function(){
+                document.writeln('局部变量的值为： ' + local + '<br>');
+                return local;
+            }
+        }
+        var cat  =  new Animal("cat");
+        var var1 = cat.info();
+        document.writeln("函数外部调用的变量值为： " + var1);
+    </script>
+    <p>从上面代码可以看出，由于在info函数里访问了局部变量local，所以形成了闭包，从而导致local变量的作用域被扩大，
+        结果就是即使离开了函数info，程序依然可以访问到局部变量的值。
+    </p>
+    <p>
+        JavaScript的所有类（也就是函数）都有一个prototype属性，当我们为JavaScript类的prototype属性增加函数、属性时，
+        可视为对原有类的扩展。<b style="color:chocolate;">我们可以理解为：增加了prototype属性的类继承了原有的类----这就是JavaScript所提供的
+            伪继承机制。
+        </b>
+    </p>
+    <p>
+        看如下例子：
+    </p>
+    <code>
+            function Class(school,grade){ <br>
+              &nbsp;  this.school = school;<br>
+              &nbsp;  this.grade = grade;<br>
+              &nbsp;   this.info = function(){<br>
+                &nbsp;&nbsp;   document.writeln("所属学校是： " +this.school);<br>
+                &nbsp;&nbsp;   document.writeln("所属年级是： " +this.grade);<br>
+                &nbsp;   }<br>
+            }<br>
+            var cls = new Class("chinese",3);<br>
+            cls.info();<br>
+            Class.prototype = {<br>
+                &nbsp;    beGoodAt:function(arg){<br>
+                    &nbsp;&nbsp;      document.writeln("这个班级擅长: " +arg);<br>
+                    &nbsp;  }<br>
+            }<br>
+            var cls2 = new Class("japan",2);<br>
+            cls2.info();<br>
+            cls2.beGoodAt("数学");<br>
+    </code>
+    <script>
+        function Class(school,grade){
+            this.school = school;
+            this.grade = grade;
+            this.info = function(){
+                document.writeln("所属学校是： " +this.school+ "<br>");
+                document.writeln("所属年级是： " +this.grade+ "<br>");
+            }
+        }
+        var cls = new Class("chinese",3);
+        cls.info();
+        Class.prototype = {
+            beGoodAt:function(arg){
+                document.writeln("这个班级擅长: " +arg+ "<br>");
+            }
+        }
+
+        var cls2 = new Class("japan",2);
+        cls2.info();
+        cls2.beGoodAt("数学");
+    </script>
+    <br>
+    <p>上面程序为函数的prototype属性进行了定义，并增加了beGoodAt的方法，实际上，JavaScript是一门动态语言，它不仅可以
+        为对象动态的增加属性和方法，也可以动态的为类增加属性和方法。
+    </p>
+    <p>
+        在为Class类增加beGoodAt实例方法之前，cls1对象不能调用beGoodAt方法；在为Class类增加beGoodAt实例方法后，
+        新创建的对象就可以使用prototype属性定义的方法了。
+    </p>
+    <b>函数中定义的prototype属性会让所有对象实例都共享这个方法，这可被当做一种"伪继承"；但这种伪继承的的实质是修改了
+        原有的类，并不是产生了一个新的子类。
+    </b>
+    <p>通过prototype属性，可以对JavaScript的内建类进行扩展，下面的代码为JavaScript内建类Array增肌了indexOf方法，
+        该方法用于判断数组中是否包含了某元素：
+    </p>
+    <code>
+            Array.prototype.indexOf = function(obj){ <br>
+               &nbsp; var result = -1;<br>
+               &nbsp; for(var i = 0; i &lt this.length; i++){  <br>
+                    &nbsp; &nbsp;   if(this[i] == obj){ <br>
+                        &nbsp; &nbsp;       result = i;<br>
+                        &nbsp; &nbsp;      break;<br>
+                        &nbsp;  &nbsp;  }<br>
+                        &nbsp;   }<br>
+                        &nbsp;   return result;<br>
+                       }<br>
+            var arr = [1,23,34,-2];<br>
+    
+            document.writeln("查询对象在数组的位置是： "+ arr.indexOf(-2));<br>
+    </code>
+    <script>
+        Array.prototype.indexOf = function(obj){
+            var result = -1;
+            for(var i = 0; i<this.length; i++){
+                if(this[i] == obj){
+                    result = i;
+                    break;
+                }
+            }
+            return result;
+        }
+        var arr = [1,23,34,-2];
+
+        document.writeln("查询对象在数组的位置是： "+ arr.indexOf(-2));
+    </script>
+    <br>
+    <p>一定要将prototype的定义放到JavaScript脚本的开头，因为只有将indexof方法增加到prototype函数之后，创建的Array实例才有indexof方法。</p>
+    <b style="color:chocolate;">
+    虽然可以在任何时候为一个类增加属性和方法，但通常建议在类定义结束后立即增加所需的方法，这样可避免造成不必要的混乱。同时，
+    对于需要在类定义中定义方法的情形，尽量避免直接在类定义中定义方法，这样可能造成内存泄漏和产闭包。比较安全的方式是，
+    通过prototype属性为该类增加属性和定义。
+    </b>
+</body>
+
+</html>

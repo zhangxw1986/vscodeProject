@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4个新增通用属性</title>
+</head>
+
+<script>
+    document.designMode = "on"; //知识点2：设置全局contentEditable的方法
+</script>
+
+<body>
+    <h4>4个新增通用属性：contentEditable、designMode、hidden、spellcheck</h4>
+    <!-- <br> -->
+    <h5>contentEditable属性：</h5>
+    <div contenteditable="false" style="width:500px;border:1px solid black">
+        <!-- 该元素及子元素均具有contenteditable属性 -->
+        <table style="width:420px;border-collapse:collapse" border="1">
+            <tr>
+                <td>java</td>
+                <td>python</td>
+            </tr>
+            <tr>
+                <td>c</td>
+                <td>c++</td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <h5>designMode属性:</h5>
+    <!-- 见script里的内容 -->
+    <hr>
+
+    <h5>hidden属性:</h5>
+    <!-- 显示/隐藏组件，hidder="true"等同于css中display：none的设置 -->
+    <div  id="target" hidden="true" style="height:80px" >
+        文字内容
+    </div>
+    <button onclick="var target=document.getElementById('target'); target.hidden = !target.hidden;">显示隐藏</button>
+    <hr>
+
+    <h5>spellcheck属性：</h5>
+    <!-- 对属性内范围的文本进行拼写检查 -->
+    <textarea name="text" id="text" cols="30" rows="10" spellcheck="true" contenteditable="true"></textarea>
+</body>
+
+</html>

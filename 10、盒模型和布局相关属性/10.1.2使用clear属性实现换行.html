@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10.1.2使用clear属性实现换行</title>
+</head>
+<style>
+    .dv0{
+        border:1px solid hotpink;
+        width:960px;
+        overflow:hidden;
+    }
+</style>
+<body>
+    <p>clear属性用于设置HTML组件的左、右是否允许出现“浮动”组件，如果该属性指定为left，则左边不允许出现“浮动”组件；如果指定为right，
+        则右边不允许出现“浮动”组件；如果指定为both，则两边都不允许出现“浮动”组件，借助于clear属性可以让“浮动”组件换行。
+    </p>
+    <div class="dv0">
+        <div class="dv1">123456</div>
+        <div class="dv2">78910</div>
+        <div class="dv3" style="float:left;">11/12/13/14/15</div>
+        <div class="dv4" style="clear:left;">16/17/18</div>
+    </div>
+    <p>上述第三个divfloat设置为left，那么第四个div默认就会上来，给第四个设置了clear属性后，就可以正常换行。</p>
+</body>
+</html>

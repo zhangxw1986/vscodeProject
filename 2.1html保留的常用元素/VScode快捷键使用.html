@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VS code快捷键使用</title>
+</head>
+
+<body>
+    <h1>快捷键使用说明</h1>
+    <h3>主命令框</h3>
+    <p>F1或者Ctrl+Shift+P：打开命令面板。在打开的输入框内，可以输入任何命令，例如：
+        <ul>
+            <li>按一下backspace会进入到Ctrl+P模式</li>
+            <li>在Ctrl+P下输入 >可以进入Ctrl+Shift+P模式</li>
+        </ul>
+    </p>
+    <p>在Ctrl+P窗口下还可以：
+        <ul>
+            <li>直接输入文件名，跳转到文件</li>
+            <li>?列出当前可执行的 动作</li>
+            <li>!显示errors或warnings，也可以Ctrl+Shift+M</li>
+            <li>：跳转到行数，也可以Ctrl+G直接进入</li>
+            <li>@跳转到symbol(搜索变量或者函数)，也可以Ctrl+Shift+O直接进入</li>
+            <li>@根据分类跳转symbol，查找属性或函数，也可以Ctrl+Shift+O后输入：进入</li>
+            <ul>#根据名字查找symbol，也可以Ctrl+T</ul>
+        </ul>
+    </p>
+    <hr>
+    <h3>常用快捷键</h3>
+    <h4>编辑器与窗口管理</h4>
+    <p>
+        <ul>
+            <li>打开一个新窗口：Ctrl+Shift+N</li>
+            <li>关闭窗口：Ctrl+Shift+W</li>
+            <li>同时打开多个编辑器</li>
+            <li>新建文件Ctrl+N</li>
+            <li>文件之间切换Ctrl+Tab</li>
+            <li>切出一个新的编辑器（最多三个） Ctrl+\，也可以按住Ctrl鼠标点击Explorer里的文件名</li>
+            <li>左中右三个编辑器的快捷键Ctrl+1 Ctrl+2 Ctrl+3</li>
+            <li>三个编辑器之间循环切换Ctrl+</li>
+            <li>编辑器换位置，Ctrl+k然后按Left或Right</li>
+        </ul>
+    </p>
+    <h4>格式调整</h4>
+    <p>!+ Enter 可以快速生成html文档，前提是安装emmet插件</p>
+    <a href="" id="myid">元素名#id，然后回车，即可快速生成元素</a><br />
+    <p>
+        <ul>
+            <li>代码行缩进: ctrl+[ , ctrl+]</li>
+            <li><b>代码格式化：Shift+Alt+F，或Ctrl+Shift+P后输入format code</b></li>
+            <li><b>上下移动一行：alt+up或alt+down</b></li>
+            <li><b>向上向下复制一行：Shift+Alt+up 或Shift+Alt+down</b></li>
+            <li><b>在当前行下边插入一行：Ctrl+Enter</b></li>
+            <li><b>在当前行上面插入一行：Ctrl+Shift+Enter</b></li>
+        </ul>
+    </p>
+
+    <h4>光标相关</h4>
+    <p>
+        <ul>
+            <li>移动到行首：Home</li>
+            <li>移动到行尾：End</li>
+            <li>移动到文件结尾：Ctrl+End</li>
+            <li>移动到文件开头：Ctrl+Home</li>
+            <li>移动到定义处：Ctrl+Home</li>
+            <li>定义处缩略图：只看一眼而不跳转过去Alt+F12</li>
+            <li>移动到后半个括号：Ctrl+Shift+]</li>
+            <li>选择从光标到行尾：Shift+End</li>
+            <li>选择从行首到光标处：Shif+Home</li>
+            <li>删除光标右侧的所有字：Ctrl+Delete</li>
+            <li>扩展/缩小选取范围：Shift+Alt+Left和Shift+Alt+Right</li>
+            <li>多行编辑（列编辑）:Alt+Shift+鼠标左键，Ctrl+Alt+Down/Up</li>
+            <li>同时选中所有匹配：Ctrl+Shift+L</li>
+            <li>Ctrl+D 下一个匹配的也被选中，</li>
+            <li>回退上一个光标操作：Ctrl+U</li>
+        </ul>
+    </p>
+    <h4>重构代码</h4>
+    <p>
+        <ul>
+            <li>找到所有引用:Shift+F12</li>
+            <li>同时修改本文中所有匹配的：Ctrl+F12</li>
+            <li>重命名：比如要修改一个方法名，可以选中后按F2，输入新的名字，回车，会发现所有的文件都修改了</li>
+            <li>跳转到下一个Error或Warning：当有多个错误时可以按F8逐个跳转</li>
+            <li>查看diff：在explorer里选择文件右键set file to compare，然后需要对比的文件右键选择Compare with file_name_you_choose</li>
+        </ul>
+    </p>
+
+    <h4>查找替换</h4>
+    <p>
+        <ul>
+            <li>查找 Ctrl+F</li>
+            <li>查找替换 Ctrl+H</li>
+            <li>整个文件夹中查找Ctrl+Shift+F</li>
+        </ul>
+    </p>
+    <h4>显示相关</h4>
+    <p>
+        <ul>
+            <li>全屏F11</li>
+            <li>ZoomIn/ZoomOut:Ctrl +/-</li>
+            <li>侧边栏显/隐： Ctrl+B</li>
+            <li>显示资源管理器： Ctrl+Shift+E</li>
+            <li>显示搜索： Ctrl+Shift+F</li>
+            <li>显示Git： Ctrl+Shift+G</li>
+            <li>显示Debug： Ctrl+Shift+D</li>
+            <li>显示Output： Ctrl+Shift+U</li>
+        </ul>
+    </p>
+    <h4>其他</h4>
+    <p>
+        <ul>
+            <li>自动保存：File-->AutoSave 或者Ctrl+Shift+P,输入auto</li>
+        </ul>
+    </p>
+</body>
+
+</html>

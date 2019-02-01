@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>9.1大小相关属性</title>
+    <style>
+        .dv1 div {
+            background-color: aquamarine;
+        }
+        .dv2 div{
+            background-color: #ddd;
+            border: 30px solid #555;
+            padding: 30px;
+            background-clip:content-box;
+        }
+        .dv3 div{
+            width:200px;
+            height:100px;
+            background-color:#ccc;
+            background-clip: content-box;
+            border:20px solid #555;
+            padding:20px;
+
+        }
+        .dv4 div{
+            width:200px;
+            height:100px;
+            background-color:#ccc;
+            background-clip: content-box;
+            border:2px solid red;
+            overflow: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <p>CSS提供了大小相关属性来控制HTML组件的大小，例如通过width、height来控制组件的宽度、高度。通过这种大小相关属性允许开发者自定义HTML组件的大小。</p>
+    <p>除此之外，CSS还提供了position、left、top等属性，开发者可以通过这些属性来控制HTML组件的位置，允许把HTML组件放置在页面的任意位置。</p>
+    <p>本章除了介绍CSS提供的大小、位置等属性外，还会详细介绍CSS提供的轮廓相关属性。轮廓相关属性可以在HTML组件周围添加一圈类似于
+        "光晕"的效果，而且这种光晕效果并不占空间。
+    </p>
+    <h3>9.1大小相关属性</h3>
+    <p>大小相关属性主要用于设置目标对象的宽度、高度，包括最大宽度、高度，以及最小宽度、高度。常用的大小相关属性有如下几个：</p>
+    <ul>
+        <li>height:用于设置目标对象的高度。该属性值可以是任何有效的距离值。</li>
+        <li>min-height:用于设置目标对象的最小高度，如果此属性值的值大于max-height的值，将会自动换转为max-height的值。</li>
+        <li>max-height:与上定义类似。</li>
+        <li>width:用于设置目标对象的宽度。该属性值可以是任何有效的距离值。</li>
+        <li>min-width:用于设置目标对象的最小宽度，如果此属性值的值大于max-width的值，将会自动换转为max-width的值。</li>
+        <li>max-width:与上定义类似。</li>
+    </ul>
+    <p>例子如下：</p>
+    <div class="dv1">
+        <div style="width:200px;height:30px;">测试测试</div>
+    </div>
+    <br><br><hr>
+    <h4>9.1.1CSS3新增的box-sizing属性</h4>
+    <b><sup>如果指定width、height属性，只是指定该元素的<em style="color:red;">内容区</em>的宽度、高度，对该元素的内补丁区、边框区、外补丁区所占的空间不产生任何效果。</sup></b>
+    <p>例子如下：</p>
+    <div class="dv1">
+        <div style="width:200px;height:40px;">无边框区和padding</div>
+    </div>
+    <div class="dv2">
+        <div style="width:200px;height:40px;">边框30px，padding30px</div>
+    </div>
+    <b><sup>
+        上述的两个比较标明，width和height只是标识内容区的大小，设置补丁和边框区后，块元素显示效果不同。
+    </sup></b>
+    <p>CSS3新增了<b>box-sizing属性</b>来设置width、height控制哪些区域的宽度、高度，这样就可以让开发者控制起来更加方便。例如：
+        有时候开发者想要控制的并不是该元素内容区的宽、高，而是该元素整体（包括padding区、border整体的宽度和高度），该属性支持如下几个属性值：
+    </p>
+    <ul>
+        <li>content-box: 设置width、height控制元素的内容区宽度和高度。</li>
+        <li>padding-box: 设置width、height控制元素的内容区和补丁区的宽度和高度。</li>
+        <li>border-box: 设置width、height控制元素的内容区和补丁区和边框区的宽度和高度。</li>
+    </ul>
+    <p>例子如下：第二个属性只有firefox支持</p>
+    <div class="dv3">
+        <div style="box-sizing:content-box">box-sizing:content-box</div>
+        <div style="box-sizing:padding-box">box-sizing:padding-box</div>
+        <div style="box-sizing:border-box">box-sizing:border-box</div>
+    </div>
+    <br><br><hr>
+    <h4>9.1.2CSS3新增的resize属性</h4>
+    <p>CSS3还新增了一个resize属性，该属性用于指定是否允许用户通过拖动来改变元素的大小。该属性支持如下几个属性值：</p>
+    <ul>
+        <li>none:设置不允许用户通过拖动来改变组件的大小。</li>
+        <li>both:设置允许用户通过拖动来改变组件的高度和宽度。</li>
+        <li>horizontal:只允许改变组件的宽度。</li>
+        <li>vertical:只允许改变组件的高度。</li>
+        <li>inherit:继承自父元素的resize值，这是默认值。</li>
+    </ul>
+    <p>resize属性对于所有设置了overflow的HTML组件有效，绝大部分主流浏览器如Firefox、Opera、Chrome都已支持该属性。</p>
+    <p>例子如下：</p>
+    <div class="dv4">
+        <div style="resize:both">both:指定可在两个方向上调整大小。</div>
+        <div style="resize:horizontal">horizontal:只可调整组件的宽度。</div>
+        <div style="resize:vertical">vertical:只可调整组件的高度。</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>14.2 DOM模型和HTML文档</title>
+</head>
+<body>
+    <h3>14.2 DOM模型和HTML文档</h3>
+    <h4>14.2.1 HTML元素之间的继承关系</h4>
+    <p>DOM为常用的HTML元素提供了一套完整的继承体系。从页面的Document对象到常用的HTML元素，DOM模型都提供了对应的类，
+        每个类都提供了相应的方法来操作DOM元素本身、属性及其子元素。DOM模型允许以树的方式操作HTML文档中的每个元素。
+    </p>
+    <p>虽然JavaScript不是一门纯粹的面向对象语言，但DOM还是为HTML元素提供了一种简单的继承关系。DOM模型里HTML元素的继承
+        关系如下：
+    </p>
+    <img src="images/继承关系.JPG" alt="HTML元素的继承关系">
+    <p>粗线框处的4个元素：Node、Document、Element、HTMLElement都是普通HTML元素的超类，不直接对应于HTML页面控件，但他们
+        所包含的方法也可被其他页面元素调用。除此之外还有以下常见的HTML元素。
+    </p>
+
+    <h4>14.2.2 HTML元素之间常见的包含关系</h4>
+    <p>有些HTML元素之间可以互相嵌套，比如div和div之间；有些则不可以，例如td只能作为tr的子元素，option只能作为select
+        的子元素。常见包含关系如下：
+    </p>
+    <img src="images/元素包含关系.JPG" alt="元素包含关系">
+    <p>从上图中可以看出，HTMLDocument对象作为整个HTML文档的最大对象，里面可以包含一个HTMLBodyElement对象。HTML文档
+        中还有两个对象体系：表单对象和表格对象。
+    </p>
+    <ul style="list-style-type:lower-greek;">
+        <li>表单对象里可以包含基本的输入对象，还可以包含select元素，select元素可以包含多个option元素。</li>
+        <li>表格对象可以包含标题（HTMLTableCaptionElement）控件，还可以包含多个表格行（HTMLTableColElement）控件，
+            每个表格行又可以包含多个单元格（HTMLTableCellElement）控件。
+        </li>
+    </ul>
+    <b>
+        使用DOM元素增加子元素时，必须注意元素之间合理的包含关系。例如，不要为td元素增加tr子元素，虽然语法上没错误，但是
+        这种结构在HTML文档上无法显示。在定义table元素时，至少要为其增加一个tr元素，否则该表格将没有任何显示。
+    </b>
+    
+</body>
+</html>
